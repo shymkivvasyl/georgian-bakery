@@ -1,12 +1,10 @@
-import { useMenu } from "@/hooks/useMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useProducts } from "./hooks/useProducts";
 
 export const App = () => {
-  const {  isLoading, isError } = useMenu();
-
+  const { isLoading, isError } = useProducts();
   if (isLoading) return <div>Завантаження...</div>;
-  if (isError) return <div>Помилка при завантаженні даних</div>;
-
+  if (isError) return <div>Помилка</div>;
   return (
     <BrowserRouter>
       <Routes>
