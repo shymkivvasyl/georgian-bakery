@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useProducts } from "./hooks/useProducts";
+import { Header } from "./modules/shared/components/Header/Header";
 
 export const App = () => {
   const { isLoading, isError } = useProducts();
@@ -7,6 +8,7 @@ export const App = () => {
   if (isError) return <div>Помилка</div>;
   return (
     <BrowserRouter>
+    <Header/>
       <Routes>
         <Route path="/" element={<div>HomePage</div>} />
         <Route path="/menu" element={<div>MenuPage</div>} />
