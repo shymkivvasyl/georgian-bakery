@@ -4,6 +4,7 @@ import styles from "./Header.module.scss";
 import { useCart } from "@/hooks/useCart";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useState } from "react";
+import { MobileMenu } from "../MobileMenu";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,33 +12,37 @@ export const Header = () => {
   const { favoritesItems } = useFavorites();
 
   return (
-    <header className={styles.header}>
-      <div className={styles.navLogo}>
-        <Link to="/">
-          <img src="src/images/logo.png" alt="Logo" />
-        </Link>
-      </div>
-      <nav className={styles.nav}>
-        <NavLink to="/">Головна</NavLink>
-        <NavLink to="/menu">Меню</NavLink>
-      </nav>
-      <div className={styles.icons}>
-        <Link to="/favorites" className={styles.icon}>
-          ♡
-          {favoritesItems.length > 0 && (
-            <span className={styles.count}>{favoritesItems.length}</span>
-          )}
-        </Link>
-        <Link to="/cart" className={styles.icon}>
-          🛒
-          {cartItems.length > 0 && (
-            <span className={styles.count}>{cartItems.length}</span>
-          )}
-        </Link>
-      </div>
-      <button className={styles.burgerBtn} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <img src="/burger.png" alt="Menu" />
-      </button>
-    </header>
+    <>
+      <header className={styles.header}>
+        <div className={styles.navLogo}>
+          <Link to="/" className={styles.logo}>
+            <img src="public/images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
+            <span className={styles.logoText}>Грузинська випічка</span>
+          </Link>
+        </div>
+        <nav className={styles.nav}>
+          <NavLink className={styles.navLink} to="/">Головна</NavLink>
+          <NavLink className={styles.navLink} to="/menu">Меню</NavLink>
+        </nav>
+        <div className={styles.icons}>
+          <Link to="/favorites" className={styles.icon}>
+            <img src="/images/Icons/Favourites_(Heart_Like).svg" alt="Favourites" />
+            {favoritesItems.length > 0 && (
+              <span className={styles.count}>{favoritesItems.length}</span>
+            )}
+          </Link>
+          <Link to="/cart" className={styles.icon}>
+            <img src="/images/Icons/cart.svg" alt="cart" />
+            {cartItems.length > 0 && (
+              <span className={styles.count}>{cartItems.length}</span>
+            )}
+          </Link>
+        </div>
+        <button className={styles.burgerBtn} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <img src="/images/Icons/Menu.svg" alt="Menu" />
+        </button>
+      </header>
+      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+    </>
   );
 }

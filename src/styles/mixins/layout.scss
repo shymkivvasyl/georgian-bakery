@@ -1,0 +1,45 @@
+@use '../variables' as *;
+
+// Брейкпоінти 
+@mixin tablet {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1000px) {
+    @content;
+  }
+}
+
+// Flex
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Grid
+@mixin page-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 0 16px;
+
+  @include tablet {
+    grid-template-columns: repeat(8, 1fr);
+    padding: 0 24px;
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(12, 1fr);
+    padding: 0 32px;
+  }
+}

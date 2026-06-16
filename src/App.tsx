@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useProducts } from "./hooks/useProducts";
 import { Header } from "./modules/shared/components/Header/Header";
+import './App.scss'
 
 export const App = () => {
   const { isLoading, isError } = useProducts();

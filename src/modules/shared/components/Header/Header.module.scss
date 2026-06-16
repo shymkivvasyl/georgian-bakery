@@ -1,0 +1,159 @@
+.header {
+  @include flex-between;
+
+  padding: 0 5px;
+  height: 54px;
+  background-color: $color-bg;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid $color-bg-card;
+
+  @include tablet {
+    height: 65px;
+  }
+
+  .navLogo {
+    @include flex-center;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 8px;
+
+
+      .logoImg {
+        height: 46px;
+        width: 46px;
+        object-fit: contain;
+
+        @include desktop {
+          margin-left: 10px;
+          height: 66px;
+          width: 66px;
+        }
+      }
+
+      .logoText {
+        @include font-decorative(25px);
+
+        color: $color-text-accent;
+        line-height: 1.5;
+
+        @include desktop {
+          @include font-decorative(25px);
+        }
+      }
+    }
+  }
+
+  .nav {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      gap: 54px;
+    }
+  }
+
+  .navLink {
+    @include font-h3(20);
+
+    @include desktop {
+      @include font-h3;
+
+    }
+
+    color: $color-text-accent;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover,
+    &.active {
+      color: $color-text-hover;
+    }
+  }
+
+  .icons {
+    display: none;
+    align-items: center;
+
+    .icon {
+      border-left: $border-default;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: $header-height;
+      height: $header-height;
+      color: $color-text;
+      text-decoration: none;
+      transition: color 0.3s;
+
+      @include tablet {
+        width: 65px;
+        height: 65px;
+      }
+
+      img {
+        width: 18px;
+        height: 18px;
+        filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
+
+        @include desktop {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &:hover {
+        color: $color-text-hover;
+      }
+    }
+
+    @include tablet {
+      display: flex;
+    }
+  }
+
+
+  .count {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: $color-text-hover;
+    color: $color-bg;
+    font-size: 10px;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .burgerBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $color-text;
+    padding: 8px;
+
+
+      img {
+        width: 18px;
+        height: 18px;
+        filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
+
+      }
+
+    @include tablet {
+      display: none;
+    }
+  }
+}

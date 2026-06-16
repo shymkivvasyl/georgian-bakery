@@ -1,0 +1,68 @@
+@use '../variables' as *;
+
+// Заголовки — Playfair Display
+@mixin font-h1($size: 48px, $line-height: 58px) {
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: $size;
+  line-height: $line-height;
+}
+
+@mixin font-h2($size: 32px, $line-height: 40px) {
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: $size;
+  line-height: $line-height;
+}
+
+@mixin font-h3($size: 24px, $line-height: 32px) {
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: $size;
+  line-height: $line-height;
+}
+
+@mixin font-uppercase {
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+// Текст — Nunito
+@mixin font-body {
+  font-family: $font-body;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin font-body-medium {
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin font-small {
+  font-family: $font-body;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin font-button {
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+}
+
+@mixin font-decorative($size: 54px) {
+  font-family: $font-decorative;
+  font-size: $size;
+  line-height: 1.2;
+}
