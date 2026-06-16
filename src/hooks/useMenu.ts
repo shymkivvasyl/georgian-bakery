@@ -1,5 +1,5 @@
 import type { Product } from "@/types";
-import { getData } from "@/utils";
+import { getMenu } from "@/utils";
 import { useEffect, useState } from "react";
 
 export const useMenu = () => {
@@ -8,7 +8,7 @@ export const useMenu = () => {
   const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    getData().then(data => {
+    getMenu().then(data => {
       setProducts(data);
       setIsLoading(false);
     }).catch(error => {

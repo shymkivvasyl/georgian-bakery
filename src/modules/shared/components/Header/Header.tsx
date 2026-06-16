@@ -14,7 +14,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.navLogo}>
         <Link to="/">
-          <img src="/logo.png" alt="Logo" />
+          <img src="src/images/logo.png" alt="Logo" />
         </Link>
       </div>
       <nav className={styles.nav}>
