@@ -1,0 +1,136 @@
+.footer {
+  @include flex-center;
+
+  margin-top: auto;
+  flex-direction: column;
+  padding-block: 10px 16px;
+  gap: 10px 24px;
+  border-top: 2px solid $color-bg-card;
+  background-color: $color-bg;
+
+  @include tablet {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-block: 24px 16px;
+    gap: 25px 95px;
+  }
+
+  .logo {
+    @include flex-center;
+    flex-direction: column;
+
+    a {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-decoration: none;
+
+    }
+
+    .logoImg {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+
+    }
+
+    .logoText {
+      @include font-decorative(24px);
+
+      color: $color-text-accent;
+    }
+  }
+
+  .nav {
+    @include flex-center;
+
+    flex-direction: column;
+    gap: 10px;
+
+    .navLink {
+      @include font-body;
+      @include hover-underline;
+
+      color: $color-text-muted;
+      text-decoration: none;
+      transition: color 0.3s;
+
+    }
+  }
+
+  .info {
+    @include flex-center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .instaLink {
+      @include font-body;
+      @include hover-underline(-2px);
+
+      color: $color-text-accent;
+      text-decoration: none;
+    }
+
+    .schedule {
+      @include font-small;
+
+      color: $color-text-muted;
+    }
+
+    .locationBtn {
+      @include font-body;
+
+      text-decoration: none;
+      margin-bottom: 15px;
+      border: none;
+      cursor: pointer;
+      background-color: $color-bg;
+      color: $color-text-accent;
+
+      @include hover-underline;
+
+      @include tablet {
+        margin-bottom: 5px ;
+
+      }
+
+    }
+  }
+
+  .copy {
+    @include flex-center;
+
+    @include font-small(10px);
+
+
+    flex-direction: column;
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid $color-bg-card;
+
+    @include tablet {
+      @include font-small;
+
+      flex-direction: row;
+      gap: 100px;
+    }
+
+    .copyright {
+      color: $color-text-muted;
+    }
+
+    .dev {
+
+      color: $color-text-muted;
+      text-decoration: none;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $color-text-accent;
+      }
+    }
+  }
+
+}

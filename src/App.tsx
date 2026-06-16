@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useProducts } from "./hooks/useProducts";
 import { Header } from "./modules/shared/components/Header/Header";
 import './App.scss'
+import { Footer } from "./modules/shared/components/Footer/Footer";
 
 export const App = () => {
   const { isLoading, isError } = useProducts();
@@ -16,6 +17,7 @@ export const App = () => {
         <Route path="/cart" element={<div>CartPage</div>} />
         <Route path="/favorites" element={<div>FavoritesPage</div>} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }

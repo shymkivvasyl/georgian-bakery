@@ -14,29 +14,38 @@ export const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.navLogo}>
-          <Link to="/" className={styles.logo}>
-            <img src="public/images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
-            <span className={styles.logoText}>Грузинська випічка</span>
-          </Link>
+        <div className={styles.container}>
+          <div className={styles.navLogo}>
+            <Link to="/" className={styles.logo}>
+              <img src="public/images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
+              <span className={styles.logoText}>Грузинська випічка</span>
+            </Link>
+          </div>
+          <nav className={styles.nav}>
+            <NavLink className={styles.navLink} to="/">Головна</NavLink>
+            <NavLink className={styles.navLink} to="/menu">Меню</NavLink>
+          </nav>
         </div>
-        <nav className={styles.nav}>
-          <NavLink className={styles.navLink} to="/">Головна</NavLink>
-          <NavLink className={styles.navLink} to="/menu">Меню</NavLink>
-        </nav>
+
         <div className={styles.icons}>
-          <Link to="/favorites" className={styles.icon}>
+          <NavLink to="/favorites" className={({ isActive }) =>
+            `${styles.icon} ${isActive ? styles.icon_active : ''}`
+          }>
             <img src="/images/Icons/Favourites_(Heart_Like).svg" alt="Favourites" />
             {favoritesItems.length > 0 && (
               <span className={styles.count}>{favoritesItems.length}</span>
             )}
-          </Link>
-          <Link to="/cart" className={styles.icon}>
+          </NavLink>
+          <NavLink to="/cart"
+            className={({ isActive }) =>
+              `${styles.icon} ${isActive ? styles.icon_active : ''}`
+            }
+          >
             <img src="/images/Icons/cart.svg" alt="cart" />
             {cartItems.length > 0 && (
               <span className={styles.count}>{cartItems.length}</span>
             )}
-          </Link>
+          </NavLink>
         </div>
         <button className={styles.burgerBtn} onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <img src="/images/Icons/Menu.svg" alt="Menu" />

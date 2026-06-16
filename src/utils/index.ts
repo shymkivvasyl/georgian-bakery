@@ -40,7 +40,7 @@ export const getLocations = async (): Promise<Locations[]> => {
   const json = JSON.parse(text.substring(47, text.length - 2));
 
   // Перетворюємо рядки таблиці в масив Product
-  return json.table.rows.map((row: SheetRow, index: number) => ({
+  return json.table.rows.slice(1).map((row: SheetRow, index: number) => ({
     id: index + 1,
     region: row.c[0]?.v ?? "",
     city: row.c[1]?.v ?? "",
@@ -48,4 +48,5 @@ export const getLocations = async (): Promise<Locations[]> => {
     phone: row.c[3]?.v ?? "",
     email: row.c[4]?.v ?? "",
   }));
+
 };

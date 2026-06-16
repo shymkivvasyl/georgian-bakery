@@ -2,7 +2,7 @@
   @include flex-between;
 
   padding: 0 5px;
-  height: 54px;
+  height: $header-height;
   background-color: $color-bg;
   position: sticky;
   top: 0;
@@ -13,67 +13,82 @@
     height: 65px;
   }
 
-  .navLogo {
-    @include flex-center;
+  @include desktop {
+    height: 75px;
+  }
 
-    .logo {
+  .container {
+    @include flex-center;
+    gap: 100px;
+
+    .navLogo {
+      @include flex-center;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        gap: 8px;
+
+
+        .logoImg {
+          height: 46px;
+          width: 46px;
+          object-fit: contain;
+
+          @include desktop {
+            margin-left: 10px;
+            height: 66px;
+            width: 66px;
+          }
+        }
+
+        .logoText {
+          @include font-decorative(25px);
+
+          color: $color-text-accent;
+          line-height: 1.5;
+
+          @include desktop {
+            @include font-decorative(25px);
+          }
+        }
+      }
+    }
+
+    .nav {
+      display: none;
+
+      @include tablet {
+        display: flex;
+        gap: 54px;
+      }
+    }
+
+    .navLink {
+      @include font-h3(20);
+      @include hover-underline(1px);
+
+      color: $color-text-accent;
+      text-decoration: none;
+      transition: color 0.3s;
+      height: $header-height;
       display: flex;
       align-items: center;
-      text-decoration: none;
-      gap: 8px;
 
-
-      .logoImg {
-        height: 46px;
-        width: 46px;
-        object-fit: contain;
-
-        @include desktop {
-          margin-left: 10px;
-          height: 66px;
-          width: 66px;
-        }
+      @include tablet {
+        height: 65px;
       }
 
-      .logoText {
-        @include font-decorative(25px);
-
-        color: $color-text-accent;
-        line-height: 1.5;
-
-        @include desktop {
-          @include font-decorative(25px);
-        }
+      @include desktop {
+        @include font-h3;
+        height: 75px;
       }
+
+
     }
   }
 
-  .nav {
-    display: none;
-
-    @include tablet {
-      display: flex;
-      gap: 54px;
-    }
-  }
-
-  .navLink {
-    @include font-h3(20);
-
-    @include desktop {
-      @include font-h3;
-
-    }
-
-    color: $color-text-accent;
-    text-decoration: none;
-    transition: color 0.3s;
-
-    &:hover,
-    &.active {
-      color: $color-text-hover;
-    }
-  }
 
   .icons {
     display: none;
@@ -91,9 +106,22 @@
       text-decoration: none;
       transition: color 0.3s;
 
+      @include hover-underline(0);
+
+      &_active {
+        &::after {
+          width: 50%;
+        }
+      }
+
       @include tablet {
         width: 65px;
         height: 65px;
+      }
+
+      @include desktop {
+        width: 75px;
+        height: 75px;
       }
 
       img {
@@ -135,6 +163,8 @@
   }
 
   .burgerBtn {
+    @include hover-underline;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,12 +175,12 @@
     padding: 8px;
 
 
-      img {
-        width: 18px;
-        height: 18px;
-        filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
+    img {
+      width: 18px;
+      height: 18px;
+      filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
 
-      }
+    }
 
     @include tablet {
       display: none;
