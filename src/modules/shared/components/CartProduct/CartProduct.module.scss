@@ -1,0 +1,75 @@
+.item {
+  @include flex-between;
+
+  background-color: $color-bg-card;
+  border-radius: 12px;
+  padding: 16px;
+  gap: 16px;
+
+  .removeBtn {
+    background: none;
+    border: none;
+    color: $color-text-muted;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.3s;
+    flex-shrink: 0;
+
+    &:hover {
+      color: $color-text-accent;
+    }
+  }
+
+  .img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .name {
+    @include font-body;
+    color: $color-text;
+    flex: 1;
+  }
+
+  .controls {
+    @include flex-center;
+    gap: 8px;
+    flex-shrink: 0;
+
+    .qtyBtn {
+      @include flex-center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid $color-text-muted;
+      border-radius: 6px;
+      background: none;
+      color: $color-text;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        border-color: $color-text-accent;
+        color: $color-text-accent;
+      }
+    }
+
+    .qty {
+      @include font-body;
+      color: $color-text;
+      min-width: 20px;
+      text-align: center;
+    }
+  }
+
+  .price {
+    @include font-h3;
+    color: $color-text-accent;
+    flex-shrink: 0;
+    min-width: 80px;
+    margin-bottom: 15px;
+    text-align: right;
+  }
+}

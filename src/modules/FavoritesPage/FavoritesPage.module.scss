@@ -1,0 +1,47 @@
+.page {
+  @include page-grid;
+  padding-top: 24px;
+  padding-bottom: 40px;
+
+  .title {
+    @include font-h1;
+    grid-column: 1 / -1;
+    color: $color-text;
+    margin-bottom: 16px;
+  }
+
+  .grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.empty {
+  @include flex-center;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 50vh;
+
+  .emptyText {
+    @include font-h2;
+    color: $color-text-muted;
+  }
+
+  .emptyLink {
+    @include font-body;
+    color: $color-text-accent;
+    text-decoration: none;
+
+    @include hover-underline;
+  }
+}

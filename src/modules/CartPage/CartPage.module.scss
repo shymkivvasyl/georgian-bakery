@@ -1,0 +1,99 @@
+.page {
+  @include page-grid;
+  padding-top: 24px;
+  padding-bottom: 40px;
+
+  .title {
+    @include font-h1;
+    grid-column: 1 / -1;
+    color: $color-text;
+    margin-bottom: 16px;
+  }
+
+  .layout {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 24px;
+
+    @include tablet {
+      grid-template-columns: 1fr 300px;
+    }
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .summary {
+    @include flex-center;
+    flex-direction: column;
+    gap: 12px;
+    background-color: $color-bg-card;
+    border-radius: 12px;
+    padding: 24px;
+    height: fit-content;
+    position: sticky;
+    top: 80px;
+
+    .total {
+      @include font-h1;
+      color: $color-text-accent;
+    }
+
+    .count {
+      @include font-small;
+      color: $color-text-muted;
+    }
+
+    .orderBtn {
+      @include font-body;
+      width: 100%;
+      padding: 12px;
+      background-color: $color-text-accent;
+      color: $color-bg;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $color-text-hover;
+      }
+    }
+
+    .clearBtn {
+      @include font-small;
+      background: none;
+      border: none;
+      color: $color-text-muted;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $color-text-accent;
+      }
+    }
+  }
+}
+
+.empty {
+  @include flex-center;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 50vh;
+
+  .emptyText {
+    @include font-h2;
+    color: $color-text-muted;
+  }
+
+  .emptyLink {
+    @include font-body;
+    color: $color-text-accent;
+    text-decoration: none;
+
+    @include hover-underline;
+  }
+}
