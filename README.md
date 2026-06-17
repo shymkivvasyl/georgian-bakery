@@ -1,73 +1,53 @@
-# React + TypeScript + Vite
+# Грузинська Випічка 🫓
+> Georgian bakery — online ordering with pickup locations
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Website Preview](screenshots/preview.png)
 
-Currently, two official plugins are available:
+## About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A commercial website for a local Georgian bakery with menu browsing, cart and order functionality. Built with React and TypeScript as a gift project.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🫓 **Menu Catalog** — browse by categories and groups
+- 🔍 **Filtering & Sorting** — filter by group, search by name, sort by price or popularity
+- ❤️ **Favorites** — save products to favorites
+- 🛒 **Shopping Cart** — add products and manage quantity
+- 📍 **Pickup Locations** — choose from 19 locations
+- 📧 **Order Form** — send orders via EmailJS
+- 📱 **Responsive Design** — works on all devices
+- 💾 **localStorage** — cart and favorites saved between sessions
+- 📊 **Google Sheets CMS** — client can edit menu without developer
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 18** — UI library
+- **TypeScript** — type safety
+- **React Router v6** — navigation
+- **SCSS Modules** — styling
+- **Vite** — build tool
+- **Google Sheets** — as CMS database
+- **EmailJS** — order delivery
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Preview
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+![Home](screenshots/home.png)
+![Menu](screenshots/menu.png)
+![Cart](screenshots/cart.png)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Links
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 🚀 **[Live Demo](https://georgian-bakery.vercel.app)**
+- 💻 **[GitHub](https://github.com/shymkivvasyl/georgian-bakery)**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Author
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Vasyl Shymkiv** — Full-Stack Development Student at Mate Academy
+
+- 💼 [LinkedIn](https://www.linkedin.com/in/vasyl-shymkiv-62127a38a/)
+- 💻 [GitHub](https://github.com/shymkivvasyl)
+- 📧 Email: shymkiv.vasyl333@gmail.com
+
+---
+
+Made with ❤️ while learning full-stack development
