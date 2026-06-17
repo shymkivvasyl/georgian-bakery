@@ -37,7 +37,7 @@ A commercial website for a local Georgian bakery with menu browsing, cart and or
 
 ## Links
 
-- 🚀 **[Live Demo](https://georgian-bakery.vercel.app)**
+- 🚀 **[Live Demo](https://shymkivvasyl.github.io/georgian-bakery/)**
 - 💻 **[GitHub](https://github.com/shymkivvasyl/georgian-bakery)**
 
 ## Author
