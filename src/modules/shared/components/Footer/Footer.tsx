@@ -10,7 +10,7 @@ export const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.logo}>
         <Link to="/">
-          <img src="/images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
+          <img src="./images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
           <span className={styles.logoText}>Грузинська випічка</span>
         </Link>
       </div>
