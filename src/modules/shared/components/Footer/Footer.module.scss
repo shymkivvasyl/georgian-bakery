@@ -16,19 +16,19 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url('./images/footer.png');
+      background-image: url('/images/footer.png');
       background-size: 120% 100;
       background-position: top center;
       pointer-events: none;
     }
   }
 
-    @include tablet {
-      flex-direction: row;
-      flex-wrap: wrap;
-      padding-block: 24px 16px;
-      gap: 25px 95px;
-    }
+  @include tablet {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-block: 24px 16px;
+    gap: 25px 95px;
+  }
 
   .logo {
     @include flex-center;
