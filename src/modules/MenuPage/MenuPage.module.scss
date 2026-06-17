@@ -1,0 +1,109 @@
+.page {
+  @include page-grid;
+  padding-top: 24px;
+  padding-bottom: 40px;
+
+  @include tablet {
+      padding-top: 36px;
+
+  }
+
+  .controls {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    .search {
+      @include font-body;
+      flex: 1;
+      min-width: 200px;
+      background-color: $color-bg-card;
+      color: $color-text;
+      border: 1px solid $color-bg-card;
+      border-radius: 8px;
+      padding: 10px 16px;
+      outline: none;
+      transition: border-color 0.3s;
+
+      &::placeholder {
+        color: $color-text-muted;
+      }
+
+      &:focus {
+        border-color: $color-text-accent;
+      }
+    }
+
+    .sort {
+      @include font-body;
+      background-color: $color-bg-card;
+      color: $color-text;
+      border: 1px solid $color-bg-card;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.3s;
+      appearance: none;
+      padding: 10px 45px 10px 16px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239e9e80' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+
+      &:focus {
+        border-color: $color-text-accent;
+      }
+    }
+  }
+
+  .filters {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .filterBtn {
+      @include font-small;
+
+      background-color: $color-bg-card;
+      color: $color-text-muted;
+      border: 1px solid transparent;
+      border-radius: 20px;
+      padding: 6px 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: capitalize;
+
+      &:hover {
+        border-color: $color-text-accent;
+        color: $color-text-accent;
+      }
+
+      &_active {
+        background-color: $color-text-accent;
+        color: $color-bg;
+        border-color: $color-text-accent;
+
+        &:hover {
+          background-color: $color-bg-card;
+        }
+      }
+    }
+  }
+
+  .main {
+    margin-block: 34px;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+
+    }
+  }
+}

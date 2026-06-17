@@ -3,6 +3,7 @@ import { useProducts } from "./hooks/useProducts";
 import { Header } from "./modules/shared/components/Header/Header";
 import './App.scss'
 import { Footer } from "./modules/shared/components/Footer/Footer";
+import { MenuPage } from "./modules/MenuPage/MenuPage";
 
 export const App = () => {
   const { isLoading, isError } = useProducts();
@@ -13,7 +14,7 @@ export const App = () => {
     <Header/>
       <Routes>
         <Route path="/" element={<div>HomePage</div>} />
-        <Route path="/menu" element={<div>MenuPage</div>} />
+        <Route path="/menu" element={<MenuPage/>} />
         <Route path="/cart" element={<div>CartPage</div>} />
         <Route path="/favorites" element={<div>FavoritesPage</div>} />
       </Routes>

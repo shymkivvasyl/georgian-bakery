@@ -26,6 +26,8 @@ export const getMenu = async (): Promise<Product[]> => {
     imageUrl: row.c[4]?.v ?? "",
     available: row.c[5]?.v ?? true,
     date: row.c[6]?.f ?? "",
+    group: row.c[7]?.v ?? "",
+    popularity: row.c[8]?.v ?? 0,
   }));
 };
 
@@ -48,5 +50,4 @@ export const getLocations = async (): Promise<Locations[]> => {
     phone: row.c[3]?.v ?? "",
     email: row.c[4]?.v ?? "",
   }));
-
 };

@@ -6,6 +6,7 @@ export interface Product {
   description: string;
   imageUrl: string;
   available: boolean;
-  date: string,
- }
- 
+  date: string;
+  group: string;
+  popularity: number;
+}

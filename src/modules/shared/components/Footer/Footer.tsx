@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Footer.module.scss";
 import { useState } from "react";
 import { LocationsModal } from "../LocationsModal/LocationsModal";
@@ -16,9 +16,15 @@ export const Footer = () => {
       </div>
 
       <nav className={styles.nav}>
-        <Link to="/menu" className={styles.navLink}>Меню</Link>
-        <Link to="/cart" className={styles.navLink}>Кошик</Link>
-        <Link to="/favorites" className={styles.navLink}>Улюблені</Link>
+        <NavLink className={({ isActive }) =>
+          `${styles.navLink} ${isActive ? styles.navLink_active : ''}`
+        } to="/menu">Меню</NavLink>
+        <NavLink className={({ isActive }) =>
+          `${styles.navLink} ${isActive ? styles.navLink_active : ''}`
+        } to="/cart">Кошик</NavLink>
+        <NavLink className={({ isActive }) =>
+          `${styles.navLink} ${isActive ? styles.navLink_active : ''}`
+        } to="/favorites">Улюблені</NavLink>
       </nav>
 
       <div className={styles.info}>

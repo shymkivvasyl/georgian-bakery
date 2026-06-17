@@ -1,0 +1,71 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  gap: 4px;
+
+  .label {
+    @include font-small;
+    color: $color-text-muted;
+  }
+
+  .header {
+    @include font-small;
+    @include flex-between;
+
+    background-color: $color-bg-card;
+    color: $color-text;
+    border: 1px solid $color-bg-card;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    gap: 8px;
+    transition: border-color 0.3s;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: $color-text-muted;
+    }
+
+    &_open {
+      border-color: $color-text-accent;
+    }
+
+    .arrow {
+      width: 12px;
+      height: 12px;
+      filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
+    }
+  }
+
+  .list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background-color: $color-bg-card;
+    border: 1px solid $color-text-accent;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+    list-style: none;
+
+    .item {
+      @include font-body;
+      padding: 10px 16px;
+      cursor: pointer;
+      color: $color-text-muted;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: $color-bg;
+        color: $color-text;
+      }
+
+      &_active {
+        color: $color-text-accent;
+      }
+    }
+  }
+}

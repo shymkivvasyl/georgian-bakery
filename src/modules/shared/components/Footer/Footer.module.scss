@@ -8,12 +8,27 @@
   border-top: 2px solid $color-bg-card;
   background-color: $color-bg;
 
-  @include tablet {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-block: 24px 16px;
-    gap: 25px 95px;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: 1000px) {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('public/images/footer.png');
+      background-size: 120% 100;
+      background-position: top center;
+      pointer-events: none;
+    }
   }
+
+    @include tablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding-block: 24px 16px;
+      gap: 25px 95px;
+    }
 
   .logo {
     @include flex-center;
@@ -49,11 +64,19 @@
 
     .navLink {
       @include font-body;
-      @include hover-underline;
+      @include hover-underline();
 
       color: $color-text-muted;
       text-decoration: none;
       transition: color 0.3s;
+
+      &_active {
+        color: $color-text-accent;
+
+        &::after {
+          width: 50%;
+        }
+      }
 
     }
   }
@@ -92,7 +115,7 @@
       @include hover-underline;
 
       @include tablet {
-        margin-bottom: 5px ;
+        margin-bottom: 5px;
 
       }
 

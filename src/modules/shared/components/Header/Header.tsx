@@ -22,8 +22,12 @@ export const Header = () => {
             </Link>
           </div>
           <nav className={styles.nav}>
-            <NavLink className={styles.navLink} to="/">Головна</NavLink>
-            <NavLink className={styles.navLink} to="/menu">Меню</NavLink>
+            <NavLink className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.navLink_active : ''}`
+            } to="/">Головна</NavLink>
+            <NavLink className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.navLink_active : ''}`
+            } to="/menu">Меню</NavLink>
           </nav>
         </div>
 

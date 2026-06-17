@@ -9,6 +9,9 @@
   z-index: 100;
   border-bottom: 1px solid $color-bg-card;
 
+
+  
+
   @include tablet {
     height: 65px;
   }
@@ -19,7 +22,15 @@
 
   .container {
     @include flex-center;
-    gap: 100px;
+
+
+    @include tablet {
+      gap: 50px
+    }
+
+    @include desktop {
+      gap: 50px;
+    }
 
     .navLogo {
       @include flex-center;
@@ -44,13 +55,23 @@
         }
 
         .logoText {
+          @include flex-center;
           @include font-decorative(25px);
 
           color: $color-text-accent;
           line-height: 1.5;
 
+          @include tablet {
+            height: 65px;
+            padding-right: 45px;
+            border-right: $border-default;
+          }
+
+
           @include desktop {
             @include font-decorative(25px);
+
+            height: 75px;
           }
         }
       }
@@ -75,6 +96,14 @@
       height: $header-height;
       display: flex;
       align-items: center;
+
+      &_active {
+        color: $color-text-accent;
+
+        &::after {
+          width: 50%;
+        }
+      }
 
       @include tablet {
         height: 65px;
@@ -148,8 +177,8 @@
 
   .count {
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: 16px;
+    right: 16px;
     background-color: $color-text-hover;
     color: $color-bg;
     font-size: 10px;
@@ -160,6 +189,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include desktop {
+      top: 20px;
+      right: 20px;
+    }
   }
 
   .burgerBtn {
