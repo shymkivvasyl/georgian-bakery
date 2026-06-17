@@ -17,7 +17,7 @@ export const Header = () => {
         <div className={styles.container}>
           <div className={styles.navLogo}>
             <Link to="/" className={styles.logo}>
-              <img src="./images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
+              <img src="/images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
               <span className={styles.logoText}>Грузинська випічка</span>
             </Link>
           </div>
@@ -35,7 +35,7 @@ export const Header = () => {
           <NavLink to="/favorites" className={({ isActive }) =>
             `${styles.icon} ${isActive ? styles.icon_active : ''}`
           }>
-            <img src="./images/Icons/Favourites_(Heart_Like).svg" alt="Favourites" />
+            <img src="/images/Icons/Favourites_(Heart_Like).svg" alt="Favourites" />
             {favoritesItems.length > 0 && (
               <span className={styles.count}>{favoritesItems.length}</span>
             )}
@@ -45,14 +45,14 @@ export const Header = () => {
               `${styles.icon} ${isActive ? styles.icon_active : ''}`
             }
           >
-            <img src="./images/Icons/cart.svg" alt="cart" />
+            <img src="/images/Icons/cart.svg" alt="cart" />
             {cartItems.length > 0 && (
               <span className={styles.count}>{cartItems.length}</span>
             )}
           </NavLink>
         </div>
         <button className={styles.burgerBtn} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <img src="./images/Icons/Menu.svg" alt="Menu" />
+          <img src="/images/Icons/Menu.svg" alt="Menu" />
         </button>
       </header>
       <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />

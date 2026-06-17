@@ -27,7 +27,7 @@ export const ProductCard = ({ product }: Props) => {
       <div className={styles.imgWrapper}>
         <img
           className={styles.image}
-          src={product.imageUrl || './images/placeholder.png'}
+          src={product.imageUrl || '/images/placeholder.png'}
           alt={product.name}
         />
       </div>
@@ -47,14 +47,14 @@ export const ProductCard = ({ product }: Props) => {
               className={styles.addedToFav}
               onClick={() => removeFromFavorites(product.id)}
             >
-              <img src="./images/Icons/Favourites_Filled_(Heart_Like).svg" alt="в улюблених" />
+              <img src="images/Icons/Favourites_Filled_(Heart_Like).svg" alt="в улюблених" />
             </button>
           ) : (
             <button
               className={styles.addToFav}
               onClick={() => addToFavorites(product)}
             >
-              <img src="./images/Icons/Favourites_(Heart_Like).svg" alt="додати в улюблені" />
+              <img src="/images/Icons/Favourites_(Heart_Like).svg" alt="додати в улюблені" />
             </button>
           )}
           {isInCart ? (
