@@ -3,6 +3,7 @@ import { useMenu } from '@/hooks/useMenu';
 import styles from './MenuPage.module.scss';
 import { ProductCard } from '../shared/components/ProductCard/ProductCard';
 import { Dropdown } from '../shared/components/Dropdown/Dropdown';
+import { useSearchParams } from 'react-router-dom';
 type SortBy = 'default' | 'price_asc' | 'price_desc' | 'popularity';
 
 const sortOptions = [
@@ -14,9 +15,13 @@ const sortOptions = [
 
 export const MenuPage = () => {
   const { products, isLoading, isError } = useMenu();
-  const [activeGroup, setActiveGroup] = useState('Все');
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState<SortBy>('default');
+
+  const [searchParams] = useSearchParams();
+  const [activeGroup, setActiveGroup] = useState(
+    searchParams.get('group') || 'Все'
+  );
 
   const groups = useMemo(() => {
     const unique = [...new Set(products.map(p => p.group))];

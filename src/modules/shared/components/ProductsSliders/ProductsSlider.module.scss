@@ -1,0 +1,87 @@
+%icon {
+  @include flex-center;
+
+  width: 32px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+  background-color: $color-bg-card;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+
+  img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) saturate(100%) invert(1);
+  }
+
+  &:hover {
+    background-color: $color-text-accent;
+  }
+}
+
+.productsSlider {
+  overflow: hidden;
+  width: 100%;
+
+  .header {
+    @include flex-between;
+
+    margin-bottom: 26px;
+
+    .title {
+      @include font-h2;
+
+      color: $color-text;
+    }
+
+    .headerButtons {
+      display: flex;
+      gap: 8px;
+
+      .icon {
+        @extend %icon;
+      }
+
+      .iconDisabled {
+        @extend %icon;
+        background-color: $color-bg-card;
+        pointer-events: none;
+
+        img {
+          filter: brightness(0.3);
+        }
+      }
+    }
+  }
+
+  .windowSlider {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider {
+      display: flex;
+      width: 100%;
+      gap: 16px;
+      align-items: stretch;
+
+      .card {
+        flex-shrink: 0;
+        width: 280px;
+
+        @include tablet {
+          width: 300px;
+        }
+
+        @include desktop {
+          width: 320px;
+        }
+      }
+    }
+  }
+}

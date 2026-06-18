@@ -28,12 +28,10 @@
   flex-direction: column;
   background-color: $color-bg-card;
   border-radius: 12px;
+  height: 100%;
   overflow: hidden;
   transition: transform 0.3s ease;
 
-  &:hover {
-    transform: translateY(-4px);
-  }
 
   .imgWrapper {
     width: 100%;
