@@ -1,0 +1,148 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  @include flex-center;
+  padding: 16px;
+}
+
+.modal {
+  background-color: $color-bg;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: $color-text-muted;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $color-text-accent;
+    }
+  }
+
+  .title {
+    @include font-h2;
+    color: $color-text;
+    margin-bottom: 24px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .label {
+        @include font-small;
+        color: $color-text-muted;
+      }
+
+      .input {
+        @include font-body;
+        background-color: $color-bg-card;
+        color: $color-text;
+        border: 1px solid $color-bg-card;
+        border-radius: 8px;
+        padding: 10px 16px;
+        outline: none;
+        transition: border-color 0.3s;
+
+        &::placeholder {
+          color: $color-text-muted;
+        }
+
+        &:focus {
+          border-color: $color-text-accent;
+        }
+      }
+
+      .textarea {
+        @extend .input;
+        resize: none;
+        font-family: $font-body;
+      }
+    }
+
+    .error {
+      @include font-small;
+      color: #ff4444;
+    }
+
+    .summary {
+      @include flex-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid $color-bg-card;
+
+      .total {
+        @include font-h3;
+        color: $color-text-accent;
+      }
+
+      .submitBtn {
+        @include font-body;
+        background-color: $color-text-accent;
+        color: $color-bg;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: $color-text-hover;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .success {
+    @include flex-center;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    padding: 32px 0;
+
+    .successText {
+      @include font-body;
+      color: $color-text-muted;
+    }
+
+    .closeBtn {
+      @include font-body;
+      background-color: $color-text-accent;
+      color: $color-bg;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 32px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $color-text-hover;
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import styles from './MenuPage.module.scss';
 import { ProductCard } from '../shared/components/ProductCard/ProductCard';
 import { Dropdown } from '../shared/components/Dropdown/Dropdown';
 import { useSearchParams } from 'react-router-dom';
+import { Loader } from '../shared/components/Loader/Loader';
 type SortBy = 'default' | 'price_asc' | 'price_desc' | 'popularity';
 
 const sortOptions = [
@@ -44,7 +45,7 @@ export const MenuPage = () => {
 
 
 
-  if (isLoading) return <div>Завантаження...</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <div>Помилка</div>;
 
   return (

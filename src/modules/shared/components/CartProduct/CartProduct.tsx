@@ -12,38 +12,34 @@ export const CartProduct = ({ item }: Props) => {
 
   return (
     <div className={styles.item}>
-      <button
-        className={styles.removeBtn}
-        onClick={() => removeFromCart(product.id)}
-      >
-        ✕
-      </button>
-
-      <img
-        className={styles.img}
-        src={product.imageUrl || '/images/placeholder.png'}
-        alt={product.name}
-      />
+      <div className={styles.imgWrap}>
+        <button
+          className={styles.removeBtn}
+          onClick={() => removeFromCart(product.id)}
+        >
+          <img src="/images/Icons/Close.svg" alt="close" />
+        </button>
+        <img
+          className={styles.img}
+          src={product.imageUrl || '/images/placeholder.png'}
+          alt={product.name}
+        />
+      </div>
 
       <p className={styles.name}>{product.name}</p>
 
       <div className={styles.controls}>
-        <button
-          className={styles.qtyBtn}
-          onClick={() => changeQuantity(product.id, quantity - 1)}
-        >
-          −
-        </button>
-        <span className={styles.qty}>{quantity}</span>
-        <button
-          className={styles.qtyBtn}
-          onClick={() => changeQuantity(product.id, quantity + 1)}
-        >
-          +
-        </button>
+        <div className={styles.qty_controls}>
+          <button className={styles.qtyBtn} onClick={() => changeQuantity(product.id, quantity - 1)}>
+            <img src="/images/Icons/Minus.svg" alt="minus" />
+          </button>
+          <span className={styles.qty}>{quantity}</span>
+          <button className={styles.qtyBtn} onClick={() => changeQuantity(product.id, quantity + 1)}>
+            <img src="/images/Icons/Plus.svg" alt="" />
+          </button>
+        </div>
+        <p className={styles.price}>{product.price} ₴</p>
       </div>
-
-      <p className={styles.price}>{product.price * quantity} ₴</p>
     </div>
   );
 };

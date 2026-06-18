@@ -30,6 +30,13 @@ export const Dropdown = ({ options, value, onChange, label }: Props) => {
 
   const currentLabel = options.find(o => o.value === value)?.label;
 
+
+  const [search, setSearch] = useState('');
+
+  const filteredOptions = options.filter(o =>
+    o.label.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className={styles.wrapper} ref={ref}>
       {label && <span className={styles.label}>{label}</span>}
@@ -46,20 +53,29 @@ export const Dropdown = ({ options, value, onChange, label }: Props) => {
       </button>
 
       {isOpen && (
-        <ul className={styles.list}>
-          {options.map(option => (
-            <li
-              key={option.value}
-              className={`${styles.item} ${value === option.value ? styles.item_active : ''}`}
-              onClick={() => {
-                onChange(option.value);
-                setIsOpen(false);
-              }}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
+        <div className={styles.list}>
+          <input
+            className={styles.search}
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Пошук..."
+            onClick={e => e.stopPropagation()}
+          />
+          <ul>
+            {filteredOptions.map(option => (
+              <li
+                key={option.value}
+                className={`${styles.item} ${value === option.value ? styles.item_active : ''}`}
+                onClick={() => {
+                  onChange(option.value);
+                  setIsOpen(false);
+                }}
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

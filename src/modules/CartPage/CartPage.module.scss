@@ -16,7 +16,7 @@
     gap: 24px;
 
     @include tablet {
-      grid-template-columns: 1fr 300px;
+      grid-template-columns: 3fr 1fr;
     }
   }
 
@@ -35,11 +35,21 @@
     padding: 24px;
     height: fit-content;
     position: sticky;
-    top: 80px;
+    bottom: 16px;
+    top: auto;
+
+    @include tablet {
+      top: 80px;
+      bottom: auto;
+    }
 
     .total {
-      @include font-h1;
+      @include font-h2;
       color: $color-text-accent;
+
+      @include tablet {
+        @include font-h1;
+      }
     }
 
     .count {
@@ -50,7 +60,7 @@
     .orderBtn {
       @include font-body;
       width: 100%;
-      padding: 12px;
+      padding: 12px 16px;
       background-color: $color-text-accent;
       color: $color-bg;
       border: none;

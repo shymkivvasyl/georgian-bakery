@@ -2,9 +2,12 @@ import { useCart } from '@/hooks/useCart';
 import styles from './CartPage.module.scss';
 import { Link } from 'react-router-dom';
 import { CartProduct } from '../shared/components/CartProduct/CartProduct';
+import { useState } from 'react';
+import { OrderModal } from '../shared/components/OrderModal/OrderModal';
 
 export const CartPage = () => {
   const { cartItems, clearCart } = useCart();
+  const [isOrderOpen, setIsOrderOpen] = useState(false);
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.product.price * item.quantity, 0
@@ -37,13 +40,15 @@ export const CartPage = () => {
         <div className={styles.summary}>
           <p className={styles.total}>{total} ₴</p>
           <p className={styles.count}>{totalItems} товарів</p>
-          <button className={styles.orderBtn}>
+          <button className={styles.orderBtn} onClick={() => setIsOrderOpen(true)}>
             Оформити замовлення
           </button>
           <button className={styles.clearBtn} onClick={clearCart}>
             Очистити кошик
           </button>
+
         </div>
+        {isOrderOpen && <OrderModal onClose={() => setIsOrderOpen(false)} />}
       </div>
     </div>
   );

@@ -1,10 +1,26 @@
 import { useEffect, useState } from 'react';
 import styles from './BannerSlider.module.scss';
+import { Link } from 'react-router-dom';
 
 const slides = [
-  '/images/banner/banner-1.png',
-  '/images/banner/banner-2.png',
-  '/images/banner/banner-3.png',
+  {
+    img: '/images/banner/banner-1.png',
+    title: 'Свіжа випічка щодня',
+    subtitle: ['Хачапурі, піца, слойки —', 'прямо з печі'],
+    btn: { label: 'До меню', link: '/menu' },
+  },
+  {
+    img: '/images/banner/banner-2.png',
+    title: 'Наша солодка вітрина',
+    subtitle: ['Наші солодкі випічки —', 'для вашого настрою'],
+    btn: { label: 'Солодке', link: '/menu?group=солодке' },
+  },
+  {
+    img: '/images/banner/banner-3.png',
+    title: 'Скоро в Glovo ',
+    subtitle: ['Доставка вже на підході —',  'слідкуйте за новинами'],
+    btn: { label: 'Бета', link: '#' },
+  },
 ];
 
 export const BannerSlider = () => {
@@ -48,30 +64,28 @@ export const BannerSlider = () => {
       }}
     >
       <div className={styles.sliderContent}>
-        <button
-          className={styles.icon}
-          onClick={() => goToSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1, 'prev')}
-        >
-          <img src="/images/Icons/Chevron_(Arrow_Left).svg" alt="prev" />
-        </button>
-
         <div className={styles.images}>
           {slides.map((slide, index) => (
-            <img
-              key={index}
-              src={slide}
-              alt={`banner-${index + 1}`}
-              className={getImageClass(index)}
-            />
+            <div key={index} className={`${styles.slide} ${getImageClass(index)}`}>
+              <img
+                src={slide.img}
+                alt={`banner-${index + 1}`}
+              />
+              <div className={styles.overlay}>
+                <h2 className={styles.slideTitle}>{slide.title}</h2>
+                <p className={styles.slideSubtitle}>
+                  {slide.subtitle.map((line, i) => (
+                    <span key={i}>{line}<br /></span>
+                  ))}
+                </p>
+                <Link to={slide.btn.link} className={styles.slideBtn}>
+                  {slide.btn.label}
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
 
-        <button
-          className={styles.icon}
-          onClick={() => goToSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1, 'next')}
-        >
-          <img src="/images/Icons/Chevron_(Arrow_Right).svg" alt="next" />
-        </button>
       </div>
 
       <div className={styles.dots}>

@@ -22,7 +22,11 @@
     cursor: pointer;
     gap: 8px;
     transition: border-color 0.3s;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
+    height: auto;
+    min-height: 44px;
+    text-align: left;
 
     &:hover {
       border-color: $color-text-muted;
@@ -51,12 +55,28 @@
     z-index: 10;
     list-style: none;
 
+    .search {
+      @include font-small;
+      width: 100%;
+      padding: 8px 16px;
+      background-color: $color-bg;
+      color: $color-text;
+      border: none;
+      border-bottom: 1px solid $color-bg-card;
+      outline: none;
+
+      &::placeholder {
+        color: $color-text-muted;
+      }
+    }
+
     .item {
       @include font-body;
       padding: 10px 16px;
       cursor: pointer;
       color: $color-text-muted;
       transition: all 0.2s;
+      white-space: normal;
 
       &:hover {
         background-color: $color-bg;
