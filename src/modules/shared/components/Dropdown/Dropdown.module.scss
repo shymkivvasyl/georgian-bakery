@@ -71,6 +71,13 @@
       }
     }
 
+    ul {
+      max-height: 150px;
+      overflow-y: auto;
+      margin: 0;
+      padding: 0;
+    }
+
     .item {
       @include font-body;
       padding: 10px 16px;

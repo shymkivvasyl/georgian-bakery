@@ -20,7 +20,7 @@
   .close {
     position: absolute;
     top: 44px;
-    right: 26px;
+    right: 12px;
     background: none;
     border: none;
     color: $color-text-muted;
@@ -39,9 +39,13 @@
   }
 
   .title {
-    @include font-h2;
+    @include font-h3;
     color: $color-text;
     margin-bottom: 26px;
+
+    @include tablet {
+      @include font-h2;
+    }
   }
 
   .form {
