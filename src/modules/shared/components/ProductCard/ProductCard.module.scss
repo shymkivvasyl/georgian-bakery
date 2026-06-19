@@ -89,9 +89,13 @@
   .footer {
     @include flex-between;
 
-    padding: 14px 22px;
+    padding: 14px 16px;
     border-top: 1px solid $color-bg;
     margin-top: 12px;
+
+    @include tablet {
+      padding: 14px 22px;
+    }
 
     .price {
       @include font-h3;

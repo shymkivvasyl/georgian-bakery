@@ -44,11 +44,11 @@
     }
 
     .total {
-      @include font-h2;
+      @include font-h3;
       color: $color-text-accent;
 
       @include tablet {
-        @include font-h1;
+        @include font-h1(40px);
       }
     }
 

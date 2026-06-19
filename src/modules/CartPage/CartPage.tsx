@@ -17,7 +17,7 @@ export const CartPage = () => {
     (sum, item) => sum + item.quantity, 0
   );
 
-  if (cartItems.length === 0) {
+  if (cartItems.length === 0 && !isOrderOpen) {
     return (
       <div className={styles.empty}>
         <p className={styles.emptyText}>Кошик порожній</p>

@@ -82,11 +82,11 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 26px;
+    padding-top: 36px;
     gap: 24px;
 
     .nav_link {
-      @include font-uppercase;
+      @include font-uppercase(14);
 
       text-transform: uppercase;
       position: relative;
@@ -116,15 +116,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 64px;
+      height: 100px;
       position: relative;
 
       @include hover-underline(0);
 
 
       img {
-        width: 18px;
-        height: 18px;
+        width: 28px;
+        height: 28px;
         filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
 
 
@@ -146,30 +146,29 @@
 
       .count {
         position: absolute;
-        width: 14px;
+        width: 18px;
+        height: 18px;
         top: 50%;
         left: 50%;
         transform: translate(0, -100%);
-        height: 14px;
         border-radius: 8px;
         background-color: $color-text-hover;
-        color: $color-text;
+        color: $color-bg;
         font-family: Mont, sans-serif;
-        font-size: 9px;
+        font-size: 12px;
         font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0 4px;
-        border: 1px solid $color-bg;
 
       }
     }
   }
 
   .icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
 
 
     @include scale-img(1.25);

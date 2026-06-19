@@ -1,7 +1,7 @@
 .header {
   @include flex-between;
 
-  padding: 0 5px;
+  padding-left: 10px;
   height: $header-height;
   background-color: $color-bg;
   position: sticky;
@@ -10,7 +10,7 @@
   border-bottom: 1px solid $color-bg-card;
 
 
-  
+
 
   @include tablet {
     height: 65px;
@@ -208,6 +208,9 @@
     color: $color-text;
     padding: 8px;
 
+    width: $header-height;
+    height: $header-height;
+    border-left: $border-default;
 
     img {
       width: 18px;

@@ -17,6 +17,7 @@ export const OrderModal = ({ onClose }: Props) => {
   const [phone, setPhone] = useState('+38');
   const [location, setLocation] = useState('');
   const [comment, setComment] = useState('');
+  const [time, setTime] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState('');
@@ -42,12 +43,17 @@ export const OrderModal = ({ onClose }: Props) => {
     (sum, item) => sum + item.product.price * item.quantity, 0
   );
 
+  const timeOptions = Array.from({ length: 15 }, (_, i) => {
+    const hour = 7 + i;
+    return { value: `${hour}:00`, label: `${hour}:00` };
+  });
+
   const orderItems = cartItems
     .map(item => `${item.product.name} x${item.quantity} — ${item.product.price * item.quantity}₴`)
     .join('\n');
 
   const handleSubmit = async () => {
-    if (!name || !phone || !location) {
+    if (!name || !phone || !location || !time) {
       setError('Заповніть всі обов\'язкові поля');
       return;
     }
@@ -62,6 +68,7 @@ export const OrderModal = ({ onClose }: Props) => {
         {
           customer_name: name,
           customer_phone: phone,
+          time,
           location,
           order_items: orderItems,
           total,
@@ -83,12 +90,16 @@ export const OrderModal = ({ onClose }: Props) => {
   return createPortal(
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
-        <button className={styles.close} onClick={onClose}>✕</button>
+        <button className={styles.close} onClick={onClose}>
+          <img src="public/images/Icons/Close.svg" alt="close" />
+        </button>
 
         {isSent ? (
           <div className={styles.success}>
             <h2 className={styles.title}>Замовлення прийнято! 🎉</h2>
-            <p className={styles.successText}>Ми зв'яжемось з вами найближчим часом.</p>
+            <p className={styles.successText}>
+              Дякуємо за замовлення! Ми чекаємо на вас за обраною адресою.
+            </p>
             <button className={styles.closeBtn} onClick={onClose}>Закрити</button>
           </div>
         ) : (
@@ -117,6 +128,14 @@ export const OrderModal = ({ onClose }: Props) => {
                     setPhone(formatPhone(val));
                   }}
                   placeholder="+38 (0__) ___ __ __"
+                />
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>Час замовлення *</label>
+                <Dropdown
+                  options={timeOptions}
+                  value={time}
+                  onChange={setTime}
                 />
               </div>
 
@@ -149,7 +168,7 @@ export const OrderModal = ({ onClose }: Props) => {
                   onClick={handleSubmit}
                   disabled={isSending}
                 >
-                  {isSending ? 'Відправляємо...' : 'Підтвердити замовлення'}
+                  {isSending ? 'Відправляємо...' : 'Замовити'}
                 </button>
               </div>
             </div>
