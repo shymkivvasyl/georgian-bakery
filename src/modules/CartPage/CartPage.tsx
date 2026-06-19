@@ -25,6 +25,8 @@ export const CartPage = () => {
       </div>
     );
   }
+  
+
 
   return (
     <div className={styles.page}>

@@ -18,7 +18,7 @@ const slides = [
   {
     img: '/images/banner/banner-3.png',
     title: 'Скоро в Glovo ',
-    subtitle: ['Доставка вже на підході —',  'слідкуйте за новинами'],
+    subtitle: ['Доставка вже на підході —', 'слідкуйте за новинами'],
     btn: { label: 'Бета', link: '#' },
   },
 ];
@@ -70,6 +70,9 @@ export const BannerSlider = () => {
               <img
                 src={slide.img}
                 alt={`banner-${index + 1}`}
+                onError={e => {
+                  e.currentTarget.src = '/images/placeholder.png';
+                }}
               />
               <div className={styles.overlay}>
                 <h2 className={styles.slideTitle}>{slide.title}</h2>

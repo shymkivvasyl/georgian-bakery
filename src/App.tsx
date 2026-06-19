@@ -8,11 +8,12 @@ import { CartPage } from "./modules/CartPage/CartPage";
 import { FavoritesPage } from "./modules/FavoritesPage/FavoritesPage";
 import { HomePage } from "./modules/HomePage";
 import { Loader } from "./modules/shared/components/Loader/Loader";
+import { ErrorMessage } from "./modules/shared/components/ErrorMessage";
 
 export const App = () => {
   const { isLoading, isError } = useProducts();
   if (isLoading) return <Loader />;
-   if (isError) return <div>Помилка</div>;
+   if (isError) return <ErrorMessage />;
   return (
     <BrowserRouter>
       <Header />

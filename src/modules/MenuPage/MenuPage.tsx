@@ -5,6 +5,7 @@ import { ProductCard } from '../shared/components/ProductCard/ProductCard';
 import { Dropdown } from '../shared/components/Dropdown/Dropdown';
 import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../shared/components/Loader/Loader';
+import { ErrorMessage } from '../shared/components/ErrorMessage';
 type SortBy = 'default' | 'price_asc' | 'price_desc' | 'popularity';
 
 const sortOptions = [
@@ -46,7 +47,7 @@ export const MenuPage = () => {
 
 
   if (isLoading) return <Loader />;
-  if (isError) return <div>Помилка</div>;
+  if (isError) return <ErrorMessage />;
 
   return (
     <div className={styles.page}>
