@@ -91,7 +91,7 @@ export const OrderModal = ({ onClose }: Props) => {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <button className={styles.close} onClick={onClose}>
-          <img src="public/images/Icons/Close.svg" alt="close" />
+          <img src="/images/Icons/Close.svg" alt="close" />
         </button>
 
         {isSent ? (
