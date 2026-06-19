@@ -49,7 +49,7 @@ export const OrderModal = ({ onClose }: Props) => {
   });
 
   const orderItems = cartItems
-    .map(item => `${item.product.name} x${item.quantity} — ${item.product.price * item.quantity}₴`)
+    .map(item => `${item.product.name}: x${item.quantity}   — ${item.product.price * item.quantity}₴`)
     .join('\n');
 
   const handleSubmit = async () => {
