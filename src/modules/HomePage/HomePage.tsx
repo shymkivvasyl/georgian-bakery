@@ -18,7 +18,7 @@ export const HomePage = () => {
   const categories = useMemo(() => {
     const unique = [...new Set(products.map(p => p.group))].filter(Boolean);
     return unique.map(group => {
-      const firstProduct = products.find(p => p.group === group && p.imageUrl);
+      const firstProduct = products.find(p => p.group === group && p.imageUrl && p.available);
       return {
         label: group.charAt(0).toUpperCase() + group.slice(1),
         group,
@@ -31,6 +31,7 @@ export const HomePage = () => {
 
   const top5 = useMemo(() => {
     return [...products]
+      .filter(p => p.available)
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 5);
   }, [products]);

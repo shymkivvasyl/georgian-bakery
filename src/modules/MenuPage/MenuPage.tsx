@@ -45,9 +45,9 @@ export const MenuPage = () => {
 
 
 
-
   if (isLoading) return <Loader />;
   if (isError) return <ErrorMessage />;
+
 
   return (
     <div className={styles.page}>

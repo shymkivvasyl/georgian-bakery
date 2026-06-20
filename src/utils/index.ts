@@ -16,7 +16,7 @@ export const getMenu = async (): Promise<Product[]> => {
   const json = JSON.parse(text.substring(47, text.length - 2));
 
   // Перетворюємо рядки таблиці в масив Product
-  return json.table.rows.slice(1).map((row: SheetRow) => ({
+  return json.table.rows.map((row: SheetRow) => ({
     id: row.c[0]?.v ?? 0,
     category: row.c[1]?.v ?? "",
     name: row.c[2]?.v ?? "",
