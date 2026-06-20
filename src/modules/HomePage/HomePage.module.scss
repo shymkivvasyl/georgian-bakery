@@ -24,21 +24,26 @@
 
     .aboutInner {
       @include page-grid;
-      padding-top: 60px;
-      padding-bottom: 60px;
+      padding: 60px 0;
     }
 
     .aboutContent {
       grid-column: 1 / -1;
+      padding-inline: 30px;
       max-width: 700px;
       margin: 0 auto;
       text-align: center;
+
     }
 
     .aboutText {
       @include font-body;
       color: $color-text-muted;
       line-height: 1.8;
+
+      p {
+        margin-bottom: 16px;
+      }
     }
   }
 
@@ -85,7 +90,7 @@
       }
 
       .categoryCard {
-        max-width: 350px;
+        max-width: 250px;
         display: flex;
         flex-direction: column;
         background-color: $color-bg;
@@ -93,6 +98,10 @@
         overflow: hidden;
         text-decoration: none;
         transition: transform 0.3s;
+
+        @include desktop {
+          max-width: 350px;
+        }
 
         &:hover {
           @include scale-img(1.05);

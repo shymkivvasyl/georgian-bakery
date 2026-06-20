@@ -7,13 +7,19 @@ const slides = [
     img: '/images/banner/banner-1.png',
     title: 'Свіжа випічка щодня',
     subtitle: ['Хачапурі, піца, слойки —', 'прямо з печі'],
-    btn: { label: 'До меню', link: '/menu' },
+    btn: { label: 'До Меню', link: '/menu' },
   },
   {
     img: '/images/banner/banner-2.png',
     title: 'Наша солодка вітрина',
     subtitle: ['Наші солодкі випічки —', 'для вашого настрою'],
     btn: { label: 'Солодке', link: '/menu?group=солодке' },
+  },
+  {
+    img: '/images/banner/banner-4.png',
+    title: ' -50% знижки',
+    subtitle: ['На випічку,', 'яка залишилась зі вчорашнього дня'],
+    btn: { label: 'До Меню', link: '/menu' },
   },
   {
     img: '/images/banner/banner-3.png',
@@ -28,6 +34,7 @@ export const BannerSlider = () => {
   const [prevSlide, setPrevSlide] = useState<number | null>(null);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
   const [touchStartX, setTouchStartX] = useState(0);
+  const [isSwipe, setIsSwipe] = useState(false);
 
   const goToSlide = (index: number, dir: 'next' | 'prev' = 'next') => {
     setDirection(dir);
@@ -38,7 +45,10 @@ export const BannerSlider = () => {
   const getImageClass = (index: number) => {
     if (index === currentSlide) return styles.active;
     if (index === prevSlide) {
-      return direction === 'next' ? styles.prevNext : styles.prevPrev;
+      const dir = isSwipe
+        ? (direction === 'next' ? 'prev' : 'next')
+        : direction;
+      return dir === 'next' ? styles.prevNext : styles.prevPrev;
     }
     return '';
   };
@@ -58,6 +68,7 @@ export const BannerSlider = () => {
       className={styles.bannerSlider}
       onTouchStart={e => setTouchStartX(e.touches[0].clientX)}
       onTouchEnd={e => {
+        setIsSwipe(true)
         const diff = touchStartX - e.changedTouches[0].clientX;
         if (diff < -50) goToSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1, 'prev');
         if (diff > 50) goToSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1, 'next');
@@ -96,7 +107,10 @@ export const BannerSlider = () => {
           <button
             key={index}
             className={`${styles.dot} ${index === currentSlide ? styles.dot_active : ''}`}
-            onClick={() => goToSlide(index)}
+            onClick={() => {
+              setIsSwipe(false)
+              goToSlide(index);
+            }}
           />
         ))}
       </div>

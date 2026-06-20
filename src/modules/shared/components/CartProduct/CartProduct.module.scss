@@ -50,6 +50,11 @@
       margin: 0 auto;
       display: block;
 
+      @include tablet {
+        width: 100px;
+        height: 100px;
+      }
+
       @include desktop {
         margin-inline: 20px;
         width: 180px;
@@ -63,14 +68,18 @@
     color: $color-text;
     flex: 1;
     word-break: break-word;
+    max-height: 100px;
+    min-width: 100px;
 
     @include tablet {
-      @include font-body(22px);
+      @include font-body(18px);
     }
+
     @include desktop {
       @include font-h3;
     }
   }
+
 
   .controls {
     @include flex-between;

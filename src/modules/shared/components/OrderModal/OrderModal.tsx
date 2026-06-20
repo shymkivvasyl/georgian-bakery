@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import emailjs from '@emailjs/browser';
 import { useCart } from '@/hooks/useCart';
-import { useLocations } from '@/hooks/UseLocations';
+import { useLocations } from '@/hooks/useLocations';
 import { Dropdown } from '../Dropdown';
 import styles from './OrderModal.module.scss';
 
@@ -52,6 +52,11 @@ export const OrderModal = ({ onClose }: Props) => {
     .map(item => `${item.product.name}: x${item.quantity}   — ${item.product.price * item.quantity}₴`)
     .join('\n');
 
+  const selectedLocation = locations.find(
+    loc => `${loc.city} — ${loc.address}` === location
+  );
+  const locationEmail = selectedLocation?.email || 'georgian.bakery.ua@gmail.com';
+
   const handleSubmit = async () => {
     if (!name || !phone || !location || !time) {
       setError('Заповніть всі обов\'язкові поля');
@@ -60,6 +65,7 @@ export const OrderModal = ({ onClose }: Props) => {
 
     setIsSending(true);
     setError('');
+
 
     try {
       await emailjs.send(
@@ -73,6 +79,7 @@ export const OrderModal = ({ onClose }: Props) => {
           order_items: orderItems,
           total,
           comment,
+          to_email: locationEmail,
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       );

@@ -1,6 +1,7 @@
 import styles from './CartProduct.module.scss';
 import type { CartItem } from '@/types';
 import { useCart } from '@/hooks/useCart';
+import { AvailabilityModal } from '../AvailabilityModal';
 
 type Props = {
   item: CartItem;
@@ -27,6 +28,7 @@ export const CartProduct = ({ item }: Props) => {
       </div>
 
       <p className={styles.name}>{product.name}</p>
+      <AvailabilityModal productId={product.id} />
 
       <div className={styles.controls}>
         <div className={styles.qty_controls}>

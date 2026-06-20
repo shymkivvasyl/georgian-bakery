@@ -1,7 +1,7 @@
 import { BannerSlider } from '../shared/components/Banner';
 import { LocationsModal } from '../shared/components/LocationsModal';
 import { useMenu } from '@/hooks/useMenu';
-import { useLocations } from '@/hooks/UseLocations';
+import { useLocations } from '@/hooks/useLocations';
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.scss';
@@ -49,10 +49,18 @@ export const HomePage = () => {
           <div className={styles.aboutContent}>
             <h2 className={styles.sectionTitle}>Про нас</h2>
             <p className={styles.aboutText}>
-              Грузинська випічка — це традиції кавказької кухні у серці України.
-              Ми печемо хачапурі, лаваш і слойки щодня з ранку, використовуючи
-              справжні грузинські рецепти та свіжі інгредієнти. Наша місія —
-              подарувати вам смак справжньої Грузії поруч з домом.
+              <p>
+                <strong>Грузинська випічка —</strong> це більше ніж їжа, це частина культурної ідентичності Грузії, що формувалася століттями на перехресті торгових шляхів між Європою та Азією.
+              </p>
+              <p>
+                <strong>Хачапурі —</strong> найвідоміша грузинська страва — має понад 10 регіональних варіацій. Найзнаменитіша хачапурі по-аджарськи у формі човника із сиром всередині та яйцем зверху символізує Чорне море і сонце, що сходить над ним.
+              </p>
+              <p>
+                <strong>Лаваш</strong> у Грузії готують у спеціальній печі тоне — глиняній печі циліндричної форми, де тісто випікають прямо на гарячих стінках. У 2016 році традиція випічки грузинського хліба у тоне була визнана ЮНЕСКО нематеріальною культурною спадщиною людства.
+              </p>
+              <p>
+                Грузинська випічка традиційно готується з сулугуні — унікального розсільного сиру, який тягнеться як моцарела, але має особливий кисломолочний смак. Наша місія — подарувати вам смак справжньої Грузії поруч з домом.
+              </p>
             </p>
           </div>
         </div>
@@ -61,7 +69,7 @@ export const HomePage = () => {
       {/* Топ 5 */}
       <section className={styles.top}>
         {isLoading ? (
-           <Loader />
+          <Loader />
         ) : (
           <ProductsSlider title="Топ страви" products={top5} />
         )}

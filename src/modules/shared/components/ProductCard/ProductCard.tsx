@@ -3,6 +3,7 @@ import styles from './ProductCard.module.scss';
 import type { Product } from '@/types';
 import { CartContext } from '@/context/CartContext';
 import { FavoritesContext } from '@/context/FavoritesContext';
+import { AvailabilityModal } from '../AvailabilityModal';
 
 type Props = {
   product: Product;
@@ -35,6 +36,9 @@ export const ProductCard = ({ product }: Props) => {
       <span className={styles.category}>{product.category}</span>
       <h3 className={styles.title}>{product.name}</h3>
       <p className={styles.description}>{product.description}</p>
+
+      <AvailabilityModal productId={product.id} />
+      
 
       <div className={styles.footer}>
         <span className={styles.price}>{product.price} ₴</span>

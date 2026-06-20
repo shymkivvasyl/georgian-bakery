@@ -72,12 +72,32 @@
     }
   }
 
- .description {
-  @include font-small;
-  color: $color-text-muted;
-  padding: 16px;
-  flex: 1;
-}
+  .description {
+    @include font-small;
+    color: $color-text-muted;
+    padding: 16px;
+    flex: 1;
+  }
+
+  .availability {
+    margin: 0 25px;
+
+    .availabilityBtn {
+      @include font-small;
+      width: max-content;
+      background: none;
+      border: 1px solid $color-bg-card;
+      border-radius: 8px;
+      color: $color-text-accent;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: border-color 0.3s;
+
+      &:hover {
+        border-color: $color-text-accent;
+      }
+    }
+  }
 
   .footer {
     @include flex-between;
