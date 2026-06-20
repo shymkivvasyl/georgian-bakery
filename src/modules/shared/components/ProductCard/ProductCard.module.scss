@@ -31,10 +31,12 @@
   height: 100%;
   overflow: hidden;
   transition: transform 0.3s ease;
-
+  padding: 12px 16px;
+  gap: 6px;
 
   .imgWrapper {
-    width: 100%;
+    width: calc(100% + 32px);
+    margin: -12px -16px 0;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     background-color: $color-bg;
@@ -43,10 +45,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      transition: transform 0.6s ease;
 
       &:hover {
-        transform: scale(1.05);
+        transform: scale(1.2);
       }
     }
   }
@@ -57,13 +59,11 @@
     color: $color-text-muted;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    padding: 12px 16px 0;
   }
 
   .title {
     @include font-h3(18px);
     color: $color-text;
-    padding: 6px 16px 0;
     display: flex;
     align-items: flex-start;
 
@@ -75,7 +75,6 @@
   .description {
     @include font-small;
     color: $color-text-muted;
-    padding: 16px;
     flex: 1;
   }
 
@@ -102,7 +101,7 @@
   .footer {
     @include flex-between;
 
-    padding: 14px 16px;
+    padding: 14px 8px;
     border-top: 1px solid $color-bg;
     margin-top: 12px;
 
