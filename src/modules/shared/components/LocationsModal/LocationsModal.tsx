@@ -37,7 +37,13 @@ export const LocationsModal = ({ onClose }: Props) => {
                 {locs.map((loc, i) => (
                   <div key={i} className={styles.location}>
                     <span className={styles.city}>{loc.city}</span>
-                    <span className={styles.address}>{loc.address}</span>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Грузинська випічка ' + loc.city + ', ' + loc.address)}`} target="_blank"
+                      rel="noreferrer"
+                      className={styles.address}
+                    >
+                      {loc.address}
+                    </a>
                     <a href={`tel:${loc.phone}`} className={styles.phone}>
                       {loc.phone}
                     </a>
@@ -48,7 +54,7 @@ export const LocationsModal = ({ onClose }: Props) => {
           </div>
         )}
       </div>
-    </div>,
+    </div >,
     document.body
   );
 };

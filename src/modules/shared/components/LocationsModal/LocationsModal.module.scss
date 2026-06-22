@@ -98,6 +98,13 @@
           @include font-small;
 
           color: $color-text-muted;
+          text-decoration: none;
+          cursor: pointer;
+          transition: color 0.3s;
+
+          &:hover {
+            color: white;
+          }
 
           @include desktop {
             @include font-small(16px)
