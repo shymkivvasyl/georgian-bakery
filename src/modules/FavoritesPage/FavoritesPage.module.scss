@@ -26,21 +26,16 @@
   }
 }
 
+
 .empty {
   @include flex-center;
-  flex-direction: column;
-  gap: 16px;
-  min-height: 50vh;
-
-  .emptyText {
-    @include font-h2;
-    color: $color-text-muted;
-  }
 
   .emptyLink {
-    @include font-body;
-    color: $color-text-accent;
+    width: max-content;
     text-decoration: none;
+    color: $color-text-accent;
+    text-align: center;
+    margin-block: 10px 170px;
 
     @include hover-underline;
   }

@@ -9,15 +9,17 @@
   padding: 8px 0;
   cursor: pointer;
   transition: border-color 0.3s;
-  padding: 10px 15px;
+  padding: 10px 0;
 
   @include tablet {
     align-self: center;
+    padding: 10px 15px;
+
+    &:hover {
+      border-color: $color-text-accent;
+    }
   }
 
-  &:hover {
-    border-color: $color-text-accent;
-  }
 }
 
 .overlay {

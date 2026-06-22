@@ -28,19 +28,26 @@
 
   .summary {
     @include flex-center;
+    margin: 0 auto;
+    width: 95%;
     flex-direction: column;
     gap: 12px;
     background-color: $color-bg-card;
+    border: 1px solid $color-text-accent;
     border-radius: 12px;
-    padding: 24px;
+    padding: 14px;
     height: fit-content;
-    position: sticky;
     bottom: 16px;
     top: auto;
 
     @include tablet {
+      position: sticky;
+      margin: none;
+      width: 100%;
       top: 80px;
       bottom: auto;
+
+      border: $border-default;
     }
 
     .total {
@@ -59,7 +66,8 @@
 
     .orderBtn {
       @include font-body;
-      width: 100%;
+      width: 80%;
+      min-width: 120px;
       padding: 12px 16px;
       background-color: $color-text-accent;
       color: $color-bg;
@@ -86,23 +94,18 @@
       }
     }
   }
+
 }
 
 .empty {
   @include flex-center;
-  flex-direction: column;
-  gap: 16px;
-  min-height: 50vh;
-
-  .emptyText {
-    @include font-h2;
-    color: $color-text-muted;
-  }
 
   .emptyLink {
-    @include font-body;
-    color: $color-text-accent;
+    width: max-content;
     text-decoration: none;
+    color: $color-text-accent;
+    text-align: center;
+    margin-block: 10px 170px;
 
     @include hover-underline;
   }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { CartProduct } from '../shared/components/CartProduct/CartProduct';
 import { useState } from 'react';
 import { OrderModal } from '../shared/components/OrderModal/OrderModal';
+import { ErrorMessage } from '../shared/components/ErrorMessage';
 
 export const CartPage = () => {
   const { cartItems, clearCart } = useCart();
@@ -19,13 +20,15 @@ export const CartPage = () => {
 
   if (cartItems.length === 0 && !isOrderOpen) {
     return (
-      <div className={styles.empty}>
-        <p className={styles.emptyText}>Кошик порожній</p>
-        <Link to="/menu" className={styles.emptyLink}>Перейти до меню</Link>
-      </div>
+      <>
+        <ErrorMessage message='Кошик порожній' />
+        <div className={styles.empty}>
+          <Link to="/menu" className={styles.emptyLink}>Перейти до меню</Link>
+        </div>
+      </>
     );
   }
-  
+
 
 
   return (
@@ -43,7 +46,7 @@ export const CartPage = () => {
           <p className={styles.total}>{total} ₴</p>
           <p className={styles.count}>{totalItems} товарів</p>
           <button className={styles.orderBtn} onClick={() => setIsOrderOpen(true)}>
-            Оформити замовлення
+            Замовити
           </button>
           <button className={styles.clearBtn} onClick={clearCart}>
             Очистити кошик

@@ -1,35 +1,49 @@
 .item {
   display: flex;
   flex-direction: column;
-  gap: 12px;
   background-color: $color-bg-card;
   border-radius: 12px;
-  padding: 16px;
+  padding: 16px 22px;
+  gap: 4px;
 
   @include tablet {
+    gap: 12px;
+    padding: 16px;
     flex-direction: row;
     align-items: center;
   }
 
   .imgWrap {
+    position: relative;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
     flex-shrink: 0;
+    margin-bottom: 15px;
 
     .removeBtn {
-      align-self: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
       background: none;
       border: none;
       cursor: pointer;
       transition: opacity 0.3s;
-      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background-color: rgba($color: $color-bg, $alpha: 0.8);
+      border-radius: 50%;
 
+      @include tablet {
+        width: 0;
+        background-color: transparent;
+        border-radius: 0;
+      }
 
       img {
-        width: 16px;
-        height: 16px;
+        width: 22px;
+        height: 22px;
 
         @include desktop {
           width: 28px;
@@ -43,20 +57,19 @@
     }
 
     .img {
-      width: 150px;
-      height: 150px;
+      width: 100%;
+      height: 200px;
       object-fit: cover;
       border-radius: 8px;
-      margin: 0 auto;
-      display: block;
 
       @include tablet {
+        margin-left: 32px;
         width: 100px;
         height: 100px;
       }
 
       @include desktop {
-        margin-inline: 20px;
+        margin-left: 38px;
         width: 180px;
         height: 180px;
       }
@@ -64,32 +77,39 @@
   }
 
   .name {
-    @include font-body;
+    @include font-body(18px);
     color: $color-text;
     flex: 1;
     word-break: break-word;
     max-height: 100px;
     min-width: 100px;
-
+    
     @include tablet {
       @include font-body(18px);
     }
-
+    
     @include desktop {
       @include font-h3;
+      margin-left: 15px;
     }
   }
 
 
   .controls {
     @include flex-between;
-    gap: 8px;
+    gap: 28px;
     flex-shrink: 0;
+    margin-inline: 15px;
 
     @include tablet {
-      flex-direction: column;
+      flex-direction: column-reverse;
+      gap: 20px;
       align-items: flex-end;
       margin-left: 15px
+    }
+
+    @include desktop {
+      gap: 50px;
     }
 
     .qty_controls {
@@ -152,7 +172,9 @@
         width: 100%;
       }
 
-      @include desktop {}
+      @include desktop {
+        @include font-h2;
+      }
     }
   }
 }
