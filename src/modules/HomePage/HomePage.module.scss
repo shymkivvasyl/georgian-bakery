@@ -81,43 +81,16 @@
 
       .categoriesGrid {
         grid-column: 1 / -1;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 16px;
         max-width: 1200px;
         margin: 0 auto;
-      }
 
-      .categoryCard {
-        max-width: 250px;
-        display: flex;
-        flex-direction: column;
-        background-color: $color-bg;
-        border-radius: 12px;
-        overflow: hidden;
-        text-decoration: none;
-        transition: transform 0.3s;
-
-        @include desktop {
-          max-width: 350px;
-        }
-
-        &:hover {
-          @include scale-img(1.05);
-        }
-
-        .categoryImg {
-          width: 100%;
-          aspect-ratio: 3 / 3;
-          object-fit: cover;
-        }
-
-        .categoryLabel {
-          @include font-decorative(48px);
-          color: $color-text;
-          padding: 36px;
-          text-align: center;
+        @include tablet {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
         }
       }
     }

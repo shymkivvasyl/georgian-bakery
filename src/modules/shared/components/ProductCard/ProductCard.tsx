@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styles from './ProductCard.module.scss';
 import type { Product } from '@/types';
 import { CartContext } from '@/context/CartContext';
@@ -10,6 +10,7 @@ type Props = {
 };
 
 export const ProductCard = ({ product }: Props) => {
+  const [hasError, setHasError] = useState(!product.imageUrl);
 
   const cartContext = useContext(CartContext);
   const favoritesContext = useContext(FavoritesContext);
@@ -27,9 +28,12 @@ export const ProductCard = ({ product }: Props) => {
     <article className={styles.productCard}>
       <div className={styles.imgWrapper}>
         <img
-          className={styles.image}
-          src={product.imageUrl || '/images/placeholder.png'}
+          className={hasError ? styles.imageCover : styles.image}
+          src={hasError ? '/images/placeholder.png' : product.imageUrl}
           alt={product.name}
+          onError={() => {
+            setHasError(true);
+          }}
         />
       </div>
 
@@ -38,7 +42,7 @@ export const ProductCard = ({ product }: Props) => {
       <p className={styles.description}>{product.description}</p>
 
       <AvailabilityModal productId={product.id} />
-      
+
 
       <div className={styles.footer}>
         <span className={styles.price}>{product.price} ₴</span>

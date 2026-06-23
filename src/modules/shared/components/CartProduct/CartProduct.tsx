@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './CartProduct.module.scss';
 import type { CartItem } from '@/types';
 import { useCart } from '@/hooks/useCart';
@@ -10,6 +11,7 @@ type Props = {
 export const CartProduct = ({ item }: Props) => {
   const { removeFromCart, changeQuantity } = useCart();
   const { product, quantity } = item;
+  const [hasError, setHasError] = useState(!product.imageUrl);
 
   return (
     <div className={styles.item}>
@@ -21,9 +23,10 @@ export const CartProduct = ({ item }: Props) => {
           <img src="/images/Icons/Close.svg" alt="close" />
         </button>
         <img
-          className={styles.img}
-          src={product.imageUrl || '/images/placeholder.png'}
+          className={hasError ? styles.imgCover : styles.img}
+          src={hasError ? '/images/placeholder.png' : product.imageUrl}
           alt={product.name}
+          onError={() => setHasError(true)}
         />
       </div>
 

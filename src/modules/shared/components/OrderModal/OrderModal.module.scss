@@ -10,17 +10,22 @@
 .modal {
   background-color: $color-bg;
   border-radius: 16px;
-  padding: 32px 44px;
+  padding: 32px 22px;
   width: 100%;
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
 
+  @include tablet {
+    padding: 32px 44px;
+
+  }
+
   .close {
     position: absolute;
     top: 44px;
-    right: 12px;
+    right: 16px;
     background: none;
     border: none;
     color: $color-text-muted;

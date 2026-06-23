@@ -3,10 +3,10 @@ import { LocationsModal } from '../shared/components/LocationsModal';
 import { useMenu } from '@/hooks/useMenu';
 import { useLocations } from '@/hooks/useLocations';
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './HomePage.module.scss';
 import { ProductsSlider } from '../shared/components/ProductsSliders/ProductsSlider';
 import { Loader } from '../shared/components/Loader/Loader';
+import { CategoryCard } from '../shared/components/CategoryCard/CategoryCard';
 
 
 
@@ -49,7 +49,7 @@ export const HomePage = () => {
         <div className={styles.aboutInner}>
           <div className={styles.aboutContent}>
             <h2 className={styles.sectionTitle}>Про нас</h2>
-            <p className={styles.aboutText}>
+            <div className={styles.aboutText}>
               <p>
                 <strong>Грузинська випічка —</strong> це більше ніж їжа, це частина культурної ідентичності Грузії, що формувалася століттями на перехресті торгових шляхів між Європою та Азією.
               </p>
@@ -62,7 +62,7 @@ export const HomePage = () => {
               <p>
                 Грузинська випічка традиційно готується з сулугуні — унікального розсільного сиру, який тягнеться як моцарела, але має особливий кисломолочний смак. Наша місія — подарувати вам смак справжньої Грузії поруч з домом.
               </p>
-            </p>
+            </div>
           </div>
         </div>
       </section>
@@ -82,14 +82,7 @@ export const HomePage = () => {
           <h2 className={styles.sectionTitle}>Категорії</h2>
           <div className={styles.categoriesGrid}>
             {categories.map(cat => (
-              <Link
-                key={cat.group}
-                to={`/menu?group=${cat.group}`}
-                className={styles.categoryCard}
-              >
-                <img src={cat.img} alt={cat.label} className={styles.categoryImg} />
-                <span className={styles.categoryLabel}>{cat.label}</span>
-              </Link>
+              <CategoryCard key={cat.group} cat={cat} />
             ))}
           </div>
         </div>

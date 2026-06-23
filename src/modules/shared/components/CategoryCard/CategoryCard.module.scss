@@ -1,0 +1,46 @@
+%category-img-base {
+  width: 100%;
+  aspect-ratio: 3 / 3;
+}
+
+
+
+.categoryCard {
+  max-width: 350px;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-bg;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.3s;
+
+  @include desktop {
+    max-width: 350px;
+  }
+
+  &:hover {
+    @include scale-img(1.05);
+  }
+
+  .categoryImg {
+    @extend %category-img-base;
+    object-fit: contain;
+    background-color: $color-bg;
+
+    @include scale-img;
+  }
+
+  .categoryImgCover {
+    @extend %category-img-base;
+    object-fit: cover;
+  }
+
+  .categoryLabel {
+    @include font-decorative(48px);
+    color: $color-text;
+    padding: 36px;
+    text-align: center;
+  }
+}

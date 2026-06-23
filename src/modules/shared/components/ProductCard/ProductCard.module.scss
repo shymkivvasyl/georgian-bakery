@@ -23,6 +23,17 @@
   @include flex-center;
 }
 
+%product-img-base {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+
 .productCard {
   display: flex;
   flex-direction: column;
@@ -32,26 +43,30 @@
   overflow: hidden;
   transition: transform 0.3s ease;
   padding: 12px 16px;
-  gap: 6px;
+  gap: 12px;
 
   .imgWrapper {
     width: calc(100% + 32px);
     margin: -12px -16px 0;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    background-color: $color-bg;
+    background-color: $color-bg-card;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-
-      &:hover {
-        transform: scale(1.2);
-      }
+      @extend %product-img-base;
+      object-fit: contain;
     }
+
+    .imageCover {
+      @extend %product-img-base;
+      object-fit: cover;
+    }
+
   }
+
 
   .category {
     @include font-small(12px);
