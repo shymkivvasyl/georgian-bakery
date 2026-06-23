@@ -16,18 +16,20 @@ export const getMenu = async (): Promise<Product[]> => {
   const json = JSON.parse(text.substring(47, text.length - 2));
 
   // Перетворюємо рядки таблиці в масив Product
-  return json.table.rows.map((row: SheetRow) => ({
-    id: row.c[0]?.v ?? 0,
-    category: row.c[1]?.v ?? "",
-    name: row.c[2]?.v ?? "",
-    price: row.c[3]?.v ?? 0,
-    description: row.c[4]?.v ?? "",
-    imageUrl: row.c[5]?.v ?? "",
-    available: row.c[6]?.v ?? true,
-    date: row.c[7]?.f ?? "",
-    group: row.c[8]?.v ?? "",
-    popularity: row.c[9]?.v ?? 0,
-  }));
+  return json.table.rows
+    .map((row: SheetRow) => ({
+      id: row.c[0]?.v ?? 0,
+      category: row.c[1]?.v ?? "",
+      name: row.c[2]?.v ?? "",
+      price: row.c[3]?.v ?? 0,
+      description: row.c[4]?.v ?? "",
+      imageUrl: row.c[5]?.v ?? "",
+      available: row.c[6]?.v ?? true,
+      date: row.c[7]?.f ?? "",
+      group: row.c[8]?.v ?? "",
+      popularity: row.c[9]?.v ?? 0,
+    }))
+    .filter((product: { name: string; }) => product.name !== "");
 };
 
 export const getLocations = async (): Promise<Locations[]> => {

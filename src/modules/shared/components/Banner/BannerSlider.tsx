@@ -89,7 +89,7 @@ export const BannerSlider = () => {
                 <h2 className={styles.slideTitle}>{slide.title}</h2>
                 <p className={styles.slideSubtitle}>
                   {slide.subtitle.map((line, i) => (
-                    <span key={i}>{line}<br /></span>
+                    <span key={`${index}-${i}`}>{line}<br /></span>
                   ))}
                 </p>
                 <Link to={slide.btn.link} className={styles.slideBtn}>

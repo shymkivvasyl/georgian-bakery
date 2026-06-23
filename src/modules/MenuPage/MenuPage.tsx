@@ -44,7 +44,8 @@ export const MenuPage = () => {
   }, [products, activeGroup, search, sortBy]);
 
 
-
+  console.log(filtered.map(p => p.id));
+  
   if (isLoading) return <Loader />;
   if (isError) return <ErrorMessage />;
 

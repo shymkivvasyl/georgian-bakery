@@ -16,8 +16,8 @@
   text-decoration: none;
   transition: transform 0.3s;
 
-  @include desktop {
-    max-width: 350px;
+  @include tablet {
+    min-width: 350px;
   }
 
   &:hover {
@@ -27,7 +27,7 @@
   .categoryImg {
     @extend %category-img-base;
     object-fit: contain;
-    background-color: $color-bg;
+    background-color: rgba($color: $color-bg-card, $alpha: 0.6);
 
     @include scale-img;
   }
@@ -38,9 +38,14 @@
   }
 
   .categoryLabel {
-    @include font-decorative(48px);
+    @include font-decorative(38px);
     color: $color-text;
-    padding: 36px;
+    padding: 36px 0;
     text-align: center;
+
+    @include tablet {
+      @include font-decorative(48px);
+
+    }
   }
 }
