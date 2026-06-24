@@ -4,10 +4,13 @@
   box-sizing: border-box;
 
   scroll-behavior: smooth;
+}
+
+*:not(.modal) {
   scrollbar-width: none;
 }
 
-::-webkit-scrollbar {
+*:not(.modal)::-webkit-scrollbar {
   display: none;
 }
 

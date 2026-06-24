@@ -1,8 +1,17 @@
-import { CartContext } from "@/context/CartContext";
-import { useContext } from "react";
+import { useAppDispatch, useAppSelector } from './redux';
+import { addToCart, removeFromCart, changeQuantity, clearCart } from '@/store/cartSlice';
+import type { Product } from '@/types';
 
 export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) throw new Error('useCart must be used within CartProvider');
-  return context;
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(state => state.cart);
+
+  return {
+    cartItems,
+    addToCart: (product: Product) => dispatch(addToCart(product)),
+    removeFromCart: (productId: number) => dispatch(removeFromCart(productId)),
+    changeQuantity: (productId: number, newQuantity: number) =>
+      dispatch(changeQuantity({ productId, newQuantity })),
+    clearCart: () => dispatch(clearCart()),
+  };
 };

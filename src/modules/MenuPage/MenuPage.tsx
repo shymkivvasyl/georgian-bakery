@@ -6,6 +6,9 @@ import { Dropdown } from '../shared/components/Dropdown/Dropdown';
 import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../shared/components/Loader/Loader';
 import { ErrorMessage } from '../shared/components/ErrorMessage';
+import { useSelectedLocation } from '@/hooks/useSelectedLocation';
+import { useLocationsContext } from '@/hooks/useLocationsContext';
+
 type SortBy = 'default' | 'price_asc' | 'price_desc' | 'popularity';
 
 const sortOptions = [
@@ -17,6 +20,9 @@ const sortOptions = [
 
 export const MenuPage = () => {
   const { products, isLoading, isError } = useMenu();
+  const { selectedLocation } = useSelectedLocation();
+const { locations } = useLocationsContext();
+
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState<SortBy>('default');
 
@@ -24,6 +30,8 @@ export const MenuPage = () => {
   const [activeGroup, setActiveGroup] = useState(
     searchParams.get('group') || 'Все'
   );
+
+
 
   const groups = useMemo(() => {
     const unique = [...new Set(products.map(p => p.group))];
@@ -33,6 +41,12 @@ export const MenuPage = () => {
   const filtered = useMemo(() => {
     return products
       .filter(p => p.available)
+      .filter(p => {
+        if (!selectedLocation) return true;
+        const location = locations.find(loc => loc.id === selectedLocation);
+        return location?.availableProducts.includes(p.id) ?? true;
+
+      })
       .filter(p => activeGroup === 'Все' || p.group === activeGroup)
       .filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
       .sort((a, b) => {
@@ -41,11 +55,10 @@ export const MenuPage = () => {
         if (sortBy === 'popularity') return b.popularity - a.popularity;
         return 0;
       });
-  }, [products, activeGroup, search, sortBy]);
+  }, [products, selectedLocation, locations, activeGroup, search, sortBy]);
 
 
-  console.log(filtered.map(p => p.id));
-  
+
   if (isLoading) return <Loader />;
   if (isError) return <ErrorMessage />;
 

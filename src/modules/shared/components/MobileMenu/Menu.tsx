@@ -2,6 +2,10 @@ import { Link, NavLink } from 'react-router-dom';
 import styles from './Menu.module.scss';
 import { useFavorites } from '@/hooks/useFavorites';
 import { useCart } from '@/hooks/useCart';
+import { useSelectedLocation } from '@/hooks/useSelectedLocation';
+import { useLocationsContext } from '@/hooks/useLocationsContext';
+import { useState } from 'react';
+import { LocationSelectModal } from '../LocationSelectModal';
 
 export const MobileMenu = ({
   isOpen,
@@ -12,6 +16,12 @@ export const MobileMenu = ({
 }) => {
   const { favoritesItems } = useFavorites();
   const { cartItems } = useCart();
+
+  const { selectedLocation } = useSelectedLocation();
+  const { locations } = useLocationsContext();
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+
+  const currentLocation = locations.find(loc => loc.id === selectedLocation);
 
   return (
     <div className={`${styles.mobile_menu} ${isOpen ? styles.open : ''}`}>
@@ -50,7 +60,23 @@ export const MobileMenu = ({
         >
           Меню
         </NavLink>
+
+        <button className={styles.nav_link} onClick={() => setIsLocationModalOpen(true)}>
+          <img src="/images/Icons/map-pin.svg" alt="location" />
+          {currentLocation ? (
+            <span className={styles.locationInfo}>
+              <span className={styles.locationCity}>{currentLocation.city}</span>
+              <span className={styles.locationAddress}>{currentLocation.address}</span>
+            </span>
+          ) : 'Оберіть точку'}
+        </button>
       </nav>
+
+
+
+      {isLocationModalOpen && (
+        <LocationSelectModal onClose={() => setIsLocationModalOpen(false)} />
+      )}
 
       <footer className={styles.footer}>
         <NavLink

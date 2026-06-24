@@ -1,0 +1,121 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  @include flex-center;
+  padding: 16px;
+
+  .modal {
+    position: relative;
+    background-color: $color-bg;
+    border-radius: 16px;
+    padding: 32px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+
+    scrollbar-width: thin;
+    scrollbar-color: $color-text-accent transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-text-accent;
+      border-radius: 10px;
+    }
+  }
+
+  .close {
+    position: absolute;
+    left: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    img {
+      width: 20px;
+      height: 20px;
+
+      @include tablet {
+        width: 26px;
+        height: 26px;
+      }
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+
+  .title {
+    @include font-h3;
+    color: $color-text;
+    margin-bottom: 8px;
+    text-align: center;
+
+    @include tablet {
+      @include font-h2;
+    }
+  }
+
+  .subtitle {
+    @include font-small;
+    color: $color-text-muted;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin-bottom: 24px;
+
+
+    .item {
+      @include font-body;
+      color: $color-text;
+      background-color: $color-bg-card;
+      border-radius: 8px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $color-text-accent;
+        color: $color-bg;
+      }
+    }
+
+  }
+
+
+  .skipBtn {
+    @include font-small;
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: none;
+    border: none;
+    color: $color-text-muted;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $color-text-accent;
+    }
+  }
+}

@@ -7,8 +7,8 @@
 
   @include tablet {
     margin-left: 32px;
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
 
     @include scale-img(1.25);
   }
@@ -28,11 +28,11 @@
   background-color: $color-bg-card;
   border-radius: 12px;
   padding: 16px 22px;
-  gap: 4px;
+  gap: 12px;
 
   @include tablet {
     gap: 12px;
-    padding: 16px;
+    padding: 5px 16px;
     flex-direction: row;
     align-items: center;
   }
@@ -90,22 +90,25 @@
       object-fit: cover;
     }
 
-    .name {
-      @include font-body(18px);
-      color: $color-text;
-      flex: 1;
-      word-break: break-word;
-      max-height: 100px;
-      min-width: 100px;
+  }
 
-      @include tablet {
-        @include font-body(18px);
-      }
+  .name {
+    @include font-body(22px);
+    text-align: center;
+    color: $color-text;
+    flex: 1;
+    word-break: break-word;
+    max-height: 100px;
+    min-width: 100px;
 
-      @include desktop {
-        @include font-h3;
-        margin-left: 15px;
-      }
+    @include tablet {
+      @include font-h3;
+       margin-left: 5px;
+    }
+
+    @include desktop {
+      @include font-h3(26px);
+      margin-left: 15px;
     }
   }
 

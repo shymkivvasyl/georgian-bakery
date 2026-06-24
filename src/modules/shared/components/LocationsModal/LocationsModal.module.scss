@@ -20,6 +20,23 @@
     padding: 24px;
     position: relative;
 
+    scrollbar-width: thin;
+    scrollbar-color: $color-text-accent transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-text-accent;
+      border-radius: 10px;
+    }
+
 
 
     .close {

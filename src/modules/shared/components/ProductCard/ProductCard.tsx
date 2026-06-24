@@ -1,9 +1,8 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import styles from './ProductCard.module.scss';
 import type { Product } from '@/types';
-import { CartContext } from '@/context/CartContext';
-import { FavoritesContext } from '@/context/FavoritesContext';
-import { AvailabilityModal } from '../AvailabilityModal';
+import { useCart } from '@/hooks/useCart';
+import { useFavorites } from '@/hooks/useFavorites';
 
 type Props = {
   product: Product;
@@ -12,14 +11,9 @@ type Props = {
 export const ProductCard = ({ product }: Props) => {
   const [hasError, setHasError] = useState(!product.imageUrl);
 
-  const cartContext = useContext(CartContext);
-  const favoritesContext = useContext(FavoritesContext);
-
-  if (!cartContext || !favoritesContext) return null;
-
-  const { cartItems, addToCart, removeFromCart } = cartContext;
-  const { favoritesItems, addToFavorites, removeFromFavorites } = favoritesContext;
-
+  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { favoritesItems, addToFavorites, removeFromFavorites } = useFavorites();
+  
 
   const isInCart = cartItems.some(item => item.product.id === product.id);
   const isInFavorites = favoritesItems.some(item => item.id === product.id);
@@ -41,7 +35,6 @@ export const ProductCard = ({ product }: Props) => {
       <h3 className={styles.title}>{product.name}</h3>
       <p className={styles.description}>{product.description}</p>
 
-      <AvailabilityModal productId={product.id} />
 
 
       <div className={styles.footer}>

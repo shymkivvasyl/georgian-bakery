@@ -2,25 +2,33 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import emailjs from '@emailjs/browser';
 import { useCart } from '@/hooks/useCart';
-import { useLocations } from '@/hooks/useLocations';
+import { useLocationsContext } from '@/hooks/useLocationsContext';
 import { Dropdown } from '../Dropdown';
 import styles from './OrderModal.module.scss';
+import { useSelectedLocation } from '@/hooks/useSelectedLocation';
 
 type Props = {
   onClose: () => void;
 };
 
 export const OrderModal = ({ onClose }: Props) => {
+  const { selectedLocation: selectedLocationId } = useSelectedLocation();
+  const { locations } = useLocationsContext();
+
+  const initialLocation = locations.find(loc => loc.id === selectedLocationId);
   const { cartItems, clearCart } = useCart();
-  const { locations } = useLocations();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('+38');
-  const [location, setLocation] = useState('');
   const [comment, setComment] = useState('');
   const [time, setTime] = useState('');
+  const [location, setLocation] = useState(
+    initialLocation ? `${initialLocation.city} — ${initialLocation.address}` : ''
+  );
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState('');
+
+
 
   const formatPhone = (val: string) => {
     const digits = val.replace(/\D/g, '').slice(2);
@@ -61,6 +69,18 @@ export const OrderModal = ({ onClose }: Props) => {
     if (!name || !phone || !location || !time) {
       setError('Заповніть всі обов\'язкові поля');
       return;
+    }
+
+    if (selectedLocation) {
+      const unavailableItems = cartItems.filter(
+        item => !selectedLocation.availableProducts.includes(item.product.id)
+      );
+
+      if (unavailableItems.length > 0) {
+        const names = unavailableItems.map(item => item.product.name).join(', ');
+        setError(`Немає в наявності на цій точці: ${names}. Оберіть іншу точку або видаліть товар з кошика.`);
+        return;
+      }
     }
 
     setIsSending(true);

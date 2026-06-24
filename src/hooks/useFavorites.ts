@@ -1,8 +1,15 @@
-import { FavoritesContext } from "@/context/FavoritesContext";
-import { useContext } from "react";
+import { useAppDispatch, useAppSelector } from './redux';
+import { addToFavorites, removeFromFavorites, clearFavorites } from '@/store/favoritesSlice';
+import type { Product } from '@/types';
 
 export const useFavorites = () => {
-  const context = useContext(FavoritesContext);
-  if (!context) throw new Error('useFavorites must be used within FavoritesProvider');
-  return context;
+  const dispatch = useAppDispatch();
+  const favoritesItems = useAppSelector(state => state.favorites);
+
+  return {
+    favoritesItems,
+    addToFavorites: (product: Product) => dispatch(addToFavorites(product)),
+    removeFromFavorites: (productId: number) => dispatch(removeFromFavorites(productId)),
+    clearFavorites: () => dispatch(clearFavorites()),
+  };
 };
