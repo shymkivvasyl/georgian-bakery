@@ -5,7 +5,12 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   server: {
-    open: true,
+    proxy: {
+      "/api": {
+        target: "https://georgian-bakery.vercel.app",
+        changeOrigin: true,
+      },
+    },
   },
   resolve: {
     alias: {
