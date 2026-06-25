@@ -42,7 +42,7 @@ export const Footer = () => {
 
       <div className={styles.copy}>
         <span className={styles.copyright}>© 2026 Грузинська випічка</span>
-        <a href="https://linkedin.com/in/vasyl-shymkiv" target="_blank" rel="noreferrer" className={styles.dev}>
+        <a href="https://www.linkedin.com/in/vasyl-shymkiv-62127a38a/" target="_blank" rel="noreferrer" className={styles.dev}>
           Developed - Shymkiv Vasyl
         </a>
       </div>
