@@ -23,7 +23,7 @@ export const CartProduct = ({ item }: Props) => {
         </button>
         <img
           className={hasError ? styles.imgCover : styles.img}
-          src={hasError ? '/images/placeholder.png' : product.imageUrl}
+          src={hasError ? '/images/placeholder.webp' : product.imageUrl}
           alt={product.name}
           onError={() => setHasError(true)}
         />

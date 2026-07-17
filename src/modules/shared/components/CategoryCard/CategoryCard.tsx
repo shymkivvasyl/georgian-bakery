@@ -22,7 +22,7 @@ export const CategoryCard = ({ cat }: Props) => {
         alt={cat.label}
         className={hasError ? styles.categoryImgCover : styles.categoryImg}
         onError={e => {
-          e.currentTarget.src = '/images/placeholder.png';
+          e.currentTarget.src = '/images/placeholder.webp ';
           setHasError(true);
         }}
       />

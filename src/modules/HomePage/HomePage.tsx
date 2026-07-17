@@ -1,19 +1,19 @@
 import { BannerSlider } from '../shared/components/Banner';
 import { LocationsModal } from '../shared/components/LocationsModal';
-import { useMenu } from '@/hooks/useMenu';
-import { useLocations } from '@/hooks/useLocations';
 import { useState, useMemo } from 'react';
 import styles from './HomePage.module.scss';
 import { ProductsSlider } from '../shared/components/ProductsSliders/ProductsSlider';
 import { Loader } from '../shared/components/Loader/Loader';
 import { CategoryCard } from '../shared/components/CategoryCard/CategoryCard';
+import { useProducts } from '@/hooks/useProducts';
+import { useLocationsContext } from '@/hooks/useLocationsContext';
 
 
 
 export const HomePage = () => {
 
-  const { products, isLoading } = useMenu();
-  const { locations } = useLocations();
+  const { products, isLoading} = useProducts();
+  const { locations } = useLocationsContext();
 
   const categories = useMemo(() => {
     const unique = [...new Set(products.map(p => p.group))].filter(Boolean);
@@ -22,7 +22,7 @@ export const HomePage = () => {
       return {
         label: group.charAt(0).toUpperCase() + group.slice(1),
         group,
-        img: firstProduct?.imageUrl || '/images/placeholder.png',
+        img: firstProduct?.imageUrl || '/images/placeholder.webp',
       };
     });
   }, [products]);

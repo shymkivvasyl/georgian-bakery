@@ -1,15 +1,15 @@
 import { createPortal } from "react-dom";
 import styles from "./LocationsModal.module.scss";
-import { useLocations } from "@/hooks/useLocations";
 import type { Locations } from "@/types/Locations";
 import { Loader } from "../Loader/Loader";
+import { useLocationsContext } from "@/hooks/useLocationsContext";
 
 type Props = {
   onClose: () => void;
 };
 
 export const LocationsModal = ({ onClose }: Props) => {
-  const { locations, isLoading } = useLocations();
+  const { locations, isLoading } = useLocationsContext();
 
   // Групуємо локації по областях
   const grouped = locations.reduce((acc, loc) => {

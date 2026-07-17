@@ -28,7 +28,7 @@ export const MobileMenu = ({
       <header className={styles.header}>
         <div className={styles.navLogo}>
           <Link to="/" className={styles.logo}>
-            <img src="/images/Icons/logo.png" alt="Logo" className={styles.logoImg} />
+            <img src="/images/Icons/logo.webp" alt="Logo" className={styles.logoImg} />
             <span className={styles.logoText}>Грузинська  випічка</span>
           </Link>
         </div>

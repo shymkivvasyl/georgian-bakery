@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { useMenu } from '@/hooks/useMenu';
 import styles from './MenuPage.module.scss';
 import { ProductCard } from '../shared/components/ProductCard/ProductCard';
 import { Dropdown } from '../shared/components/Dropdown/Dropdown';
@@ -8,6 +7,7 @@ import { Loader } from '../shared/components/Loader/Loader';
 import { ErrorMessage } from '../shared/components/ErrorMessage';
 import { useSelectedLocation } from '@/hooks/useSelectedLocation';
 import { useLocationsContext } from '@/hooks/useLocationsContext';
+import { useProducts } from '@/hooks/useProducts';
 
 type SortBy = 'default' | 'price_asc' | 'price_desc' | 'popularity';
 
@@ -19,7 +19,7 @@ const sortOptions = [
 ];
 
 export const MenuPage = () => {
-  const { products, isLoading, isError } = useMenu();
+  const { products, isLoading, isError } = useProducts(); 
   const { selectedLocation } = useSelectedLocation();
 const { locations } = useLocationsContext();
 

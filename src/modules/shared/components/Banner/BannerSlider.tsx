@@ -4,25 +4,25 @@ import { Link } from 'react-router-dom';
 
 const slides = [
   {
-    img: '/images/banner/banner-1.png',
+    img: '/images/banner/banner-1.webp',
     title: 'Свіжа випічка щодня',
     subtitle: ['Хачапурі, піца, слойки —', 'прямо з печі'],
     btn: { label: 'До Меню', link: '/menu' },
   },
   {
-    img: '/images/banner/banner-2.png',
+    img: '/images/banner/banner-2.webp',
     title: 'Наша солодка вітрина',
     subtitle: ['Наші солодкі випічки —', 'для вашого настрою'],
     btn: { label: 'Солодке', link: '/menu?group=солодке' },
   },
   {
-    img: '/images/banner/banner-4.png',
+    img: '/images/banner/banner-4.webp',
     title: ' -50% знижки',
     subtitle: ['На випічку,', 'яка залишилась зі вчорашнього дня'],
     btn: { label: 'До Меню', link: '/menu' },
   },
   {
-    img: '/images/banner/banner-3.png',
+    img: '/images/banner/banner-3.webp', 
     title: 'Скоро в Glovo ',
     subtitle: ['Доставка вже на підході —', 'слідкуйте за новинами'],
     btn: { label: 'Бета', link: '#' },
@@ -81,8 +81,9 @@ export const BannerSlider = () => {
               <img
                 src={slide.img}
                 alt={`banner-${index + 1}`}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
                 onError={e => {
-                  e.currentTarget.src = '/images/placeholder.png';
+                  e.currentTarget.src = '/images/placeholder.webp';
                 }}
               />
               <div className={styles.overlay}>
