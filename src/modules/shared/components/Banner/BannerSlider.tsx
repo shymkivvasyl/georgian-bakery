@@ -107,6 +107,7 @@ export const BannerSlider = () => {
         {slides.map((_, index) => (
           <button
             key={index}
+            aria-label={`Слайд ${index + 1}`} 
             className={`${styles.dot} ${index === currentSlide ? styles.dot_active : ''}`}
             onClick={() => {
               setIsSwipe(false)
