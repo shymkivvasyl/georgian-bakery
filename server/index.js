@@ -12,12 +12,8 @@ const app = express();
 app.use(cors());
 
 app.use('/api/menu', menuRouter);
-app.use('/api/locations', locationsRouter)
-
-
+app.use('/api/locations', locationsRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server: http://localhost:${PORT}`)
+  console.log(`Server: http://localhost:${PORT}`);
 });
-
-
