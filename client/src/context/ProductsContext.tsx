@@ -9,7 +9,6 @@ interface ProductsContextType {
   isError: boolean;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const ProductsContext = createContext<ProductsContextType | null>(null);
 
 
