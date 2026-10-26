@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "category": "Хачапурі",
+    "name": "Хачапурі по-аджарськи",
+    "price": 180,
+    "description": "Човник з тіста з сиром сулугуні, яйцем та вершковим маслом",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Випічка",
+    "popularity": 10
+  },
+  {
+    "id": 2,
+    "category": "Хачапурі",
+    "name": "Хачапурі по-імеретинськи",
+    "price": 160,
+    "description": "Кругле хачапурі з імеретинським сиром всередині",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Випічка",
+    "popularity": 8
+  },
+  {
+    "id": 3,
+    "category": "Хачапурі",
+    "name": "Хачапурі по-мегрельськи",
+    "price": 190,
+    "description": "Сир всередині та зверху, запечений до золотистої скоринки",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Випічка",
+    "popularity": 7
+  },
+  {
+    "id": 4,
+    "category": "Пироги",
+    "name": "Лобіані",
+    "price": 120,
+    "description": "Пиріг з начинкою з червоної квасолі та спецій",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Випічка",
+    "popularity": 5
+  },
+  {
+    "id": 5,
+    "category": "Пироги",
+    "name": "Кубдарі",
+    "price": 210,
+    "description": "Сванський пиріг з рубленим м'ясом, цибулею та спеціями",
+    "imageUrl": "/images/placeholder.webp",
+    "available": false,
+    "date": "2026-10-26",
+    "group": "Випічка",
+    "popularity": 6
+  },
+  {
+    "id": 6,
+    "category": "Солодке",
+    "name": "Чурчхела",
+    "price": 90,
+    "description": "Волоські горіхи у виноградному соку",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Солодощі",
+    "popularity": 9
+  },
+  {
+    "id": 7,
+    "category": "Соуси",
+    "name": "Ткемалі",
+    "price": 85,
+    "description": "Кисло-солодкий сливовий соус",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Соуси",
+    "popularity": 6,
+    "ingredients": ["слива ткемалі", "часник", "кінза", "кріп", "хмелі-сунелі", "сіль"]
+  },
+  {
+    "id": 8,
+    "category": "Соуси",
+    "name": "Аджика",
+    "price": 85,
+    "description": "Гострий соус з перцю та спецій",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Соуси",
+    "popularity": 4,
+    "ingredients": ["червоний перець", "часник", "коріандр", "уцхо-сунелі", "сіль"]
+  },
+  {
+    "id": 9,
+    "category": "Чай",
+    "name": "Чай Пальміра",
+    "price": 150,
+    "description": "Грузинський чай — оберіть вид",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Напої",
+    "popularity": 5,
+    "variants": [
+      { "id": 901, "name": "Чорний", "price": 150, "available": true },
+      { "id": 902, "name": "Зелений", "price": 150, "available": true },
+      { "id": 903, "name": "З чебрецем", "price": 170, "available": false }
+    ]
+  },
+  {
+    "id": 10,
+    "category": "Пастила",
+    "name": "Пастила (тклапі)",
+    "price": 70,
+    "description": "Фруктова пастила без цукру — оберіть смак",
+    "imageUrl": "/images/placeholder.webp",
+    "available": true,
+    "date": "2026-10-26",
+    "group": "Солодощі",
+    "popularity": 7,
+    "variants": [
+      { "id": 1001, "name": "Слива", "price": 70, "available": true },
+      { "id": 1002, "name": "Абрикос", "price": 70, "available": true },
+      { "id": 1003, "name": "Яблуко", "price": 65, "available": true }
+    ]
+  }
+]
