@@ -35,7 +35,7 @@ export function createOrder(req, res) {
     }
 
     if (!orderLocation.availableProducts.includes(serverProduct.id)) {
-      return res.status(400).json({ message: `Product "${serverProduct.name} is not available in ${orderLocation.city}` })
+      return res.status(400).json({ message: `Product "${serverProduct.name}" is not available in ${orderLocation.city}` })
     }
 
     if (serverProduct.available === false) {
