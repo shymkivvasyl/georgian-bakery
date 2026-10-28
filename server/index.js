@@ -16,13 +16,11 @@ app.use(cors());
 
 app.use('/api/menu', menuRouter);
 app.use('/api/locations', locationsRouter);
-app.use('/api/orders', ordersRouter)
-
+app.use('/api/orders', ordersRouter);
 
 const count = await prisma.product.count();
 console.log(`Total products in the database: ${count}`);
 
 app.listen(PORT, () => {
-   console.log(`Server: http://localhost:${PORT} running`);
+  console.log(`Server: http://localhost:${PORT} running`);
 });
- 
