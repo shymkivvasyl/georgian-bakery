@@ -1,17 +1,19 @@
-import products from '../data/menu.json' with { type: 'json' };
+import prisma from '../db.js';
 
-export function getMenu(req, res) {
-  return res.json(products);
+
+export async function getMenu(req, res) {
+  const menu = await prisma.product.findMany({ orderBy: { id: 'asc' } });
+  return res.json(menu);
 }
 
-export function getById(req, res) {
+export async function getById(req, res) {
   const id = Number(req.params.id);
 
   if (!Number.isInteger(id)) {
-    return res.status(400).json({ message: 'Bad id product' });
+    return res.status(400).json({ message: 'Invalid product id' });
   }
 
-  const foundProd = products.find(item => item.id === id)
+  const foundProd = await prisma.product.findUnique({ where: { id }})
 
   if (!foundProd) {
     return res.status(404).json({ message: 'Product not found' });

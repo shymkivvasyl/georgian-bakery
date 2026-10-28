@@ -14,7 +14,7 @@ model Product {
   price       Int
 
   description String?
-  imageUrl    String?
+  imageUrl    String?   
   available   Boolean   @default(true)
   group       String
   popularity  Int       @default(0)
