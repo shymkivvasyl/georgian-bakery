@@ -1,12 +1,14 @@
-import products from '../data/menu.json' with { type: 'json' };
 import locations from '../data/locations.json' with { type: 'json' };
 import crypto from 'node:crypto';
+import prisma from '../db.js';
 
 const orders = [];
 
-export function createOrder(req, res) {
+export async function createOrder(req, res) {
   const { customer, items: clientItems, locationId, comment } = req.body;
   const orderLocation = locations.find((loc) => loc.id === locationId);
+
+
 
   if (!locationId) {
     return res.status(400).json({ message: 'Location is required' });
@@ -27,9 +29,20 @@ export function createOrder(req, res) {
   if (!Array.isArray(clientItems) || clientItems.length === 0) {
     return res.status(400).json({ message: 'Order must contain at least one item' });
   }
+  
+  const invalidItem = clientItems.find((item) => !Number.isInteger(item.productId));
+
+  if (invalidItem) {
+    return res.status(400).json({ message: `Product id ${invalidItem.productId} is not valid` });
+  }
+
+  const idsProducts = clientItems.map((item) => item.productId)
+
+  const dbProducts = await prisma.product.findMany({ where: { id: { in: idsProducts } } });
 
   for (const clientItem of clientItems) {
-    const serverProduct = products.find((product) => product.id === clientItem.productId);
+    const serverProduct = dbProducts.find((product) => product.id === clientItem.productId);
+
     if (!serverProduct) {
       return res.status(400).json({ message: `Product ${clientItem.productId} not found` });
     }
