@@ -2,6 +2,7 @@ import locations from '../data/locations.json' with { type: 'json' };
 import crypto from 'node:crypto';
 import prisma from '../db.js';
 import { orderSchema } from '../schemas/order.schema.js';
+import { ApiError } from '../utils/ApiError.js';
 
 const orders = [];
 
@@ -9,7 +10,7 @@ export async function createOrder(req, res) {
   const result = orderSchema.safeParse(req.body);
 
   if (!result.success) {
-    return res.status(400).json({ message: 'Invalid order data', errors: result.error.issues });
+    throw ApiError.badRequest('Invalid order data', result.error.issues )
   }
 
   const { customer, items: clientItems, locationId, comment } = result.data;
@@ -17,7 +18,7 @@ export async function createOrder(req, res) {
   const orderLocation = locations.find((loc) => loc.id === locationId);
 
   if (!orderLocation) {
-    return res.status(400).json({ message: `Location ${locationId} not found` });
+    throw ApiError.badRequest(`Location ${locationId} not found`);
   }
 
   let total = 0;
@@ -29,17 +30,15 @@ export async function createOrder(req, res) {
     const serverProduct = dbProducts.find((product) => product.id === clientItem.productId);
 
     if (!serverProduct) {
-      return res.status(400).json({ message: `Product ${clientItem.productId} not found` });
+      throw ApiError.badRequest(`Product ${clientItem.productId} not found`);
     }
 
     if (!orderLocation.availableProducts.includes(serverProduct.id)) {
-      return res.status(400).json({
-        message: `Product "${serverProduct.name}" is not available in ${orderLocation.city}`,
-      });
+      throw ApiError.badRequest(`Product "${serverProduct.name}" is not available in ${orderLocation.city}`)
     }
 
     if (serverProduct.available === false) {
-      return res.status(400).json({ message: `Product "${serverProduct.name}" is not available` });
+      throw ApiError.badRequest(`Product "${serverProduct.name}" is not available`);
     }
 
     const orderItem = {
@@ -69,6 +68,7 @@ export async function createOrder(req, res) {
   return res.status(201).json(order);
 }
 
-export function getOrders(req, res) {
+
+export function getOrders(_req, res) {
   return res.json(orders);
 }

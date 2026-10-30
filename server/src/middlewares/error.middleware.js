@@ -2,7 +2,7 @@ import { ApiError } from "../utils/ApiError.js";
 
 export function errorMiddleware(err, _req, res, _next) {
   if (err instanceof ApiError) {
-    return res.status(err.statusCode).json({ message: err.message})
+    return res.status(err.statusCode).json({ message: err.message, errors: err.errors })
   }
 
   console.error(err)

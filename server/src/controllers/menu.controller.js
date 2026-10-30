@@ -1,6 +1,7 @@
 import prisma from '../db.js';
+import { ApiError } from '../utils/ApiError.js';
 
-export async function getMenu(req, res) {
+export async function getMenu(_req, res) {
   const menu = await prisma.product.findMany({ orderBy: { id: 'asc' } });
   return res.json(menu);
 }
@@ -9,13 +10,13 @@ export async function getById(req, res) {
   const id = Number(req.params.id);
 
   if (!Number.isInteger(id)) {
-    return res.status(400).json({ message: 'Invalid product id' });
+    throw ApiError.badRequest('Invalid product id');
   }
 
   const foundProd = await prisma.product.findUnique({ where: { id } });
 
   if (!foundProd) {
-    return res.status(404).json({ message: 'Product not found' });
+    throw ApiError.notFound('Product not found');
   }
 
   return res.json(foundProd);
