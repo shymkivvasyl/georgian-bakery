@@ -14,6 +14,7 @@ export default [
     },
     rules: {
       'n/file-extension-in-import': ['error', 'always'],
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
   prettier,

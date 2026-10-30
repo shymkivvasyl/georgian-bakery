@@ -13,6 +13,7 @@ export async function createOrder(req, res) {
   }
 
   const { customer, items: clientItems, locationId, comment } = result.data;
+  
   const orderLocation = locations.find((loc) => loc.id === locationId);
 
   if (!orderLocation) {
