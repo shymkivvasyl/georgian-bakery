@@ -4,3 +4,6 @@ node_modules
 !.env.example
 
 /src/generated/prisma
+
+# client photos for import (stored in Cloudinary)
+import/
