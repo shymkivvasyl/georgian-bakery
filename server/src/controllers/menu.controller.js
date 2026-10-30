@@ -2,7 +2,15 @@ import prisma from '../db.js';
 import { ApiError } from '../utils/ApiError.js';
 
 export async function getMenu(_req, res) {
-  const menu = await prisma.product.findMany({ orderBy: { id: 'asc' } });
+  const menu = await prisma.product.findMany({
+    orderBy: { id: 'asc' },
+    include: {
+      variants: {
+        orderBy: { id: 'asc' },
+      },
+    },
+  });
+
   return res.json(menu);
 }
 
@@ -13,7 +21,12 @@ export async function getById(req, res) {
     throw ApiError.badRequest('Invalid product id');
   }
 
-  const foundProd = await prisma.product.findUnique({ where: { id } });
+  const foundProd = await prisma.product.findUnique({
+    where: { id },
+    include: {
+      variants: { orderBy: { id: 'asc' } },
+    },
+  });
 
   if (!foundProd) {
     throw ApiError.notFound('Product not found');

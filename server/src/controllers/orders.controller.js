@@ -10,11 +10,11 @@ export async function createOrder(req, res) {
   const result = orderSchema.safeParse(req.body);
 
   if (!result.success) {
-    throw ApiError.badRequest('Invalid order data', result.error.issues )
+    throw ApiError.badRequest('Invalid order data', result.error.issues);
   }
 
   const { customer, items: clientItems, locationId, comment } = result.data;
-  
+
   const orderLocation = locations.find((loc) => loc.id === locationId);
 
   if (!orderLocation) {
@@ -34,7 +34,9 @@ export async function createOrder(req, res) {
     }
 
     if (!orderLocation.availableProducts.includes(serverProduct.id)) {
-      throw ApiError.badRequest(`Product "${serverProduct.name}" is not available in ${orderLocation.city}`)
+      throw ApiError.badRequest(
+        `Product "${serverProduct.name}" is not available in ${orderLocation.city}`,
+      );
     }
 
     if (serverProduct.available === false) {
@@ -67,7 +69,6 @@ export async function createOrder(req, res) {
 
   return res.status(201).json(order);
 }
-
 
 export function getOrders(_req, res) {
   return res.json(orders);
