@@ -3,7 +3,7 @@ import 'dotenv/config';
 import prisma from '../src/db.js';
 import menu from '../src/data/menu.json' with { type: 'json' };
 
-await prisma.$executeRaw`TRUNCATE "Product" RESTART IDENTITY`;
+await prisma.$executeRaw`TRUNCATE "Product", "Variant" RESTART IDENTITY CASCADE`;
 
 const normalizedMenu = menu.map((item) => {
   const { id, ingredients, variants, date, ...normItem } = item;
@@ -14,14 +14,20 @@ const normalizedMenu = menu.map((item) => {
     normItem.createdAt = new Date(`${year}-${month}-${day}`);
   }
 
+  if (variants?.length) {
+    normItem.variants = { create: variants };
+  }
+
   return normItem;
 });
 
-await prisma.product.createMany({ data: normalizedMenu });
+for (const product of normalizedMenu) {
+  await prisma.product.create({ data: product });
+}
 
-const data = await prisma.product.findMany();
-const count = await prisma.product.count();
+const productsCount = await prisma.product.count();
+const variantsCount = await prisma.variant.count();
 
-console.log(`Total products in the database: ${count}`);
+console.log(`Products: ${productsCount}, variants: ${variantsCount}`);
 
 await prisma.$disconnect();
