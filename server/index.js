@@ -24,6 +24,11 @@ app.use(errorMiddleware);
 const count = await prisma.product.count();
 console.log(`Total products in the database: ${count}`);
 
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+
   console.log(`Server: http://localhost:${PORT} running`);
 });
