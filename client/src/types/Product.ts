@@ -1,12 +1,16 @@
-export interface Product { 
+import type { Variant } from './Variant';
+
+export interface Product {
   id: number;
   category: string;
   name: string;
   price: number;
-  description: string;
-  imageUrl: string;
+  description: string | null;
+  imageUrl: string | null;
   available: boolean;
-  date: string;
   group: string;
   popularity: number;
+  createdAt: string;
+  updatedAt: string;
+  variants: Variant[];
 }

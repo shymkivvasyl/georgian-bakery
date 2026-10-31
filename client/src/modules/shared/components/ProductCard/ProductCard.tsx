@@ -23,7 +23,7 @@ export const ProductCard = ({ product }: Props) => {
       <div className={styles.imgWrapper}>
         <img
           className={hasError ? styles.imageCover : styles.image}
-          src={hasError ? '/images/placeholder.webp' : product.imageUrl}
+          src={hasError || !product.imageUrl ? '/images/placeholder.webp' : product.imageUrl}
           alt={product.name}
           onError={() => {
             setHasError(true);
