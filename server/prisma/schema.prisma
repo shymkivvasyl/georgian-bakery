@@ -97,6 +97,7 @@ model Order {
   comment      String?
   total        Int
   status       OrderStatus @default(NEW)
+  pickupAt     DateTime
   createdAt    DateTime    @default(now())
 
   locationId Int
@@ -104,5 +105,5 @@ model Order {
 
   orderItems OrderItem[]
 
-  @@index([locationId, createdAt])
+  @@index([locationId, createdAt, pickupAt])
 }

@@ -4,6 +4,8 @@ import { z } from 'zod';
 // Zod checks types and required fields before the controller works with the data
 export const orderSchema = z.object({
   locationId: z.number().int(),
+  // When the client wants to take the order (ISO date string from the frontend)
+  pickupAt: z.iso.datetime(),
   customer: z.object({
     name: z.string().min(1),
     phone: z.string().min(1),

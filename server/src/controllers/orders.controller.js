@@ -15,7 +15,7 @@ export async function createOrder(req, res) {
   if (!result.success) {
     throw ApiError.badRequest('Invalid order data', result.error.issues);
   }
-  const { customer, items: clientItems, locationId, comment } = result.data;
+  const { customer, items: clientItems, pickupAt,  locationId, comment } = result.data;
 
   const orderLocation = await prisma.location.findUnique({
     where: { id: locationId },
@@ -116,6 +116,7 @@ export async function createOrder(req, res) {
   const orderData = {
     customerName: name,
     phone,
+    pickupAt,
     locationId,
     orderItems: { create: orderItems },
     total,

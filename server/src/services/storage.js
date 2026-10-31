@@ -11,6 +11,7 @@ export async function uploadImage(source, { folder = 'georgian-bakery/menu', pub
     folder,
     public_id: publicId,
     overwrite: true,
+    invalidate: true,
   });
   return result.secure_url;
 }
