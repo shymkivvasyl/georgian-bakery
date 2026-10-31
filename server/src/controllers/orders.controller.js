@@ -1,5 +1,3 @@
-// TODO: move locations to the database
-import locations from '../data/locations.json' with { type: 'json' };
 import crypto from 'node:crypto';
 import prisma from '../db.js';
 import { orderSchema } from '../schemas/order.schema.js';
@@ -19,12 +17,15 @@ export async function createOrder(req, res) {
   if (!result.success) {
     throw ApiError.badRequest('Invalid order data', result.error.issues);
   }
-
-  // Use only checked data
   const { customer, items: clientItems, locationId, comment } = result.data;
 
-  // Check that the location exists
-  const orderLocation = locations.find((loc) => loc.id === locationId);
+  const orderLocation = await prisma.location.findUnique({
+    where: { id: locationId },
+    include: {
+      products: true,
+    }
+  })
+
 
   if (!orderLocation) {
     throw ApiError.badRequest(`Location ${locationId} not found`);
@@ -43,11 +44,14 @@ export async function createOrder(req, res) {
       variants: true,
     },
   });
+  // Ids of products that are in stock in this location
+  const availableIds = new Set(
+    orderLocation.products.filter(product => product.available).map(product => product.productId)
+  )
 
   let total = 0;
 
   for (const clientItem of clientItems) {
-    // Find this item's product in the data from the database
     const serverProduct = dbProducts.find((product) => product.id === clientItem.productId);
 
     if (!serverProduct) {
@@ -55,7 +59,7 @@ export async function createOrder(req, res) {
     }
 
     // Is this product sold in the chosen location?
-    if (!orderLocation.availableProducts.includes(serverProduct.id)) {
+    if (!availableIds.has(serverProduct.id)) {
       throw ApiError.badRequest(
         `Product "${serverProduct.name}" is not available in ${orderLocation.city}`,
       );
