@@ -18,7 +18,10 @@ const newUrls = new Map();
 for (const item of menuImages) {
   // try/catch inside the loop: one bad image does not stop the others
   try {
-    const imageUrl = await uploadImage(item.imageUrl, { folder: 'georgian-bakery/menu', publicId: `product-${item.id}` });
+    const imageUrl = await uploadImage(item.imageUrl, {
+      folder: 'georgian-bakery/menu',
+      publicId: `product-${item.id}`,
+    });
 
     newUrls.set(item.id, imageUrl);
 
@@ -32,14 +35,13 @@ for (const item of menuImages) {
   }
 }
 
-
 for (const product of menu) {
   if (newUrls.has(product.id)) {
-    product.imageUrl = newUrls.get(product.id)
+    product.imageUrl = newUrls.get(product.id);
   }
 }
 
-await fs.writeFile('src/data/menu.json', JSON.stringify(menu, null, 2) + '\n')
+await fs.writeFile('src/data/menu.json', JSON.stringify(menu, null, 2) + '\n');
 
 console.log(`Successfully uploaded images: ${uploaded}`);
 console.log(`Errors occurred: ${errors}`);

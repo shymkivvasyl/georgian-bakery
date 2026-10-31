@@ -35,7 +35,7 @@ for (const product of normalizedMenu) {
 }
 
 // All product ids that exist in the database
-const products = await prisma.product.findMany({ select: { id: true } })
+const products = await prisma.product.findMany({ select: { id: true } });
 const productIds = new Set(products.map((product) => product.id));
 
 // Create locations after products,
@@ -57,10 +57,10 @@ for (const location of locations) {
       // Connect products to this location:
       // [1, 12] -> [{ productId: 1 }, { productId: 12 }]
       products: {
-        create: validIds.map(productId => ({ productId })),
-      }
-    }
-  })
+        create: validIds.map((productId) => ({ productId })),
+      },
+    },
+  });
 }
 
 const productsCount = await prisma.product.count();
@@ -68,7 +68,9 @@ const variantsCount = await prisma.variant.count();
 const locationsCount = await prisma.location.count();
 const linksCount = await prisma.locationProduct.count();
 
-console.log(`Products: ${productsCount}, variants: ${variantsCount}, locations: ${locationsCount}, locationProduct: ${linksCount}`);
+console.log(
+  `Products: ${productsCount}, variants: ${variantsCount}, locations: ${locationsCount}, locationProduct: ${linksCount}`,
+);
 
 // Close the database connection
 await prisma.$disconnect();

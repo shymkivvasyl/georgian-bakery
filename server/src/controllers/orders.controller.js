@@ -36,12 +36,12 @@ export async function createOrder(req, res) {
   const dbProducts = await prisma.product.findMany({
     where: {
       id: {
-        in: idsProducts
-      }
+        in: idsProducts,
+      },
     },
     include: {
-      variants: true
-    }
+      variants: true,
+    },
   });
 
   let total = 0;
