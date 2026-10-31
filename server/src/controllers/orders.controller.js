@@ -1,15 +1,13 @@
-import crypto from 'node:crypto';
 import prisma from '../db.js';
 import { orderSchema } from '../schemas/order.schema.js';
 import { ApiError } from '../utils/ApiError.js';
 
-// TODO: temporary storage. Orders are lost after restart
-const orders = [];
 
 /**
  * POST /api/orders - create a new order.
  * The server checks all items and counts the total.
  */
+
 export async function createOrder(req, res) {
   // Check that the request has the right fields and types
   const result = orderSchema.safeParse(req.body);
@@ -113,27 +111,29 @@ export async function createOrder(req, res) {
     orderItems.push(orderItem);
     total += price * clientItem.quantity;
   }
-
-  // The final order. Status 'new' until staff change it
-  const order = {
-    id: crypto.randomUUID(),
-    customer,
+  const { name, phone } = customer;
+  // Order data for the database. id, status and date are set by the database
+  const orderData = {
+    customerName: name,
+    phone,
     locationId,
-    items: orderItems,
+    orderItems: { create: orderItems },
     total,
     comment,
-    status: 'new',
-    createdAt: new Date(),
   };
 
-  orders.push(order);
+  // Create the order and its items in one query
+  const createdOrder = await prisma.order.create({ data: orderData, include: { orderItems: true } })
 
-  return res.status(201).json(order);
+  return res.status(201).json(createdOrder);
 }
 
 /**
  * GET /api/orders - return all orders
  */
-export function getOrders(_req, res) {
+export async function getOrders(_req, res) {
+  const orders = await prisma.order.findMany({ orderBy: { createdAt: 'desc' }, include: { orderItems: { orderBy: { id: 'asc' } } } })
+
+
   return res.json(orders);
 }
