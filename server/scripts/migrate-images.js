@@ -30,5 +30,4 @@ for (const item of menuImages) {
 console.log(`Successfully uploaded images: ${uploaded}`);
 console.log(`Errors occurred: ${errors}`);
 
-// Close the database connection
 await prisma.$disconnect();
