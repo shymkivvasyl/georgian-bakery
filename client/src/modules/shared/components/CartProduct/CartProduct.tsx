@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './CartProduct.module.scss';
 import type { CartItem } from '@/types';
 import { useCart } from '@/hooks/useCart';
+import { getItemPrice } from '@/utils/cart';
 
 type Props = {
   item: CartItem;
@@ -9,40 +10,59 @@ type Props = {
 
 export const CartProduct = ({ item }: Props) => {
   const { removeFromCart, changeQuantity } = useCart();
-  const { product, quantity } = item;
+  const { product, variant, quantity } = item;
+  const id = { productId: product.id, variantId: variant?.id ?? null };
   const [hasError, setHasError] = useState(!product.imageUrl);
+  const price = getItemPrice(item);
 
   return (
-    <div className={styles.item}>
+    <article className={styles.item}>
       <div className={styles.imgWrap}>
-        <button
-          className={styles.removeBtn}
-          onClick={() => removeFromCart(product.id)}
-        >
-          <img src="/images/Icons/Close.svg" alt="close" />
-        </button>
         <img
-          className={hasError ? styles.imgCover : styles.img}
+          className={styles.img}
           src={hasError || !product.imageUrl ? '/images/placeholder.webp' : product.imageUrl}
           alt={product.name}
           onError={() => setHasError(true)}
         />
       </div>
 
-      <p className={styles.name}>{product.name}</p>
-
-      <div className={styles.controls}>
-        <div className={styles.qty_controls}>
-          <button className={styles.qtyBtn} onClick={() => changeQuantity(product.id, quantity - 1)}>
-            <img src="/images/Icons/Minus.svg" alt="minus" />
-          </button>
-          <span className={styles.qty}>{quantity}</span>
-          <button className={styles.qtyBtn} onClick={() => changeQuantity(product.id, quantity + 1)}>
-            <img src="/images/Icons/Plus.svg" alt="" />
-          </button>
-        </div>
-        <p className={styles.price}>{product.price} ₴</p>
+      <div className={styles.info}>
+        <h3 className={styles.name}>{product.name}</h3>
+        {/* Variant on its own line, like "Ассам" */}
+        {variant && <p className={styles.variant}>{variant.name}</p>}
+        <p className={styles.unitPrice}>{price} ₴ / шт</p>
       </div>
-    </div>
+
+      <button
+        type="button"
+        className={styles.removeBtn}
+        onClick={() => removeFromCart(id)}
+        aria-label="Видалити з кошика"
+      >
+        <img src="/images/Icons/Close.svg" alt="" />
+      </button>
+
+      <div className={styles.stepper}>
+        <button
+          type="button"
+          className={styles.qtyBtn}
+          onClick={() => changeQuantity(id, quantity - 1)}
+          aria-label="Менше"
+        >
+          <img src="/images/Icons/Minus.svg" alt="" />
+        </button>
+        <span className={styles.qty}>{quantity}</span>
+        <button
+          type="button"
+          className={styles.qtyBtn}
+          onClick={() => changeQuantity(id, quantity + 1)}
+          aria-label="Більше"
+        >
+          <img src="/images/Icons/Plus.svg" alt="" />
+        </button>
+      </div>
+
+      <p className={styles.total}>{price * quantity} ₴</p>
+    </article>
   );
 };
