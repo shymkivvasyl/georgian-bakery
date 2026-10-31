@@ -5,7 +5,8 @@ cloudinary.config({ secure: true });
 
 // Upload an image to Cloudinary and return its link.
 // source can be a URL or a file path. Only this file knows about Cloudinary
-export async function uploadImage(source, folder = 'georgian-bakery/menu') {
-  const result = await cloudinary.uploader.upload(source, { folder });
+// publicId - a fixed file name. Upload with the same name replaces the old file
+export async function uploadImage(source, { folder = 'georgian-bakery/menu', publicId } = {}) {
+  const result = await cloudinary.uploader.upload(source, { folder, public_id: publicId, overwrite: true });
   return result.secure_url;
 }
