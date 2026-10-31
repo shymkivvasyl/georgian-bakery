@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import styles from './MenuPage.module.scss';
 import { ProductCard } from '../shared/components/ProductCard/ProductCard';
 import { Dropdown } from '../shared/components/Dropdown/Dropdown';
@@ -19,12 +19,13 @@ const sortOptions = [
 ];
 
 export const MenuPage = () => {
-  const { products, isLoading, isError } = useProducts(); 
+  const { products, isLoading, isError } = useProducts();
   const { selectedLocation } = useSelectedLocation();
-const { locations } = useLocationsContext();
+  const { locations } = useLocationsContext();
 
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState<SortBy>('default');
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const [searchParams] = useSearchParams();
   const [activeGroup, setActiveGroup] = useState(
@@ -66,12 +67,31 @@ const { locations } = useLocationsContext();
   return (
     <div className={styles.page}>
       <div className={styles.controls}>
-        <input
-          className={styles.search}
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="Пошук страви..."
-        />
+        <div className={styles.searchWrapper}>
+          <input
+            ref={searchRef}
+            className={styles.search}
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Пошук страви..."
+          />
+
+          {/* Show the clear button only when there is text */}
+          {search && (
+            <button
+              type="button"
+              className={styles.clearBtn}
+              onClick={() => {
+                setSearch('');
+                // Put the cursor back into the input
+                searchRef.current?.focus();
+              }}
+              aria-label="Очистити пошук"
+            >
+              <img src="/images/Icons/Close.svg" alt="" />
+            </button>
+          )}
+        </div>
         <Dropdown
           options={sortOptions}
           value={sortBy}
@@ -91,11 +111,26 @@ const { locations } = useLocationsContext();
         ))}
       </div>
 
-      <div className={styles.main}>
-        {filtered.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {filtered.length > 0 ? (
+        <div className={styles.main}>
+          {filtered.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.empty}>
+          <p>Нічого не знайдено{search && ` за запитом «${search}»`}</p>
+          <button
+            className={styles.resetBtn}
+            onClick={() => {
+              setSearch('');
+              setActiveGroup('Все');
+            }}
+          >
+            Скинути пошук
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,7 +4,7 @@
   padding-bottom: 40px;
 
   @include tablet {
-      padding-top: 36px;
+    padding-top: 36px;
 
   }
 
@@ -14,24 +14,53 @@
     gap: 12px;
     flex-wrap: wrap;
 
-    .search {
-      @include font-body;
+    .searchWrapper {
       flex: 1;
       min-width: 200px;
-      background-color: $color-bg-card;
-      color: $color-text;
-      border: 1px solid $color-bg-card;
-      border-radius: 8px;
-      padding: 10px 16px;
-      outline: none;
-      transition: border-color 0.3s;
+      position: relative;
 
-      &::placeholder {
-        color: $color-text-muted;
+      .clearBtn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        display: flex;
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        img {
+          width: 16px;
+          height: 16px;
+        }
       }
 
-      &:focus {
-        border-color: $color-text-accent;
+      .search {
+        @include font-body;
+        width: 100%;
+        background-color: $color-bg-card;
+        color: $color-text;
+        border: 1px solid $color-bg-card;
+        border-radius: 8px;
+        padding: 10px 40px 10px 16px;
+        outline: none;
+        transition: border-color 0.3s;
+
+        &::placeholder {
+          color: $color-text-muted;
+        }
+
+        &:focus {
+          border-color: $color-text-accent;
+        }
       }
     }
 
@@ -105,5 +134,28 @@
       grid-template-columns: repeat(3, 1fr);
 
     }
+  }
+
+  .empty {
+    // Take the full row of the page grid
+    grid-column: 1 / -1;
+    margin-block: 60px;
+    text-align: center;
+    color: $color-text-muted;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .resetBtn {
+    // Same style as the active filter button
+    background-color: $color-text-accent;
+    color: $color-bg;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    cursor: pointer;
   }
 }
