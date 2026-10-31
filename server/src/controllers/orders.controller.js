@@ -2,7 +2,6 @@ import prisma from '../db.js';
 import { orderSchema } from '../schemas/order.schema.js';
 import { ApiError } from '../utils/ApiError.js';
 
-
 /**
  * POST /api/orders - create a new order.
  * The server checks all items and counts the total.
@@ -13,17 +12,22 @@ export async function createOrder(req, res) {
   const result = orderSchema.safeParse(req.body);
 
   if (!result.success) {
-    throw ApiError.badRequest('Invalid order data', result.error.issues);
+    // Send only where the error is and what is wrong
+    const errors = result.error.issues.map((issue) => ({
+      path: issue.path.join('.'),
+      message: issue.message,
+    }));
+
+    throw ApiError.badRequest('Invalid order data', errors);
   }
-  const { customer, items: clientItems, pickupAt,  locationId, comment } = result.data;
+  const { customer, items: clientItems, pickupAt, locationId, comment } = result.data;
 
   const orderLocation = await prisma.location.findUnique({
     where: { id: locationId },
     include: {
       products: true,
-    }
-  })
-
+    },
+  });
 
   if (!orderLocation) {
     throw ApiError.badRequest(`Location ${locationId} not found`);
@@ -44,8 +48,10 @@ export async function createOrder(req, res) {
   });
   // Ids of products that are in stock in this location
   const availableIds = new Set(
-    orderLocation.products.filter(product => product.available).map(product => product.productId)
-  )
+    orderLocation.products
+      .filter((product) => product.available)
+      .map((product) => product.productId),
+  );
 
   let total = 0;
 
@@ -124,7 +130,10 @@ export async function createOrder(req, res) {
   };
 
   // Create the order and its items in one query
-  const createdOrder = await prisma.order.create({ data: orderData, include: { orderItems: true } })
+  const createdOrder = await prisma.order.create({
+    data: orderData,
+    include: { orderItems: true },
+  });
 
   return res.status(201).json(createdOrder);
 }
@@ -133,8 +142,10 @@ export async function createOrder(req, res) {
  * GET /api/orders - return all orders
  */
 export async function getOrders(_req, res) {
-  const orders = await prisma.order.findMany({ orderBy: { createdAt: 'desc' }, include: { orderItems: { orderBy: { id: 'asc' } } } })
-
+  const orders = await prisma.order.findMany({
+    orderBy: { createdAt: 'desc' },
+    include: { orderItems: { orderBy: { id: 'asc' } } },
+  });
 
   return res.json(orders);
 }

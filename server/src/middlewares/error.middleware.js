@@ -8,6 +8,11 @@ export function errorMiddleware(err, _req, res, _next) {
     return res.status(err.statusCode).json({ message: err.message, errors: err.errors });
   }
 
+  // Client sent broken JSON in the request body
+  if (err.type === 'entity.parse.failed') {
+    return res.status(400).json({ message: 'Invalid JSON' });
+  }
+
   // Unexpected error (bug, database down): log details for us,
   // but do not show them to the client
   console.error(err);
