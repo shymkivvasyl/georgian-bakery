@@ -7,7 +7,7 @@ import { useState } from "react";
 import { MobileMenu } from "../MobileMenu";
 import { useSelectedLocation } from "@/hooks/useSelectedLocation";
 import { useLocationsContext } from '@/hooks/useLocationsContext';
-import { LocationSelectModal } from "../LocationSelectModal/LocationSelectModal";
+import { LocationsModal } from "../LocationsModal/LocationsModal.tsx";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,7 +58,7 @@ export const Header = () => {
 
 
         {isLocationModalOpen && (
-          <LocationSelectModal onClose={() => setIsLocationModalOpen(false)} />
+          <LocationsModal onClose={() => setIsLocationModalOpen(false)} />
         )}
 
         <div className={styles.icons}>

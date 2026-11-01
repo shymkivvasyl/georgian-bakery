@@ -11,7 +11,7 @@ import { Loader } from "./modules/shared/components/Loader/Loader";
 import { ErrorMessage } from "./modules/shared/components/ErrorMessage";
 import { useSelectedLocation } from "./hooks/useSelectedLocation";
 import { useState } from "react";
-import { LocationSelectModal } from "./modules/shared/components/LocationSelectModal/LocationSelectModal";
+import { LocationsModal } from "./modules/shared/components/LocationsModal";
 
 export const App = () => {
   const { selectedLocation } = useSelectedLocation();
@@ -26,7 +26,7 @@ export const App = () => {
     <BrowserRouter>
       <Header />
       {showLocationModal && (
-        <LocationSelectModal onClose={() => setShowLocationModal(false)} />
+        <LocationsModal onClose={() => setShowLocationModal(false)} />
       )}
       <Routes>
         <Route path="/" element={<HomePage />} />

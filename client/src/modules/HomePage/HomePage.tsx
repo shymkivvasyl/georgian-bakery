@@ -88,7 +88,7 @@ export const HomePage = () => {
       {/* Локації */}
       <section className={styles.locations}>
         <h2 className={styles.sectionTitle}>Де нас знайти</h2>
-        <p className={styles.locationsText}>{locations.length} точок по всьому місту</p>
+        <p className={styles.locationsText}>{locations.length} точок по всій Україні</p>
         <button
           className={styles.locationsBtn}
           onClick={() => setIsModalOpen(true)}

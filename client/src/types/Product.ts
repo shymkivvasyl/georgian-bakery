@@ -9,6 +9,7 @@ export interface Product {
   imageUrl: string | null;
   available: boolean;
   group: string;
+  ingredients: string[];
   popularity: number;
   createdAt: string;
   updatedAt: string;

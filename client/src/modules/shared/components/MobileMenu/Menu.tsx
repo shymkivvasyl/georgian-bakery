@@ -5,7 +5,7 @@ import { useCart } from '@/hooks/useCart';
 import { useSelectedLocation } from '@/hooks/useSelectedLocation';
 import { useLocationsContext } from '@/hooks/useLocationsContext';
 import { useState } from 'react';
-import { LocationSelectModal } from '../LocationSelectModal';
+import { LocationsModal } from '../LocationsModal';
 
 export const MobileMenu = ({
   isOpen,
@@ -75,7 +75,7 @@ export const MobileMenu = ({
 
 
       {isLocationModalOpen && (
-        <LocationSelectModal onClose={() => setIsLocationModalOpen(false)} />
+        <LocationsModal onClose={() => setIsLocationModalOpen(false)} />
       )}
 
       <footer className={styles.footer}>
