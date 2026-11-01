@@ -1,9 +1,13 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { CartItem, Product } from '@/types';
+import type { CartItem, CartItemId, Product, Variant } from '@/types';
+import { isSameItem } from '@/utils/cart';
 
 const loadCart = (): CartItem[] => {
   const saved = localStorage.getItem('cart');
-  return saved ? JSON.parse(saved) : [];
+  if (!saved) return [];
+
+  const items: CartItem[] = JSON.parse(saved);
+  return items.map((item) => ({ ...item, variant: item.variant ?? null }));
 };
 
 const initialState: CartItem[] = loadCart();
@@ -12,23 +16,26 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
-      const existingItem = state.find(item => item.product.id === action.payload.id);
+    addToCart: (state, action: PayloadAction<{ product: Product; variant: Variant | null }>) => {
+      const { product, variant } = action.payload;
+      const id = { productId: product.id, variantId: variant?.id ?? null };
+
+      const existingItem = state.find((item) => isSameItem(item, id));
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.push({ product: action.payload, quantity: 1 });
+        state.push({ product, variant, quantity: 1 });
       }
     },
-    removeFromCart: (state, action: PayloadAction<number>) => {
-      return state.filter(item => item.product.id !== action.payload);
+    removeFromCart: (state, action: PayloadAction<CartItemId>) => {
+      return state.filter((item) => !isSameItem(item, action.payload));
     },
-    changeQuantity: (state, action: PayloadAction<{ productId: number; newQuantity: number }>) => {
-      const { productId, newQuantity } = action.payload;
+    changeQuantity: (state, action: PayloadAction<CartItemId & { newQuantity: number }>) => {
+      const { newQuantity, ...id } = action.payload;
       if (newQuantity <= 0) {
-        return state.filter(item => item.product.id !== productId);
+        return state.filter((item) => !isSameItem(item, id));
       }
-      const item = state.find(item => item.product.id === productId);
+      const item = state.find((item) => isSameItem(item, id));
       if (item) item.quantity = newQuantity;
     },
     clearCart: () => {

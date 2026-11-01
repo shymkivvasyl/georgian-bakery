@@ -3,6 +3,7 @@ import styles from './ProductCard.module.scss';
 import type { Product } from '@/types';
 import { useCart } from '@/hooks/useCart';
 import { useFavorites } from '@/hooks/useFavorites';
+import { isSameItem } from '@/utils/cart';
 
 type Props = {
   product: Product;
@@ -13,9 +14,21 @@ export const ProductCard = ({ product }: Props) => {
 
   const { cartItems, addToCart, removeFromCart } = useCart();
   const { favoritesItems, addToFavorites, removeFromFavorites } = useFavorites();
-  
 
-  const isInCart = cartItems.some(item => item.product.id === product.id);
+
+  // Old saved favorites may have no "variants" field
+  const availableVariants = (product.variants ?? []).filter(v => v.available);
+  const hasVariants = availableVariants.length > 0;
+
+  // First available variant is chosen by default
+  const [variantId, setVariantId] = useState<number | null>(
+    availableVariants[0]?.id ?? null
+  );
+  const selectedVariant = availableVariants.find(v => v.id === variantId) ?? null;
+
+  const price = selectedVariant?.price ?? product.price;
+  const cartId = { productId: product.id, variantId: selectedVariant?.id ?? null };
+  const isInCart = cartItems.some(item => isSameItem(item, cartId));
   const isInFavorites = favoritesItems.some(item => item.id === product.id);
 
   return (
@@ -35,10 +48,25 @@ export const ProductCard = ({ product }: Props) => {
       <h3 className={styles.title}>{product.name}</h3>
       <p className={styles.description}>{product.description}</p>
 
+      {hasVariants && (
+        <select
+          className={styles.variantSelect}
+          value={variantId ?? ''}
+          onChange={e => setVariantId(Number(e.target.value))}
+          aria-label="Оберіть варіант"
+        >
+          {availableVariants.map(v => (
+            <option key={v.id} value={v.id}>
+              {v.name}
+            </option>
+          ))}
+        </select>
+      )}
+
 
 
       <div className={styles.footer}>
-        <span className={styles.price}>{product.price} ₴</span>
+        <span className={styles.price}>{price} ₴</span>
 
         <div className={styles.buttons}>
 
@@ -61,14 +89,14 @@ export const ProductCard = ({ product }: Props) => {
           {isInCart ? (
             <button
               className={styles.addedToCart}
-              onClick={() => removeFromCart(product.id)}
+              onClick={() => removeFromCart(cartId)}
             >
               Додано ✓
             </button>
           ) : (
             <button
               className={styles.addToCart}
-              onClick={() => addToCart(product)}
+              onClick={() => addToCart(product, selectedVariant)}
             >
               До кошика
             </button>

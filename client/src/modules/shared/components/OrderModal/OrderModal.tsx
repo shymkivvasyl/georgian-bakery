@@ -6,6 +6,7 @@ import { useLocationsContext } from '@/hooks/useLocationsContext';
 import { Dropdown } from '../Dropdown';
 import styles from './OrderModal.module.scss';
 import { useSelectedLocation } from '@/hooks/useSelectedLocation';
+import { getItemPrice } from '@/utils/cart';
 
 type Props = {
   onClose: () => void;
@@ -48,7 +49,7 @@ export const OrderModal = ({ onClose }: Props) => {
   }));
 
   const total = cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.quantity, 0
+    (sum, item) => sum + getItemPrice(item) * item.quantity, 0
   );
 
   const timeOptions = Array.from({ length: 15 }, (_, i) => {
@@ -57,7 +58,12 @@ export const OrderModal = ({ onClose }: Props) => {
   });
 
   const orderItems = cartItems
-    .map(item => `${item.product.name}: x${item.quantity}   — ${item.product.price * item.quantity}₴`)
+    .map(item => {
+      const name = item.variant
+        ? `${item.product.name} (${item.variant.name})`
+        : item.product.name;
+      return `${name}: x${item.quantity}   — ${getItemPrice(item) * item.quantity}₴`;
+    })
     .join('\n');
 
   const selectedLocation = locations.find(

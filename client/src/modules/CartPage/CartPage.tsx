@@ -5,13 +5,14 @@ import { CartProduct } from '../shared/components/CartProduct/CartProduct';
 import { useState } from 'react';
 import { OrderModal } from '../shared/components/OrderModal/OrderModal';
 import { ErrorMessage } from '../shared/components/ErrorMessage';
+import { getItemKey, getItemPrice } from '@/utils/cart';
 
 export const CartPage = () => {
   const { cartItems, clearCart } = useCart();
   const [isOrderOpen, setIsOrderOpen] = useState(false);
 
   const total = cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.quantity, 0
+    (sum, item) => sum + getItemPrice(item) * item.quantity, 0
   );
 
   const totalItems = cartItems.reduce(
@@ -38,7 +39,7 @@ export const CartPage = () => {
       <div className={styles.layout}>
         <div className={styles.items}>
           {cartItems.map(item => (
-            <CartProduct key={item.product.id} item={item} />
+            <CartProduct key={getItemKey(item)} item={item} />
           ))}
         </div>
 
