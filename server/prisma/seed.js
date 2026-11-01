@@ -11,7 +11,7 @@ await prisma.$executeRaw`TRUNCATE "Product", "Variant", "Location", "LocationPro
 // Change JSON data to the shape of the Product model
 const normalizedMenu = menu.map((item) => {
   // Take out fields that are not in the model (or need changes)
-  const { id, ingredients, variants, date, ...normItem } = item;
+  const { variants, date, ...normItem } = item;
   // Empty string -> null (no image)
   normItem.imageUrl ||= null;
 
@@ -33,6 +33,15 @@ const normalizedMenu = menu.map((item) => {
 for (const product of normalizedMenu) {
   await prisma.product.create({ data: product });
 }
+
+// We set ids by hand, so the id counter did not move (it is still 1).
+// Move it to the biggest id, so the next new product gets MAX + 1
+await prisma.$executeRaw`
+  SELECT setval(
+    pg_get_serial_sequence('"Product"', 'id'),
+    (SELECT MAX(id) FROM "Product")
+  )
+`;
 
 // All product ids that exist in the database
 const products = await prisma.product.findMany({ select: { id: true } });

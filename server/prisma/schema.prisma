@@ -12,6 +12,7 @@ model Product {
   name     String
   category String
   price    Int
+  ingredients String[] @default([])
 
   description String?
   imageUrl    String?
