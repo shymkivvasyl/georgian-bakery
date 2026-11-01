@@ -48,6 +48,9 @@ model Location {
   phone   String
   email   String
 
+  lat Float?
+  lng Float?
+
   products LocationProduct[]
   orders   Order[]
 }
