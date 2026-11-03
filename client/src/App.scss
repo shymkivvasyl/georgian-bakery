@@ -29,3 +29,17 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+// Hidden on the screen, but Google and screen readers still read it.
+// Use for SEO headings that do not fit the design
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
