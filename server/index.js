@@ -16,8 +16,10 @@ const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
   .split(',')
   .map((origin) => origin.trim());
 
+// Create the Express app
 const app = express();
 
+// Read JSON from the request body into req.body
 app.use(express.json());
 // Allow the frontend (another port/domain) to read our responses
 app.use(cors({ origin: allowedOrigins }));
