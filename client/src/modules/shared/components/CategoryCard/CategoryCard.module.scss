@@ -1,6 +1,7 @@
 %category-img-base {
   width: 100%;
-  aspect-ratio: 3 / 3;
+  // Same shape as our product photos (4:3), so cards are the same height
+  aspect-ratio: 4 / 3;
 }
 
 .categoryCard {
@@ -24,8 +25,8 @@
 
   .categoryImg {
     @extend %category-img-base;
-    object-fit: contain;
-    background-color: rgba($color: $color-bg-card, $alpha: 0.6);
+    // Fill the whole frame, cut the edges if needed (no empty bands)
+    object-fit: cover;
 
     @include scale-img;
   }
