@@ -138,6 +138,7 @@ export const OrderModal = ({ onClose }: Props) => {
                 <label className={styles.label}>Ім'я *</label>
                 <input
                   className={styles.input}
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Ваше ім'я"
@@ -148,6 +149,10 @@ export const OrderModal = ({ onClose }: Props) => {
                 <label className={styles.label}>Телефон *</label>
                 <input
                   className={styles.input}
+                  // Phone keyboard with numbers on mobile
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
                   value={phone}
                   onChange={(e) => {
                     const val = e.target.value;

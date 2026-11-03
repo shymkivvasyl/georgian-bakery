@@ -12,6 +12,7 @@ import { ErrorMessage } from './modules/shared/components/ErrorMessage';
 import { useSelectedLocation } from './hooks/useSelectedLocation';
 import { useState } from 'react';
 import { LocationsModal } from './modules/shared/components/LocationsModal';
+import { ScrollTopButton } from './modules/shared/components/ScrollTopButton';
 
 export const App = () => {
   const { selectedLocation } = useSelectedLocation();
@@ -33,6 +34,7 @@ export const App = () => {
         <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
       <Footer />
+      <ScrollTopButton />
     </BrowserRouter>
   );
 };

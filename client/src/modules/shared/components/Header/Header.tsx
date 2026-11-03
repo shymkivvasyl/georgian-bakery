@@ -25,7 +25,12 @@ export const Header = () => {
       <header className={styles.header}>
         <div className={styles.container}>
           <div className={styles.navLogo}>
-            <Link to="/" className={styles.logo}>
+            <Link
+              to="/"
+              className={styles.logo}
+              // Click on logo scrolls the page to the top
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
               <img src="/images/Icons/logo.webp" alt="Logo" className={styles.logoImg} />
               <span className={styles.logoText}>Грузинська випічка</span>
             </Link>
