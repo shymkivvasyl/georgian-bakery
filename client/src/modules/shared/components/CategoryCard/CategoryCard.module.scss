@@ -25,8 +25,10 @@
 
   .categoryImg {
     @extend %category-img-base;
-    // Fill the whole frame, cut the edges if needed (no empty bands)
-    object-fit: cover;
+    // Whole image is visible. Our 4:3 photos fill the 4:3 frame fully,
+    // images without background (like soup) sit on the soft background
+    object-fit: contain;
+    background-color: rgba($color: $color-bg-card, $alpha: 0.6);
 
     @include scale-img;
   }
