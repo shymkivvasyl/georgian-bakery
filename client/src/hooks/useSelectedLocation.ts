@@ -3,7 +3,7 @@ import { setSelectedLocation } from '@/store/locationSlice';
 
 export const useSelectedLocation = () => {
   const dispatch = useAppDispatch();
-  const selectedLocation = useAppSelector(state => state.location);
+  const selectedLocation = useAppSelector((state) => state.location);
 
   return {
     selectedLocation,

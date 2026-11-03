@@ -9,8 +9,6 @@
   z-index: 100;
   border-bottom: 1px solid $color-bg-card;
 
-
-
   @include tablet {
     height: 65px;
   }
@@ -22,9 +20,8 @@
   .container {
     @include flex-center;
 
-
     @include tablet {
-      gap: 20px
+      gap: 20px;
     }
 
     @include desktop {
@@ -39,7 +36,6 @@
         align-items: center;
         text-decoration: none;
         gap: 8px;
-
 
         .logoImg {
           height: 46px;
@@ -61,13 +57,11 @@
           line-height: 1.5;
           white-space: nowrap;
 
-
           @include tablet {
             height: 65px;
             padding-right: 45px;
             border-right: $border-default;
           }
-
 
           @include desktop {
             @include font-decorative(25px);
@@ -118,11 +112,8 @@
         @include font-h3;
         height: 75px;
       }
-
-
     }
   }
-
 
   .icons {
     display: none;
@@ -161,7 +152,8 @@
       img {
         width: 18px;
         height: 18px;
-        filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
+        filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg)
+          brightness(103%);
 
         @include desktop {
           width: 20px;
@@ -178,7 +170,6 @@
       display: flex;
     }
   }
-
 
   .count {
     position: absolute;
@@ -202,7 +193,6 @@
   }
 
   .burgerBtn {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -219,8 +209,8 @@
     img {
       width: 18px;
       height: 18px;
-      filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
-
+      filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg)
+        brightness(103%);
     }
 
     @include tablet {
@@ -244,8 +234,6 @@
     margin-left: auto;
     padding-left: 22px; // місце для іконки
 
-
-
     &:hover {
       color: $color-text-hover;
     }
@@ -258,9 +246,9 @@
       left: -5px;
       top: 50%;
       transform: translateY(-50%);
-      filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg) brightness(103%);
+      filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(500%) hue-rotate(5deg)
+        brightness(103%);
     }
-
 
     .locationInfo {
       display: flex;
@@ -274,7 +262,6 @@
 
       @include desktop {
         @include font-body;
-
       }
     }
 
@@ -287,9 +274,8 @@
       }
 
       @include desktop {
-        @include font-small
+        @include font-small;
       }
-
     }
 
     @include tablet {
@@ -298,7 +284,6 @@
 
     @include desktop {
       margin-right: 20px;
-
     }
   }
 }

@@ -56,7 +56,7 @@ export const ProductsSlider = ({ title, products }: Props) => {
 
       <div className={styles.windowSlider} ref={sliderRef} onScroll={handleScroll}>
         <div className={styles.slider}>
-          {products.map(product => (
+          {products.map((product) => (
             <div key={product.id} className={styles.card}>
               <ProductCard product={product} />
             </div>

@@ -15,21 +15,18 @@ export const ProductCard = ({ product }: Props) => {
   const { cartItems, addToCart, removeFromCart } = useCart();
   const { favoritesItems, addToFavorites, removeFromFavorites } = useFavorites();
 
-
   // Old saved favorites may have no "variants" field
-  const availableVariants = (product.variants ?? []).filter(v => v.available);
+  const availableVariants = (product.variants ?? []).filter((v) => v.available);
   const hasVariants = availableVariants.length > 0;
 
   // First available variant is chosen by default
-  const [variantId, setVariantId] = useState<number | null>(
-    availableVariants[0]?.id ?? null
-  );
-  const selectedVariant = availableVariants.find(v => v.id === variantId) ?? null;
+  const [variantId, setVariantId] = useState<number | null>(availableVariants[0]?.id ?? null);
+  const selectedVariant = availableVariants.find((v) => v.id === variantId) ?? null;
 
   const price = selectedVariant?.price ?? product.price;
   const cartId = { productId: product.id, variantId: selectedVariant?.id ?? null };
-  const isInCart = cartItems.some(item => isSameItem(item, cartId));
-  const isInFavorites = favoritesItems.some(item => item.id === product.id);
+  const isInCart = cartItems.some((item) => isSameItem(item, cartId));
+  const isInFavorites = favoritesItems.some((item) => item.id === product.id);
 
   return (
     <article className={styles.productCard}>
@@ -52,10 +49,10 @@ export const ProductCard = ({ product }: Props) => {
         <select
           className={styles.variantSelect}
           value={variantId ?? ''}
-          onChange={e => setVariantId(Number(e.target.value))}
+          onChange={(e) => setVariantId(Number(e.target.value))}
           aria-label="Оберіть варіант"
         >
-          {availableVariants.map(v => (
+          {availableVariants.map((v) => (
             <option key={v.id} value={v.id}>
               {v.name}
             </option>
@@ -63,34 +60,21 @@ export const ProductCard = ({ product }: Props) => {
         </select>
       )}
 
-
-
       <div className={styles.footer}>
         <span className={styles.price}>{price} ₴</span>
 
         <div className={styles.buttons}>
-
-
           {isInFavorites ? (
-            <button
-              className={styles.addedToFav}
-              onClick={() => removeFromFavorites(product.id)}
-            >
+            <button className={styles.addedToFav} onClick={() => removeFromFavorites(product.id)}>
               <img src="images/Icons/Favourites_Filled_(Heart_Like).svg" alt="в улюблених" />
             </button>
           ) : (
-            <button
-              className={styles.addToFav}
-              onClick={() => addToFavorites(product)}
-            >
+            <button className={styles.addToFav} onClick={() => addToFavorites(product)}>
               <img src="/images/Icons/Favourites_(Heart_Like).svg" alt="додати в улюблені" />
             </button>
           )}
           {isInCart ? (
-            <button
-              className={styles.addedToCart}
-              onClick={() => removeFromCart(cartId)}
-            >
+            <button className={styles.addedToCart} onClick={() => removeFromCart(cartId)}>
               Додано ✓
             </button>
           ) : (

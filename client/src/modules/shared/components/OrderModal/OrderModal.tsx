@@ -16,20 +16,18 @@ export const OrderModal = ({ onClose }: Props) => {
   const { selectedLocation: selectedLocationId } = useSelectedLocation();
   const { locations } = useLocationsContext();
 
-  const initialLocation = locations.find(loc => loc.id === selectedLocationId);
+  const initialLocation = locations.find((loc) => loc.id === selectedLocationId);
   const { cartItems, clearCart } = useCart();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('+38');
   const [comment, setComment] = useState('');
   const [time, setTime] = useState('');
   const [location, setLocation] = useState(
-    initialLocation ? `${initialLocation.city} — ${initialLocation.address}` : ''
+    initialLocation ? `${initialLocation.city} — ${initialLocation.address}` : '',
   );
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState('');
-
-
 
   const formatPhone = (val: string) => {
     const digits = val.replace(/\D/g, '').slice(2);
@@ -43,14 +41,12 @@ export const OrderModal = ({ onClose }: Props) => {
     return result;
   };
 
-  const locationOptions = locations.map(loc => ({
+  const locationOptions = locations.map((loc) => ({
     value: `${loc.city} — ${loc.address}`,
     label: `${loc.city} — ${loc.address}`,
   }));
 
-  const total = cartItems.reduce(
-    (sum, item) => sum + getItemPrice(item) * item.quantity, 0
-  );
+  const total = cartItems.reduce((sum, item) => sum + getItemPrice(item) * item.quantity, 0);
 
   const timeOptions = Array.from({ length: 15 }, (_, i) => {
     const hour = 7 + i;
@@ -58,40 +54,37 @@ export const OrderModal = ({ onClose }: Props) => {
   });
 
   const orderItems = cartItems
-    .map(item => {
-      const name = item.variant
-        ? `${item.product.name} (${item.variant.name})`
-        : item.product.name;
+    .map((item) => {
+      const name = item.variant ? `${item.product.name} (${item.variant.name})` : item.product.name;
       return `${name}: x${item.quantity}   — ${getItemPrice(item) * item.quantity}₴`;
     })
     .join('\n');
 
-  const selectedLocation = locations.find(
-    loc => `${loc.city} — ${loc.address}` === location
-  );
+  const selectedLocation = locations.find((loc) => `${loc.city} — ${loc.address}` === location);
   const locationEmail = selectedLocation?.email || 'georgian.bakery.ua@gmail.com';
 
   const handleSubmit = async () => {
     if (!name || !phone || !location || !time) {
-      setError('Заповніть всі обов\'язкові поля');
+      setError("Заповніть всі обов'язкові поля");
       return;
     }
 
     if (selectedLocation) {
       const unavailableItems = cartItems.filter(
-        item => !selectedLocation.availableProducts.includes(item.product.id)
+        (item) => !selectedLocation.availableProducts.includes(item.product.id),
       );
 
       if (unavailableItems.length > 0) {
-        const names = unavailableItems.map(item => item.product.name).join(', ');
-        setError(`Немає в наявності на цій точці: ${names}. Оберіть іншу точку або видаліть товар з кошика.`);
+        const names = unavailableItems.map((item) => item.product.name).join(', ');
+        setError(
+          `Немає в наявності на цій точці: ${names}. Оберіть іншу точку або видаліть товар з кошика.`,
+        );
         return;
       }
     }
 
     setIsSending(true);
     setError('');
-
 
     try {
       await emailjs.send(
@@ -119,10 +112,9 @@ export const OrderModal = ({ onClose }: Props) => {
     }
   };
 
-
   return createPortal(
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={e => e.stopPropagation()}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.close} onClick={onClose}>
           <img src="/images/Icons/Close.svg" alt="close" />
         </button>
@@ -133,7 +125,9 @@ export const OrderModal = ({ onClose }: Props) => {
             <p className={styles.successText}>
               Дякуємо за замовлення! Ми чекаємо на вас за обраною адресою.
             </p>
-            <button className={styles.closeBtn} onClick={onClose}>Закрити</button>
+            <button className={styles.closeBtn} onClick={onClose}>
+              Закрити
+            </button>
           </div>
         ) : (
           <>
@@ -145,7 +139,7 @@ export const OrderModal = ({ onClose }: Props) => {
                 <input
                   className={styles.input}
                   value={name}
-                  onChange={e => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Ваше ім'я"
                 />
               </div>
@@ -155,7 +149,7 @@ export const OrderModal = ({ onClose }: Props) => {
                 <input
                   className={styles.input}
                   value={phone}
-                  onChange={e => {
+                  onChange={(e) => {
                     const val = e.target.value;
                     if (!val.startsWith('+38')) return;
                     setPhone(formatPhone(val));
@@ -165,20 +159,12 @@ export const OrderModal = ({ onClose }: Props) => {
               </div>
               <div className={styles.field}>
                 <label className={styles.label}>Час замовлення *</label>
-                <Dropdown
-                  options={timeOptions}
-                  value={time}
-                  onChange={setTime}
-                />
+                <Dropdown options={timeOptions} value={time} onChange={setTime} />
               </div>
 
               <div className={styles.field}>
                 <label className={styles.label}>Локація самовивозу *</label>
-                <Dropdown
-                  options={locationOptions}
-                  value={location}
-                  onChange={setLocation}
-                />
+                <Dropdown options={locationOptions} value={location} onChange={setLocation} />
               </div>
 
               <div className={styles.field}>
@@ -186,7 +172,7 @@ export const OrderModal = ({ onClose }: Props) => {
                 <textarea
                   className={styles.textarea}
                   value={comment}
-                  onChange={e => setComment(e.target.value)}
+                  onChange={(e) => setComment(e.target.value)}
                   placeholder="Побажання до замовлення..."
                   rows={3}
                 />
@@ -196,11 +182,7 @@ export const OrderModal = ({ onClose }: Props) => {
 
               <div className={styles.summary}>
                 <span className={styles.total}>Сума: {total} ₴</span>
-                <button
-                  className={styles.submitBtn}
-                  onClick={handleSubmit}
-                  disabled={isSending}
-                >
+                <button className={styles.submitBtn} onClick={handleSubmit} disabled={isSending}>
                   {isSending ? 'Відправляємо...' : 'Замовити'}
                 </button>
               </div>
@@ -209,6 +191,6 @@ export const OrderModal = ({ onClose }: Props) => {
         )}
       </div>
     </div>,
-    document.body
+    document.body,
   );
 };

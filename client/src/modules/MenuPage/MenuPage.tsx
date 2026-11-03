@@ -28,28 +28,23 @@ export const MenuPage = () => {
   const searchRef = useRef<HTMLInputElement>(null);
 
   const [searchParams] = useSearchParams();
-  const [activeGroup, setActiveGroup] = useState(
-    searchParams.get('group') || 'Все'
-  );
-
-
+  const [activeGroup, setActiveGroup] = useState(searchParams.get('group') || 'Все');
 
   const groups = useMemo(() => {
-    const unique = [...new Set(products.map(p => p.group))];
+    const unique = [...new Set(products.map((p) => p.group))];
     return ['Все', ...unique];
   }, [products]);
 
   const filtered = useMemo(() => {
     return products
-      .filter(p => p.available)
-      .filter(p => {
+      .filter((p) => p.available)
+      .filter((p) => {
         if (!selectedLocation) return true;
-        const location = locations.find(loc => loc.id === selectedLocation);
+        const location = locations.find((loc) => loc.id === selectedLocation);
         return location?.availableProducts.includes(p.id) ?? true;
-
       })
-      .filter(p => activeGroup === 'Все' || p.group === activeGroup)
-      .filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
+      .filter((p) => activeGroup === 'Все' || p.group === activeGroup)
+      .filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
       .sort((a, b) => {
         if (sortBy === 'price_asc') return a.price - b.price;
         if (sortBy === 'price_desc') return b.price - a.price;
@@ -58,11 +53,8 @@ export const MenuPage = () => {
       });
   }, [products, selectedLocation, locations, activeGroup, search, sortBy]);
 
-
-
   if (isLoading) return <Loader />;
   if (isError) return <ErrorMessage />;
-
 
   return (
     <div className={styles.page}>
@@ -72,7 +64,7 @@ export const MenuPage = () => {
             ref={searchRef}
             className={styles.search}
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Пошук страви..."
           />
 
@@ -100,7 +92,7 @@ export const MenuPage = () => {
       </div>
 
       <div className={styles.filters}>
-        {groups.map(group => (
+        {groups.map((group) => (
           <button
             key={group}
             className={`${styles.filterBtn} ${activeGroup === group ? styles.filterBtn_active : ''}`}
@@ -113,7 +105,7 @@ export const MenuPage = () => {
 
       {filtered.length > 0 ? (
         <div className={styles.main}>
-          {filtered.map(product => (
+          {filtered.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

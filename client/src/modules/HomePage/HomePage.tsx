@@ -8,21 +8,24 @@ import { CategoryCard } from '../shared/components/CategoryCard/CategoryCard';
 import { useProducts } from '@/hooks/useProducts';
 import { useLocationsContext } from '@/hooks/useLocationsContext';
 
-
+const CATEGORY_IMAGES: Record<string, string> = {
+  основне: '/images/categories/osnovne.webp',
+  напої: '/images/categories/napoi.webp',
+  додатки: '/images/categories/dodatky.webp',
+};
 
 export const HomePage = () => {
-
-  const { products, isLoading} = useProducts();
+  const { products, isLoading } = useProducts();
   const { locations } = useLocationsContext();
 
   const categories = useMemo(() => {
-    const unique = [...new Set(products.map(p => p.group))].filter(Boolean);
-    return unique.map(group => {
-      const firstProduct = products.find(p => p.group === group && p.imageUrl && p.available);
+    const unique = [...new Set(products.map((p) => p.group))].filter(Boolean);
+    return unique.map((group) => {
+      const firstProduct = products.find((p) => p.group === group && p.imageUrl && p.available);
       return {
         label: group.charAt(0).toUpperCase() + group.slice(1),
         group,
-        img: firstProduct?.imageUrl || '/images/placeholder.webp',
+        img: CATEGORY_IMAGES[group] || firstProduct?.imageUrl || '/images/placeholder.webp',
       };
     });
   }, [products]);
@@ -31,14 +34,13 @@ export const HomePage = () => {
 
   const top5 = useMemo(() => {
     return [...products]
-      .filter(p => p.available)
+      .filter((p) => p.available)
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 5);
   }, [products]);
 
   return (
     <div className={styles.page}>
-
       {/* Банер */}
       <section className={styles.banner}>
         <BannerSlider />
@@ -51,13 +53,19 @@ export const HomePage = () => {
             <h2 className={styles.sectionTitle}>Про нас</h2>
             <div className={styles.aboutText}>
               <p>
-                <strong>Грузинська випічка —</strong> це більше ніж їжа, це частина культурної ідентичності Грузії, що формувалася століттями на перехресті торгових шляхів між Європою та Азією.
+                <strong>Грузинська випічка —</strong> це більше ніж їжа, це частина культурної
+                ідентичності Грузії, що формувалася століттями на перехресті торгових шляхів між
+                Європою та Азією.
               </p>
               <p>
-                <strong>Хачапурі —</strong> найвідоміша грузинська страва — має понад 10 регіональних варіацій. Найзнаменитіша хачапурі по-аджарськи у формі човника із сиром всередині та яйцем зверху символізує Чорне море і сонце, що сходить над ним.
+                <strong>Хачапурі —</strong> найвідоміша грузинська страва — має понад 10
+                регіональних варіацій. Найзнаменитіша хачапурі по-аджарськи у формі човника із сиром
+                всередині та яйцем зверху символізує Чорне море і сонце, що сходить над ним.
               </p>
               <p>
-                Грузинська випічка традиційно готується з сулугуні — унікального розсільного сиру, який тягнеться як моцарела, але має особливий кисломолочний смак. Наша місія — подарувати вам смак справжньої Грузії поруч з домом.
+                Грузинська випічка традиційно готується з сулугуні — унікального розсільного сиру,
+                який тягнеться як моцарела, але має особливий кисломолочний смак. Наша місія —
+                подарувати вам смак справжньої Грузії поруч з домом.
               </p>
             </div>
           </div>
@@ -66,11 +74,7 @@ export const HomePage = () => {
 
       {/* Топ 5 */}
       <section className={styles.top}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <ProductsSlider title="Топ страви" products={top5} />
-        )}
+        {isLoading ? <Loader /> : <ProductsSlider title="Топ страви" products={top5} />}
       </section>
 
       {/* Категорії */}
@@ -78,7 +82,7 @@ export const HomePage = () => {
         <div className={styles.categoriesInner}>
           <h2 className={styles.sectionTitle}>Категорії</h2>
           <div className={styles.categoriesGrid}>
-            {categories.map(cat => (
+            {categories.map((cat) => (
               <CategoryCard key={cat.group} cat={cat} />
             ))}
           </div>
@@ -89,17 +93,11 @@ export const HomePage = () => {
       <section className={styles.locations}>
         <h2 className={styles.sectionTitle}>Де нас знайти</h2>
         <p className={styles.locationsText}>{locations.length} точок по всій Україні</p>
-        <button
-          className={styles.locationsBtn}
-          onClick={() => setIsModalOpen(true)}
-        >
+        <button className={styles.locationsBtn} onClick={() => setIsModalOpen(true)}>
           Переглянути локації
         </button>
-        {isModalOpen && (
-          <LocationsModal onClose={() => setIsModalOpen(false)} />
-        )}
+        {isModalOpen && <LocationsModal onClose={() => setIsModalOpen(false)} />}
       </section>
-
     </div>
   );
 };

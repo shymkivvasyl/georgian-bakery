@@ -10,9 +10,11 @@ export const FavoritesPage = () => {
   if (favoritesItems.length === 0) {
     return (
       <>
-        <ErrorMessage message='Улюблених немає'/>
+        <ErrorMessage message="Улюблених немає" />
         <div className={styles.empty}>
-          <Link to="/menu" className={styles.emptyLink}>Перейти до меню</Link>
+          <Link to="/menu" className={styles.emptyLink}>
+            Перейти до меню
+          </Link>
         </div>
       </>
     );
@@ -22,7 +24,7 @@ export const FavoritesPage = () => {
     <div className={styles.page}>
       <h1 className={styles.title}>Улюблені</h1>
       <div className={styles.grid}>
-        {favoritesItems.map(product => (
+        {favoritesItems.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

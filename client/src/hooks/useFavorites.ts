@@ -4,7 +4,7 @@ import type { Product } from '@/types';
 
 export const useFavorites = () => {
   const dispatch = useAppDispatch();
-  const favoritesItems = useAppSelector(state => state.favorites);
+  const favoritesItems = useAppSelector((state) => state.favorites);
 
   return {
     favoritesItems,

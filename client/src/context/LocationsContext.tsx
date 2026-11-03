@@ -1,7 +1,7 @@
-import { useLocations } from "@/hooks/useLocations";
-import type { Locations } from "@/types/Locations";
-import type { ReactNode } from "react";
-import { createContext } from "react";
+import { useLocations } from '@/hooks/useLocations';
+import type { Locations } from '@/types/Locations';
+import type { ReactNode } from 'react';
+import { createContext } from 'react';
 
 interface LocationsContextType {
   locations: Locations[];

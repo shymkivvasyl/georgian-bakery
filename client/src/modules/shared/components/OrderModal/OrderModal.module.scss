@@ -19,9 +19,7 @@
 
   @include tablet {
     padding: 32px 44px;
-
   }
-
 
   .close {
     position: absolute;
@@ -68,10 +66,10 @@
         @include font-small;
 
         color: $color-text-muted;
-        padding-left: 8px
+        padding-left: 8px;
       }
 
-      &>* {
+      & > * {
         width: 100%;
       }
 
@@ -120,7 +118,7 @@
       .total {
         @include font-h3;
         color: $color-text-accent;
-        padding: 0 25px
+        padding: 0 25px;
       }
 
       .submitBtn {
