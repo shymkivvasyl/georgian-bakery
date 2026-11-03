@@ -8,6 +8,7 @@ import { ErrorMessage } from '../shared/components/ErrorMessage';
 import { useSelectedLocation } from '@/hooks/useSelectedLocation';
 import { useLocationsContext } from '@/hooks/useLocationsContext';
 import { useProducts } from '@/hooks/useProducts';
+import { PageMeta } from '../shared/components/PageMeta/PageMeta.tsx';
 
 type SortBy = 'default' | 'price_asc' | 'price_desc' | 'popularity';
 
@@ -58,6 +59,12 @@ export const MenuPage = () => {
 
   return (
     <div className={styles.page}>
+      <PageMeta
+        title="Меню"
+        description="Меню грузинської випічки з цінами: хачапурі по-аджарськи, мегрулі, піца, слойки, соуси та напої."
+        path="/menu"
+      />
+
       <h1 className={styles.title}>Меню</h1>
 
       <div className={styles.controls}>

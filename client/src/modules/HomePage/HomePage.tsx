@@ -7,6 +7,7 @@ import { Loader } from '../shared/components/Loader/Loader';
 import { CategoryCard } from '../shared/components/CategoryCard/CategoryCard';
 import { useProducts } from '@/hooks/useProducts';
 import { useLocationsContext } from '@/hooks/useLocationsContext';
+import { PageMeta } from '../shared/components/PageMeta/PageMeta.tsx';
 
 const CATEGORY_IMAGES: Record<string, string> = {
   основне: '/images/categories/osnovne.webp',
@@ -41,6 +42,13 @@ export const HomePage = () => {
 
   return (
     <div className={styles.page}>
+
+      <PageMeta
+        title="Грузинська випічка — хачапурі, піца та слойки"
+        description="Свіжа грузинська випічка щодня: хачапурі, піца, слойки та напої. 56 точок по Україні — оберіть найближчу."
+        path="/"
+      />
+      
       {/* Банер */}
       <section className={styles.banner}>
         <BannerSlider />
