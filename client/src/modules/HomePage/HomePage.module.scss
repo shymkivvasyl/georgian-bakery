@@ -6,7 +6,7 @@
     width: 100%;
 
     @include tablet {
-      margin-block: 34px;
+      margin-bottom: 24px;
     }
   }
 
@@ -15,6 +15,47 @@
     color: $color-text;
     margin-bottom: 24px;
     text-align: center;
+  }
+
+  .intro {
+    @include page-grid;
+    padding-top: 12px;
+    padding-bottom: 24px;
+
+    @include tablet {
+      padding-top: 0;
+      padding-bottom: 20px;
+    }
+
+    .introTitle {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .introBrand {
+      @include font-decorative(44px);
+      color: $color-text-accent;
+
+      @include tablet {
+        @include font-decorative(64px);
+      }
+    }
+
+    .introSubtitle {
+      @include font-body(13px);
+      color: $color-text-muted;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      @include tablet {
+        @include font-body(15px);
+        letter-spacing: 3px;
+      }
+    }
   }
 
   // Про нас

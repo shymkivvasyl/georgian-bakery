@@ -58,6 +58,8 @@ export const MenuPage = () => {
 
   return (
     <div className={styles.page}>
+      <h1 className={styles.title}>Меню</h1>
+
       <div className={styles.controls}>
         <div className={styles.searchWrapper}>
           <input
@@ -75,7 +77,6 @@ export const MenuPage = () => {
               className={styles.clearBtn}
               onClick={() => {
                 setSearch('');
-                // Put the cursor back into the input
                 searchRef.current?.focus();
               }}
               aria-label="Очистити пошук"

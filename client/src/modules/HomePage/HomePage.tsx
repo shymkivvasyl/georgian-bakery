@@ -46,6 +46,16 @@ export const HomePage = () => {
         <BannerSlider />
       </section>
 
+      {/* Main page heading (h1): brand name + what we sell */}
+      <section className={styles.intro}>
+        <h1 className={styles.introTitle}>
+          <span className={styles.introBrand}>Грузинська випічка</span>
+          <span className={styles.introSubtitle}>
+            Хачапурі, піца та слойки — свіжі щодня
+          </span>
+        </h1>
+      </section>
+
       {/* Про нас */}
       <section className={styles.about}>
         <div className={styles.aboutInner}>
