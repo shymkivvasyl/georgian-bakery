@@ -1,7 +1,7 @@
-import { useMenu } from "@/hooks/useMenu";
-import type { Product } from "@/types";
-import type { ReactNode } from "react";
-import { createContext } from "react";
+import { useMenu } from '@/hooks/useMenu';
+import type { Product } from '@/types';
+import type { ReactNode } from 'react';
+import { createContext } from 'react';
 
 interface ProductsContextType {
   products: Product[];
@@ -11,8 +11,6 @@ interface ProductsContextType {
 
 export const ProductsContext = createContext<ProductsContextType | null>(null);
 
-
-
 export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const { products, isLoading, isError } = useMenu();
 
@@ -21,4 +19,4 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </ProductsContext.Provider>
   );
-}
+};

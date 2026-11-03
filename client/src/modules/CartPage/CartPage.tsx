@@ -11,26 +11,22 @@ export const CartPage = () => {
   const { cartItems, clearCart } = useCart();
   const [isOrderOpen, setIsOrderOpen] = useState(false);
 
-  const total = cartItems.reduce(
-    (sum, item) => sum + getItemPrice(item) * item.quantity, 0
-  );
+  const total = cartItems.reduce((sum, item) => sum + getItemPrice(item) * item.quantity, 0);
 
-  const totalItems = cartItems.reduce(
-    (sum, item) => sum + item.quantity, 0
-  );
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   if (cartItems.length === 0 && !isOrderOpen) {
     return (
       <>
-        <ErrorMessage message='Кошик порожній' />
+        <ErrorMessage message="Кошик порожній" />
         <div className={styles.empty}>
-          <Link to="/menu" className={styles.emptyLink}>Перейти до меню</Link>
+          <Link to="/menu" className={styles.emptyLink}>
+            Перейти до меню
+          </Link>
         </div>
       </>
     );
   }
-
-
 
   return (
     <div className={styles.page}>
@@ -38,7 +34,7 @@ export const CartPage = () => {
 
       <div className={styles.layout}>
         <div className={styles.items}>
-          {cartItems.map(item => (
+          {cartItems.map((item) => (
             <CartProduct key={getItemKey(item)} item={item} />
           ))}
         </div>
@@ -52,7 +48,6 @@ export const CartPage = () => {
           <button className={styles.clearBtn} onClick={clearCart}>
             Очистити кошик
           </button>
-
         </div>
         {isOrderOpen && <OrderModal onClose={() => setIsOrderOpen(false)} />}
       </div>

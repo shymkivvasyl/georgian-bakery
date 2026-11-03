@@ -1,11 +1,11 @@
-import { createPortal } from "react-dom";
-import styles from "./LocationsModal.module.scss";
-import type { Locations } from "@/types/Locations";
-import { Loader } from "../Loader/Loader";
-import { useLocationsContext } from "@/hooks/useLocationsContext";
-import { useEffect, useState } from "react";
-import { searchLocations } from "@/utils/locations";
-import { useSelectedLocation } from "@/hooks/useSelectedLocation";
+import { createPortal } from 'react-dom';
+import styles from './LocationsModal.module.scss';
+import type { Locations } from '@/types/Locations';
+import { Loader } from '../Loader/Loader';
+import { useLocationsContext } from '@/hooks/useLocationsContext';
+import { useEffect, useState } from 'react';
+import { searchLocations } from '@/utils/locations';
+import { useSelectedLocation } from '@/hooks/useSelectedLocation';
 
 type Props = {
   onClose: () => void;
@@ -35,20 +35,24 @@ export const LocationsModal = ({ onClose }: Props) => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
+  const grouped = filteredLocations.reduce(
+    (acc, loc) => {
+      if (!acc[loc.region]) {
+        acc[loc.region] = [];
+      }
 
-  const grouped = filteredLocations.reduce((acc, loc) => {
-    if (!acc[loc.region]) {
-      acc[loc.region] = [];
-    }
-
-    acc[loc.region].push(loc);
-    return acc;
-  }, {} as Record<string, Locations[]>);
+      acc[loc.region].push(loc);
+      return acc;
+    },
+    {} as Record<string, Locations[]>,
+  );
 
   return createPortal(
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={e => e.stopPropagation()}>
-        <button className={styles.close} onClick={onClose} aria-label="Закрити">✕</button>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.close} onClick={onClose} aria-label="Закрити">
+          ✕
+        </button>
         <h2 className={styles.title}>Наші локації</h2>
         <p className={styles.subtitle}>Оберіть точку, щоб бачити лише доступні страви</p>
 
@@ -71,8 +75,7 @@ export const LocationsModal = ({ onClose }: Props) => {
             {Object.entries(grouped).map(([region, locs]) => (
               <div key={region} className={styles.region}>
                 <h3 className={styles.regionTitle}>{region} область</h3>
-                {locs.map(loc => {
-
+                {locs.map((loc) => {
                   // true only for the location the user selected before
                   const isSelected = loc.id === selectedLocation;
 
@@ -94,7 +97,8 @@ export const LocationsModal = ({ onClose }: Props) => {
                         target="_blank"
                         rel="noreferrer"
                         className={styles.address}
-                        onClick={e => e.stopPropagation()}                      >
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         {loc.address}
                       </a>
 
@@ -102,7 +106,8 @@ export const LocationsModal = ({ onClose }: Props) => {
                         <a
                           href={`tel:${loc.phone}`}
                           className={styles.phone}
-                          onClick={e => e.stopPropagation()}                        >
+                          onClick={(e) => e.stopPropagation()}
+                        >
                           {loc.phone}
                         </a>
                       )}
@@ -115,6 +120,6 @@ export const LocationsModal = ({ onClose }: Props) => {
         )}
       </div>
     </div>,
-    document.body
+    document.body,
   );
 };

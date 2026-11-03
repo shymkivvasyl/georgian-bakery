@@ -37,8 +37,6 @@
       border-radius: 10px;
     }
 
-
-
     .close {
       position: absolute;
       top: 25px;
@@ -194,7 +192,7 @@
           }
 
           @include desktop {
-            @include font-small(16px)
+            @include font-small(16px);
           }
         }
 
@@ -208,7 +206,7 @@
           transition: color 0.3s;
 
           @include desktop {
-            @include font-small(16px)
+            @include font-small(16px);
           }
 
           &:hover {
@@ -216,12 +214,6 @@
           }
         }
       }
-
-
-
     }
-
-
-
   }
 }

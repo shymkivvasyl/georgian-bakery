@@ -7,13 +7,7 @@ import { useLocationsContext } from '@/hooks/useLocationsContext';
 import { useState } from 'react';
 import { LocationsModal } from '../LocationsModal';
 
-export const MobileMenu = ({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) => {
+export const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const { favoritesItems } = useFavorites();
   const { cartItems } = useCart();
 
@@ -21,7 +15,7 @@ export const MobileMenu = ({
   const { locations } = useLocationsContext();
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
 
-  const currentLocation = locations.find(loc => loc.id === selectedLocation);
+  const currentLocation = locations.find((loc) => loc.id === selectedLocation);
 
   return (
     <div className={`${styles.mobile_menu} ${isOpen ? styles.open : ''}`}>
@@ -29,15 +23,11 @@ export const MobileMenu = ({
         <div className={styles.navLogo}>
           <Link to="/" className={styles.logo}>
             <img src="/images/Icons/logo.webp" alt="Logo" className={styles.logoImg} />
-            <span className={styles.logoText}>Грузинська  випічка</span>
+            <span className={styles.logoText}>Грузинська випічка</span>
           </Link>
         </div>
         <button className={styles.close} onClick={onClose}>
-          <img
-            className={styles.icon}
-            src="/images/Icons/Close.svg"
-            alt="Close_Menu"
-          />
+          <img className={styles.icon} src="/images/Icons/Close.svg" alt="Close_Menu" />
         </button>
       </header>
 
@@ -68,15 +58,13 @@ export const MobileMenu = ({
               <span className={styles.locationCity}>{currentLocation.city}</span>
               <span className={styles.locationAddress}>{currentLocation.address}</span>
             </span>
-          ) : 'Оберіть точку'}
+          ) : (
+            'Оберіть точку'
+          )}
         </button>
       </nav>
 
-
-
-      {isLocationModalOpen && (
-        <LocationsModal onClose={() => setIsLocationModalOpen(false)} />
-      )}
+      {isLocationModalOpen && <LocationsModal onClose={() => setIsLocationModalOpen(false)} />}
 
       <footer className={styles.footer}>
         <NavLink
@@ -99,9 +87,7 @@ export const MobileMenu = ({
           onClick={onClose}
         >
           <img src="/images/Icons/cart.svg" alt="Shopping bag " />
-          {cartItems.length > 0 && (
-            <span className={styles.count}>{cartItems.length}</span>
-          )}
+          {cartItems.length > 0 && <span className={styles.count}>{cartItems.length}</span>}
         </NavLink>
       </footer>
     </div>

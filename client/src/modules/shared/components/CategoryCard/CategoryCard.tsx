@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './CategoryCard.module.scss';
 
 type Category = {
@@ -21,7 +21,7 @@ export const CategoryCard = ({ cat }: Props) => {
         src={cat.img}
         alt={cat.label}
         className={hasError ? styles.categoryImgCover : styles.categoryImg}
-        onError={e => {
+        onError={(e) => {
           e.currentTarget.src = '/images/placeholder.webp ';
           setHasError(true);
         }}

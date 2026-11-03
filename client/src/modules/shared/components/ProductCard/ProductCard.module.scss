@@ -33,7 +33,6 @@
   }
 }
 
-
 .productCard {
   display: flex;
   flex-direction: column;
@@ -64,9 +63,7 @@
       @extend %product-img-base;
       object-fit: cover;
     }
-
   }
-
 
   .category {
     @include font-small(12px);

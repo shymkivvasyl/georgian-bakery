@@ -39,14 +39,12 @@
       align-items: center;
       flex-direction: column;
       text-decoration: none;
-
     }
 
     .logoImg {
       height: 50px;
       width: 50px;
       object-fit: contain;
-
     }
 
     .logoText {
@@ -77,7 +75,6 @@
           width: 50%;
         }
       }
-
     }
   }
 
@@ -116,9 +113,7 @@
 
       @include tablet {
         margin-bottom: 5px;
-
       }
-
     }
   }
 
@@ -126,7 +121,6 @@
     @include flex-center;
 
     @include font-small(10px);
-
 
     flex-direction: column;
     width: 100%;
@@ -145,7 +139,6 @@
     }
 
     .dev {
-
       color: $color-text-muted;
       text-decoration: none;
       transition: color 0.3s;
@@ -155,5 +148,4 @@
       }
     }
   }
-
 }

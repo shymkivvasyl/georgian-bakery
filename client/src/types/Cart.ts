@@ -7,7 +7,6 @@ export interface CartItem {
   quantity: number;
 }
 
-
 export interface CartItemId {
   productId: number;
   variantId: number | null;

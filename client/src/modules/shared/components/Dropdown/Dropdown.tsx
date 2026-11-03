@@ -28,13 +28,12 @@ export const Dropdown = ({ options, value, onChange, label }: Props) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const currentLabel = options.find(o => o.value === value)?.label;
-
+  const currentLabel = options.find((o) => o.value === value)?.label;
 
   const [search, setSearch] = useState('');
 
-  const filteredOptions = options.filter(o =>
-    o.label.toLowerCase().includes(search.toLowerCase())
+  const filteredOptions = options.filter((o) =>
+    o.label.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -46,7 +45,11 @@ export const Dropdown = ({ options, value, onChange, label }: Props) => {
       >
         {currentLabel}
         <img
-          src={isOpen ? '/images/Icons/Chevron_(Arrow_Up).svg' : '/images/Icons/Chevron_(Arrow_Down).svg'}
+          src={
+            isOpen
+              ? '/images/Icons/Chevron_(Arrow_Up).svg'
+              : '/images/Icons/Chevron_(Arrow_Down).svg'
+          }
           alt=""
           className={styles.arrow}
         />
@@ -57,12 +60,12 @@ export const Dropdown = ({ options, value, onChange, label }: Props) => {
           <input
             className={styles.search}
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Пошук..."
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           />
           <ul>
-            {filteredOptions.map(option => (
+            {filteredOptions.map((option) => (
               <li
                 key={option.value}
                 className={`${styles.item} ${value === option.value ? styles.item_active : ''}`}

@@ -7,7 +7,7 @@ export const useLocations = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getLocations().then(data => {
+    getLocations().then((data) => {
       setLocations(data);
       setIsLoading(false);
     });

@@ -22,7 +22,7 @@ const slides = [
     btn: { label: 'До Меню', link: '/menu' },
   },
   {
-    img: '/images/banner/banner-3.webp', 
+    img: '/images/banner/banner-3.webp',
     title: 'Скоро в Glovo ',
     subtitle: ['Доставка вже на підході —', 'слідкуйте за новинами'],
     btn: { label: 'Бета', link: '#' },
@@ -45,9 +45,7 @@ export const BannerSlider = () => {
   const getImageClass = (index: number) => {
     if (index === currentSlide) return styles.active;
     if (index === prevSlide) {
-      const dir = isSwipe
-        ? (direction === 'next' ? 'prev' : 'next')
-        : direction;
+      const dir = isSwipe ? (direction === 'next' ? 'prev' : 'next') : direction;
       return dir === 'next' ? styles.prevNext : styles.prevPrev;
     }
     return '';
@@ -55,10 +53,7 @@ export const BannerSlider = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      goToSlide(
-        currentSlide === slides.length - 1 ? 0 : currentSlide + 1,
-        'next',
-      );
+      goToSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1, 'next');
     }, 5000);
     return () => clearInterval(interval);
   }, [currentSlide]);
@@ -66,11 +61,12 @@ export const BannerSlider = () => {
   return (
     <div
       className={styles.bannerSlider}
-      onTouchStart={e => setTouchStartX(e.touches[0].clientX)}
-      onTouchEnd={e => {
-        setIsSwipe(true)
+      onTouchStart={(e) => setTouchStartX(e.touches[0].clientX)}
+      onTouchEnd={(e) => {
+        setIsSwipe(true);
         const diff = touchStartX - e.changedTouches[0].clientX;
-        if (diff < -50) goToSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1, 'prev');
+        if (diff < -50)
+          goToSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1, 'prev');
         if (diff > 50) goToSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1, 'next');
       }}
     >
@@ -82,7 +78,7 @@ export const BannerSlider = () => {
                 src={slide.img}
                 alt={`banner-${index + 1}`}
                 fetchPriority={index === 0 ? 'high' : 'auto'}
-                onError={e => {
+                onError={(e) => {
                   e.currentTarget.src = '/images/placeholder.webp';
                 }}
               />
@@ -90,7 +86,10 @@ export const BannerSlider = () => {
                 <h2 className={styles.slideTitle}>{slide.title}</h2>
                 <p className={styles.slideSubtitle}>
                   {slide.subtitle.map((line, i) => (
-                    <span key={`${index}-${i}`}>{line}<br /></span>
+                    <span key={`${index}-${i}`}>
+                      {line}
+                      <br />
+                    </span>
                   ))}
                 </p>
                 <Link to={slide.btn.link} className={styles.slideBtn}>
@@ -100,17 +99,16 @@ export const BannerSlider = () => {
             </div>
           ))}
         </div>
-
       </div>
 
       <div className={styles.dots}>
         {slides.map((_, index) => (
           <button
             key={index}
-            aria-label={`Слайд ${index + 1}`} 
+            aria-label={`Слайд ${index + 1}`}
             className={`${styles.dot} ${index === currentSlide ? styles.dot_active : ''}`}
             onClick={() => {
-              setIsSwipe(false)
+              setIsSwipe(false);
               goToSlide(index);
             }}
           />
