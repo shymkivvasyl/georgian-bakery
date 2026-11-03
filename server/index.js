@@ -1,4 +1,3 @@
-// Load variables from .env into process.env (must be first)
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
@@ -11,16 +10,20 @@ import ordersRouter from './src/routes/orders.route.js';
 import prisma from './src/db.js';
 import { errorMiddleware } from './src/middlewares/error.middleware.js';
 
-// Port from .env, or 5000 if it is not set
 const PORT = process.env.PORT || 5000;
+// Sites that can call our API (from .env, separated by commas)
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
+  .split(',')
+  .map((origin) => origin.trim());
 
-// Create the Express app
 const app = express();
 
-// Read JSON from the request body into req.body
 app.use(express.json());
 // Allow the frontend (another port/domain) to read our responses
-app.use(cors());
+app.use(cors({ origin: allowedOrigins }));
+
+// Health check: shows that the server is alive
+app.get('/api', (req, res) => res.status(200).json({ message: 'Status Ok' }));
 
 // Connect routes with their URL prefix
 app.use('/api/menu', menuRouter);
