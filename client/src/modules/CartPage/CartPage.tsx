@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { OrderModal } from '../shared/components/OrderModal/OrderModal';
 import { ErrorMessage } from '../shared/components/ErrorMessage';
 import { getItemKey, getItemPrice } from '@/utils/cart';
+import { PageMeta } from '../shared/components/PageMeta/PageMeta.tsx';
 
 export const CartPage = () => {
   const { cartItems, clearCart } = useCart();
@@ -18,6 +19,7 @@ export const CartPage = () => {
   if (cartItems.length === 0 && !isOrderOpen) {
     return (
       <>
+        <PageMeta title="Кошик" description="Ваш кошик замовлення." path="/cart" noindex />
         <ErrorMessage message="Кошик порожній" />
         <div className={styles.empty}>
           <Link to="/menu" className={styles.emptyLink}>
@@ -30,6 +32,7 @@ export const CartPage = () => {
 
   return (
     <div className={styles.page}>
+      <PageMeta title="Кошик" description="Ваш кошик замовлення." path="/cart" noindex />
       <h1 className={styles.title}>Кошик</h1>
 
       <div className={styles.layout}>
