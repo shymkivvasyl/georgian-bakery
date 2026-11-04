@@ -7,7 +7,8 @@ import { Loader } from '../shared/components/Loader/Loader';
 import { CategoryCard } from '../shared/components/CategoryCard/CategoryCard';
 import { useProducts } from '@/hooks/useProducts';
 import { useLocationsContext } from '@/hooks/useLocationsContext';
-import { PageMeta } from '../shared/components/PageMeta/PageMeta.tsx';
+import { PageMeta } from '../shared/components/PageMeta/PageMeta';
+import { ErrorMessage } from '../shared/components/ErrorMessage';
 
 const CATEGORY_IMAGES: Record<string, string> = {
   основне: '/images/categories/osnovne.webp',
@@ -16,8 +17,8 @@ const CATEGORY_IMAGES: Record<string, string> = {
 };
 
 export const HomePage = () => {
-  const { products, isLoading } = useProducts();
-  const { locations } = useLocationsContext();
+  const { products, isLoading, isError } = useProducts();
+  const { locations, isLoading: isLocationsLoading } = useLocationsContext();
 
   const categories = useMemo(() => {
     const unique = [...new Set(products.map((p) => p.group))].filter(Boolean);
@@ -39,6 +40,8 @@ export const HomePage = () => {
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 5);
   }, [products]);
+
+  if (isError) return <ErrorMessage />;
 
   return (
     <div className={styles.page}>
@@ -96,18 +99,27 @@ export const HomePage = () => {
       <section className={styles.categories}>
         <div className={styles.categoriesInner}>
           <h2 className={styles.sectionTitle}>Категорії</h2>
-          <div className={styles.categoriesGrid}>
-            {categories.map((cat) => (
-              <CategoryCard key={cat.group} cat={cat} />
-            ))}
-          </div>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <div className={styles.categoriesGrid}>
+              {categories.map((cat) => (
+                <CategoryCard key={cat.group} cat={cat} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Локації */}
       <section className={styles.locations}>
         <h2 className={styles.sectionTitle}>Де нас знайти</h2>
-        <p className={styles.locationsText}>{locations.length} точок по всій Україні</p>
+        {/* While locations load, show a hint instead of "0 точок" */}
+        <p className={styles.locationsText}>
+          {isLocationsLoading
+            ? 'Завантаження локацій...'
+            : `${locations.length} точок по всій Україні`}
+        </p>
         <button className={styles.locationsBtn} onClick={() => setIsModalOpen(true)}>
           Переглянути локації
         </button>
