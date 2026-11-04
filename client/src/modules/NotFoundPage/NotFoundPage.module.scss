@@ -1,0 +1,82 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  // Page fills the screen between header and footer
+  min-height: calc(100vh - #{$header-height});
+  padding: 32px 16px 64px;
+  text-align: center;
+
+  @include tablet {
+    gap: 28px;
+    padding-block: 48px 96px;
+  }
+
+  // Image goes first visually, heading under it
+  .img {
+    order: -1;
+    width: min(100%, 360px);
+    height: auto;
+    @include wobble;
+
+    @include tablet {
+      width: 420px;
+    }
+  }
+
+  .title {
+    @include font-h1(30px, 38px);
+    color: $color-text;
+    max-width: 560px;
+
+    @include tablet {
+      @include font-h1(44px, 54px);
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .link {
+    @include font-button;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    padding: 12px 24px;
+    border-radius: $radius-md;
+    border: 2px solid $color-text-accent;
+    color: $color-text-accent;
+    text-decoration: none;
+    transition:
+      background-color 0.3s,
+      color 0.3s,
+      border-color 0.3s;
+
+    // First button (to menu) is the main one: filled orange
+    &:first-child {
+      background-color: $color-text-accent;
+      color: $color-bg;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: $color-text-hover;
+        background-color: $color-text-hover;
+        color: $color-bg;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-text-accent;
+      outline-offset: 3px;
+    }
+  }
+}

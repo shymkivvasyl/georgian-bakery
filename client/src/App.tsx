@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { LocationsModal } from './modules/shared/components/LocationsModal';
 import { ScrollTopButton } from './modules/shared/components/ScrollTopButton';
 import { DevNotice } from './modules/shared/components/DevNotice';
+import { NotFoundPage } from './modules/NotFoundPage/NotFoundPage';
 
 export const App = () => {
   const { selectedLocation } = useSelectedLocation();
@@ -36,6 +37,7 @@ export const App = () => {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
       <ScrollTopButton />

@@ -3,7 +3,7 @@ import { SITE_NAME, SITE_URL } from '@/utils/constants';
 type Props = {
   title: string;
   description: string;
-  path: string;
+  path?: string;
   noindex?: boolean;
 };
 
@@ -18,7 +18,7 @@ export const PageMeta = ({ title, description, path, noindex = false }: Props) =
     <>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={canonicalUrl} />
+      {path && <link rel="canonical" href={canonicalUrl} />}
 
       {/* Ask Google not to show this page in search */}
       {noindex && <meta name="robots" content="noindex" />}
