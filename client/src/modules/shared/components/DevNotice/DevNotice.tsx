@@ -2,6 +2,7 @@ import styles from './DevNotice.module.scss';
 
 export const DevNotice = () => (
   <div className={styles.notice} role="status">
-    Сайт у розробці — замовлення тут поки що не приймаються.
+    Демо-версія сайту: замовлення не приймаються, а ціни й асортимент можуть відрізнятися від
+    актуальних.{' '}
   </div>
 );
