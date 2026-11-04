@@ -1,15 +1,6 @@
 import { useMenu } from '@/hooks/useMenu';
-import type { Product } from '@/types';
 import type { ReactNode } from 'react';
-import { createContext } from 'react';
-
-interface ProductsContextType {
-  products: Product[];
-  isLoading: boolean;
-  isError: boolean;
-}
-
-export const ProductsContext = createContext<ProductsContextType | null>(null);
+import { ProductsContext } from './productsContext';
 
 export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const { products, isLoading, isError } = useMenu();

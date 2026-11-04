@@ -43,7 +43,6 @@
     transition: transform 0.3s;
   }
 
-  // Small orange circle with arrow in the corner
   .arrow {
     @include flex-center;
     position: absolute;

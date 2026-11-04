@@ -17,6 +17,8 @@ store.subscribe(() => {
   localStorage.setItem('favorites', JSON.stringify(state.favorites));
   if (state.location !== null) {
     localStorage.setItem('selectedLocation', String(state.location));
+  } else {
+    localStorage.removeItem('selectedLocation');
   }
 });
 
