@@ -30,6 +30,8 @@
         "url": "https://georgian-bakery.vercel.app/"
       }
     </script>
+    <!-- Preload the first banner (the biggest image on the first screen = LCP) -->
+    <link rel="preload" as="image" href="/images/banner/banner-1.webp" fetchpriority="high" />
     <!-- Preload the fonts used on the first screen: the browser starts downloading them right away -->
     <link
       rel="preload"

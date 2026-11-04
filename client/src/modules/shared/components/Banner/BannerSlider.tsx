@@ -76,8 +76,11 @@ export const BannerSlider = () => {
             <div key={index} className={`${styles.slide} ${getImageClass(index)}`}>
               <img
                 src={slide.img}
-                alt={`banner-${index + 1}`}
-                fetchPriority={index === 0 ? 'high' : 'auto'}
+                // Empty alt: the slide title below already describes it
+                alt=""
+                // First slide is the most important image, the rest can wait
+                fetchPriority={index === 0 ? 'high' : 'low'}
+                decoding={index === 0 ? 'auto' : 'async'}
                 onError={(e) => {
                   e.currentTarget.src = '/images/placeholder.webp';
                 }}
