@@ -4,6 +4,7 @@ import type { Product } from '@/types';
 import { useCart } from '@/hooks/useCart';
 import { useFavorites } from '@/hooks/useFavorites';
 import { isSameItem } from '@/utils/cart';
+import { getOptimizedImage } from '@/utils/image';
 
 type Props = {
   product: Product;
@@ -32,8 +33,14 @@ export const ProductCard = ({ product }: Props) => {
     <article className={styles.productCard}>
       <div className={styles.imgWrapper}>
         <img
+          loading="lazy"
+          decoding="async"
           className={hasError ? styles.imageCover : styles.image}
-          src={hasError || !product.imageUrl ? '/images/placeholder.webp' : product.imageUrl}
+          src={
+            hasError || !product.imageUrl
+              ? '/images/placeholder.webp'
+              : getOptimizedImage({ url: product.imageUrl, width: 600 })
+          }
           alt={product.name}
           onError={() => {
             setHasError(true);
