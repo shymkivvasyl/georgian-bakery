@@ -1,3 +1,5 @@
+// Fonts first, so @font-face rules are ready before any styles use them
+import './styles/fonts.scss';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import { Provider } from 'react-redux';

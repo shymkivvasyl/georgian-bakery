@@ -22,7 +22,8 @@ export const CategoryCard = ({ cat }: Props) => {
         loading="lazy"
         decoding="async"
         src={getOptimizedImage({ url: cat.img, width: 600 })}
-        alt={cat.label}
+        // Empty alt: the label below already says the name, so screen readers skip the image
+        alt=""
         className={hasError ? styles.categoryImgCover : styles.categoryImg}
         onError={(e) => {
           e.currentTarget.src = '/images/placeholder.webp';
