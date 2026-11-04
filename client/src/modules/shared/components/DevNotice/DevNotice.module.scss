@@ -1,0 +1,14 @@
+.notice {
+  @include font-small(12px);
+  padding: 4px 16px;
+  background-color: #b3261e;
+  color: $color-text;
+  text-align: center;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+
+  @include tablet {
+    @include font-small(13px);
+    line-height: 1.4;
+  }
+}

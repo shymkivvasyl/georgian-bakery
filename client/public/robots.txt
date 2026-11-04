@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-# Personal pages, no value in search
-Disallow: /cart
-Disallow: /favorites
 
 Sitemap: https://georgian-bakery.vercel.app/sitemap.xml

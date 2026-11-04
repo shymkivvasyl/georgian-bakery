@@ -1,5 +1,5 @@
 import type { Product } from './Product';
-import type { Variant } from './Variant.ts';
+import type { Variant } from './Variant';
 
 export interface CartItem {
   product: Product;

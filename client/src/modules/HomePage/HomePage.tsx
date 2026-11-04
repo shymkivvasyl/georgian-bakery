@@ -42,13 +42,12 @@ export const HomePage = () => {
 
   return (
     <div className={styles.page}>
-
       <PageMeta
         title="Грузинська випічка — хачапурі, піца та слойки"
         description="Свіжа грузинська випічка щодня: хачапурі, піца, слойки та напої. 56 точок по Україні — оберіть найближчу."
         path="/"
       />
-      
+
       {/* Банер */}
       <section className={styles.banner}>
         <BannerSlider />
@@ -58,9 +57,7 @@ export const HomePage = () => {
       <section className={styles.intro}>
         <h1 className={styles.introTitle}>
           <span className={styles.introBrand}>Грузинська випічка</span>
-          <span className={styles.introSubtitle}>
-            Хачапурі, піца та слойки — свіжі щодня
-          </span>
+          <span className={styles.introSubtitle}>Хачапурі, піца та слойки — свіжі щодня</span>
         </h1>
       </section>
 
