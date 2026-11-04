@@ -5,11 +5,7 @@
     "name": "Хачапурі зі шпинатом",
     "price": 56,
     "description": "Бринза і шпинат навпіл з часником у м'якому тісті.",
-    "ingredients": [
-      "бринза",
-      "шпинат",
-      "часник"
-    ],
+    "ingredients": ["бринза", "шпинат", "часник"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735943/georgian-bakery/menu/product-1.jpg",
     "available": true,
     "date": "10.01.2026",
@@ -61,9 +57,7 @@
     "name": "Хачапурі з куркою",
     "price": 71,
     "description": "М'яке тісто з ніжною курячою начинкою зі спеціями.",
-    "ingredients": [
-      "мелене куряче м'ясо"
-    ],
+    "ingredients": ["мелене куряче м'ясо"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735942/georgian-bakery/menu/product-5.jpg",
     "available": true,
     "date": "05.03.2026",
@@ -102,9 +96,7 @@
     "name": "Хачапурі з картоплею",
     "price": 60,
     "description": "Ситне хачапурі з ніжною картопляною начинкою.",
-    "ingredients": [
-      "картопляне пюре"
-    ],
+    "ingredients": ["картопляне пюре"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735941/georgian-bakery/menu/product-8.jpg",
     "available": true,
     "date": "20.02.2026",
@@ -130,11 +122,7 @@
     "name": "Мегрулі з мисливськими ковбасками",
     "price": 80,
     "description": "Мегрулі з мисливськими ковбасками та плавленим сирком.",
-    "ingredients": [
-      "мисливські ковбаски",
-      "майонез",
-      "плавлений сирок"
-    ],
+    "ingredients": ["мисливські ковбаски", "майонез", "плавлений сирок"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735930/georgian-bakery/menu/product-83.jpg",
     "available": true,
     "date": "03.11.2026",
@@ -147,13 +135,7 @@
     "name": "Піца Салямі",
     "price": 68,
     "description": "Піца з салямі, грибами й кукурудзою під тягучим сиром.",
-    "ingredients": [
-      "салямі",
-      "гриби",
-      "кукурудза",
-      "сир",
-      "червоний соус"
-    ],
+    "ingredients": ["салямі", "гриби", "кукурудза", "сир", "червоний соус"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735934/georgian-bakery/menu/product-10.jpg",
     "available": true,
     "date": "12.01.2026",
@@ -178,13 +160,7 @@
     "name": "Піца Гавай Пурі",
     "price": 69,
     "description": "Соковите куряче філе, кукурудза, ананас і багато сиру на пухкому тісті.",
-    "ingredients": [
-      "курка",
-      "кукурудза",
-      "ананас",
-      "сир",
-      "білий соус"
-    ],
+    "ingredients": ["курка", "кукурудза", "ананас", "сир", "білий соус"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735931/georgian-bakery/menu/product-11.jpg",
     "available": true,
     "date": "10.02.2026",
@@ -209,10 +185,7 @@
     "name": "Піца сирна",
     "price": 210,
     "description": "Чотири сири на вершковій основі та пухкому тісті — для любителів сиру.",
-    "ingredients": [
-      "вершкова основа",
-      "4 види сиру"
-    ],
+    "ingredients": ["вершкова основа", "4 види сиру"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793446392/georgian-bakery/menu/product-14.jpg",
     "available": true,
     "date": "15.04.2026",
@@ -225,11 +198,7 @@
     "name": "Піца Пурі з куркою",
     "price": 104,
     "description": "Пухке тісто з курячим м'ясом, маринованим як на шашлик, кукурудзою та сиром.",
-    "ingredients": [
-      "куряче м'ясо, мариноване як на шашлик",
-      "кукурудза",
-      "сир"
-    ],
+    "ingredients": ["куряче м'ясо, мариноване як на шашлик", "кукурудза", "сир"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735932/georgian-bakery/menu/product-15.jpg",
     "available": true,
     "date": "20.03.2026",
@@ -242,10 +211,7 @@
     "name": "Піца Пурі зі свининою",
     "price": 104,
     "description": "Пухке тісто зі свининою, маринованою як на шашлик, та сиром.",
-    "ingredients": [
-      "свинина, маринована як на шашлик",
-      "сир"
-    ],
+    "ingredients": ["свинина, маринована як на шашлик", "сир"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735933/georgian-bakery/menu/product-16.jpg",
     "available": true,
     "date": "20.03.2026",
@@ -342,13 +308,7 @@
     "name": "Кальцоне з шинкою",
     "price": 120,
     "description": "Закрита піца з шинкою, грибами й кукурудзою на часниковому соусі.",
-    "ingredients": [
-      "часниковий соус",
-      "шинка",
-      "гриби",
-      "кукурудза",
-      "сир"
-    ],
+    "ingredients": ["часниковий соус", "шинка", "гриби", "кукурудза", "сир"],
     "imageUrl": "https://res.cloudinary.com/nrpdnqet/image/upload/v1793735928/georgian-bakery/menu/product-23.jpg",
     "available": true,
     "date": "20.05.2026",
