@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CategoryCard.module.scss';
+import { getOptimizedImage } from '@/utils/image';
 
 type Category = {
   label: string;
@@ -18,7 +19,9 @@ export const CategoryCard = ({ cat }: Props) => {
   return (
     <Link to={`/menu?group=${cat.group}`} className={styles.categoryCard}>
       <img
-        src={cat.img}
+        loading="lazy"
+        decoding="async"
+        src={getOptimizedImage({ url: cat.img, width: 600 })}
         alt={cat.label}
         className={hasError ? styles.categoryImgCover : styles.categoryImg}
         onError={(e) => {

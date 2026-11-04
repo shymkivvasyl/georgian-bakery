@@ -3,6 +3,7 @@ import styles from './CartProduct.module.scss';
 import type { CartItem } from '@/types';
 import { useCart } from '@/hooks/useCart';
 import { getItemPrice } from '@/utils/cart';
+import { getOptimizedImage } from '@/utils/image.ts';
 
 type Props = {
   item: CartItem;
@@ -19,8 +20,14 @@ export const CartProduct = ({ item }: Props) => {
     <article className={styles.item}>
       <div className={styles.imgWrap}>
         <img
+          loading="lazy"
+          decoding="async"
           className={styles.img}
-          src={hasError || !product.imageUrl ? '/images/placeholder.webp' : product.imageUrl}
+          src={
+            hasError || !product.imageUrl
+              ? '/images/placeholder.webp'
+              : getOptimizedImage({ url: product.imageUrl, width: 300 })
+          }
           alt={product.name}
           onError={() => setHasError(true)}
         />
