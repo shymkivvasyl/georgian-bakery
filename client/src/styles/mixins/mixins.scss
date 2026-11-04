@@ -32,3 +32,24 @@
     transform: scale($toScale);
   }
 }
+
+// Slowly rocks an element left and right (used for the sad khachapuri image)
+@mixin wobble($duration: 4s, $angle: 2deg) {
+  animation: wobble $duration ease-in-out infinite;
+
+  @keyframes wobble {
+    0%,
+    100% {
+      transform: rotate(-$angle);
+    }
+
+    50% {
+      transform: rotate($angle);
+    }
+  }
+
+  // Turn the animation off for people who asked for less motion
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

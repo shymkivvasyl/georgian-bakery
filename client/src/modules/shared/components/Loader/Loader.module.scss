@@ -1,20 +1,160 @@
+$cycle: 3.5s;
+$cheese-color: #ffd27a;
+$marks-color: #ffb347;
+
 .wrapper {
-  @include flex-center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   min-height: 50vh;
   width: 100%;
+  padding-inline: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  font-size: clamp(32px, 9vw, 56px);
+  color: $color-text-accent;
+  // Text and khachapuri are revealed together by one wipe, so there is no gap
+  clip-path: inset(-10% 100% -10% 0);
+  animation: draw $cycle ease-in-out infinite;
+
+  svg {
+    overflow: visible;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.text {
+  font-family: $font-decorative;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding-inline: 0.12em;
+}
+
+.iconWrap {
+  display: flex;
+}
+
+.icon {
+  width: 1.6em;
+  height: 1.3em;
+  stroke-width: 4;
+
+  .dough {
+    stroke: $color-text-accent;
+  }
+
+  .cheese {
+    stroke: $cheese-color;
+    stroke-width: 3.5;
+  }
+
+  .cheeseFill {
+    stroke: none;
+    fill: $cheese-color;
+    fill-opacity: 0;
+    animation: fill-cheese $cycle ease-in-out infinite;
+  }
+
+  .yolk {
+    stroke: $color-text-accent;
+    fill: $color-text-accent;
+    fill-opacity: 0;
+    animation: fill-yolk $cycle ease-in-out infinite;
+  }
+
+  .marks {
+    stroke: $marks-color;
+    stroke-width: 3.5;
+  }
 }
 
 .spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid $color-bg-card;
+  width: 38px;
+  height: 38px;
+  border: 3px solid $color-bg-card;
   border-top-color: $color-text-accent;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes draw {
+  0% {
+    clip-path: inset(-10% 100% -10% 0);
+    opacity: 1;
+  }
+
+  70% {
+    clip-path: inset(-10% 0 -10% 0);
+  }
+
+  88% {
+    opacity: 1;
+  }
+
+  96%,
+  100% {
+    clip-path: inset(-10% 0 -10% 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fill-cheese {
+  0%,
+  50% {
+    fill-opacity: 0;
+  }
+
+  80%,
+  100% {
+    fill-opacity: 0.35;
+  }
+}
+
+@keyframes fill-yolk {
+  0%,
+  50% {
+    fill-opacity: 0;
+  }
+
+  80%,
+  100% {
+    fill-opacity: 1;
+  }
 }
 
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand,
+  .icon .cheeseFill,
+  .icon .yolk {
+    animation: none;
+  }
+
+  .brand {
+    clip-path: none;
+  }
+
+  .icon .cheeseFill {
+    fill-opacity: 0.35;
+  }
+
+  .icon .yolk {
+    fill-opacity: 1;
+  }
+
+  .spinner {
+    animation-duration: 2s;
   }
 }
