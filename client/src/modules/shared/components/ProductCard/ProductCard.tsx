@@ -5,6 +5,8 @@ import { useCart } from '@/hooks/useCart';
 import { useFavorites } from '@/hooks/useFavorites';
 import { isSameItem } from '@/utils/cart';
 import { getOptimizedImage } from '@/utils/image';
+import { useSelectedLocation } from '@/hooks/useSelectedLocation';
+import { LocationsModal } from '../LocationsModal';
 
 type Props = {
   product: Product;
@@ -12,6 +14,9 @@ type Props = {
 
 export const ProductCard = ({ product }: Props) => {
   const [hasError, setHasError] = useState(!product.imageUrl);
+  const { selectedLocation } = useSelectedLocation();
+
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
 
   const { cartItems, addToCart, removeFromCart } = useCart();
   const { favoritesItems, addToFavorites, removeFromFavorites } = useFavorites();
@@ -28,6 +33,15 @@ export const ProductCard = ({ product }: Props) => {
   const cartId = { productId: product.id, variantId: selectedVariant?.id ?? null };
   const isInCart = cartItems.some((item) => isSameItem(item, cartId));
   const isInFavorites = favoritesItems.some((item) => item.id === product.id);
+
+  function handleAddToCart() {
+    if (selectedLocation === null) {
+      setIsLocationModalOpen(true);
+      return;
+    }
+
+    addToCart(product, selectedVariant);
+  }
 
   return (
     <article className={styles.productCard}>
@@ -73,7 +87,7 @@ export const ProductCard = ({ product }: Props) => {
         <div className={styles.buttons}>
           {isInFavorites ? (
             <button className={styles.addedToFav} onClick={() => removeFromFavorites(product.id)}>
-              <img src="images/Icons/Favourites_Filled_(Heart_Like).svg" alt="в улюблених" />
+              <img src="/images/Icons/Favourites_Filled_(Heart_Like).svg" alt="в улюблених" />
             </button>
           ) : (
             <button className={styles.addToFav} onClick={() => addToFavorites(product)}>
@@ -85,15 +99,14 @@ export const ProductCard = ({ product }: Props) => {
               Додано ✓
             </button>
           ) : (
-            <button
-              className={styles.addToCart}
-              onClick={() => addToCart(product, selectedVariant)}
-            >
+            <button className={styles.addToCart} onClick={handleAddToCart}>
               До кошика
             </button>
           )}
         </div>
       </div>
+
+      {isLocationModalOpen && <LocationsModal onClose={() => setIsLocationModalOpen(false)} />}
     </article>
   );
 };

@@ -1,0 +1,119 @@
+.prompt {
+  position: fixed;
+  z-index: 95;
+  left: 16px;
+  right: 88px;
+  bottom: 16px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'icon text close'
+    'btn btn btn';
+  align-items: center;
+  gap: 10px 12px;
+  padding: 12px 12px 12px 14px;
+
+  background-color: $color-bg-card;
+  border: 1px solid rgba($color-text-accent, 0.4);
+  border-radius: $radius-md;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+
+  animation: prompt-in 0.4s ease-out 0.6s both;
+
+  @include tablet {
+    left: 24px;
+    right: auto;
+    bottom: 24px;
+    max-width: 480px;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: 'icon text btn close';
+    padding: 12px 12px 12px 16px;
+  }
+
+  .icon {
+    grid-area: icon;
+    display: flex;
+    color: $color-text-accent;
+  }
+
+  .text {
+    grid-area: text;
+    @include font-small(14px);
+    color: $color-text-muted;
+
+    strong {
+      color: $color-text;
+      font-weight: 700;
+    }
+  }
+
+  .selectBtn {
+    grid-area: btn;
+    @include font-button;
+    padding: 8px 18px;
+    border: none;
+    border-radius: $radius-sm;
+    background-color: $color-text-accent;
+    color: $color-bg;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-text-hover;
+      }
+    }
+  }
+
+  .closeBtn {
+    grid-area: close;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: $color-text-muted;
+    cursor: pointer;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
+
+    @media (hover: hover) {
+      &:hover {
+        color: $color-text;
+        background-color: rgba($color-text, 0.08);
+      }
+    }
+  }
+
+  .selectBtn,
+  .closeBtn {
+    &:focus-visible {
+      outline: 2px solid $color-text-accent;
+      outline-offset: 2px;
+    }
+  }
+}
+
+@keyframes prompt-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt {
+    animation: none;
+  }
+}
