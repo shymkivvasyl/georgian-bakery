@@ -50,7 +50,7 @@ export const HomePage = () => {
   return (
     <div className={styles.page}>
       <PageMeta
-        title="Грузинська випічка — хачапурі, піца та слойки"
+        title="Грузинська Випічка — хачапурі, піца та слойки"
         description="Свіжа грузинська випічка щодня: хачапурі, піца, слойки та напої. 56 точок по Україні — оберіть найближчу."
         path="/"
       />
@@ -63,7 +63,7 @@ export const HomePage = () => {
       {/* Main page heading (h1): brand name + what we sell */}
       <section className={styles.intro}>
         <h1 className={styles.introTitle}>
-          <span className={styles.introBrand}>Грузинська випічка</span>
+          <span className={styles.introBrand}>Грузинська Випічка</span>
           <span className={styles.introSubtitle}>Хачапурі, піца та слойки — свіжі щодня</span>
         </h1>
       </section>

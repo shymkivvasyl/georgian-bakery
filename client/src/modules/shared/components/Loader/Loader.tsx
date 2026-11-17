@@ -7,7 +7,7 @@ export const Loader = () => {
   return (
     <div className={styles.wrapper} role="status" aria-label="Завантаження">
       <div className={styles.brand} aria-hidden="true">
-        <span className={styles.text}>Грузинська випічка</span>
+        <span className={styles.text}>Грузинська Випічка</span>
 
         <span className={styles.iconWrap}>
           <svg className={styles.icon} viewBox="4 14 92 72">
