@@ -1,33 +1,34 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { CartItem, CartItemId, Product, Variant } from '@/types';
+import type { CartItemId, StoredCartItem } from '@/types';
 import { isSameItem } from '@/utils/cart';
 import { readFromLocalStorage } from '@/utils/storage';
 
-const loadCart = (): CartItem[] => {
+const loadCart = (): StoredCartItem[] => {
   const items = readFromLocalStorage('cart');
 
   if (!Array.isArray(items)) {
     return [];
   }
 
-  return items.map((item) => ({ ...item, variant: item.variant ?? null }));
+  return items.filter(
+    (item) => typeof item?.productId === 'number' && typeof item?.quantity === 'number',
+  );
 };
 
-const initialState: CartItem[] = loadCart();
+const initialState: StoredCartItem[] = loadCart();
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<{ product: Product; variant: Variant | null }>) => {
-      const { product, variant } = action.payload;
-      const id = { productId: product.id, variantId: variant?.id ?? null };
+    addToCart: (state, action: PayloadAction<CartItemId>) => {
+      const id = action.payload;
 
       const existingItem = state.find((item) => isSameItem(item, id));
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.push({ product, variant, quantity: 1 });
+        state.push({ ...id, quantity: 1 });
       }
     },
     removeFromCart: (state, action: PayloadAction<CartItemId>) => {

@@ -7,14 +7,19 @@ import { OrderModal } from '../shared/components/OrderModal/OrderModal';
 import { ErrorMessage } from '../shared/components/ErrorMessage';
 import { getItemKey, getItemPrice } from '@/utils/cart';
 import { PageMeta } from '../shared/components/PageMeta/PageMeta.tsx';
+import { Loader } from '../shared/components/Loader/Loader';
 
 export const CartPage = () => {
-  const { cartItems, clearCart } = useCart();
+  const { cartItems, clearCart, isLoading } = useCart();
   const [isOrderOpen, setIsOrderOpen] = useState(false);
 
   const total = cartItems.reduce((sum, item) => sum + getItemPrice(item) * item.quantity, 0);
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (cartItems.length === 0 && !isOrderOpen) {
     return (
