@@ -18,7 +18,11 @@ const CATEGORY_IMAGES: Record<string, string> = {
 
 export const HomePage = () => {
   const { products, isLoading, isError } = useProducts();
-  const { locations, isLoading: isLocationsLoading, isError: isLocationsError } = useLocationsContext();
+  const {
+    locations,
+    isLoading: isLocationsLoading,
+    isError: isLocationsError,
+  } = useLocationsContext();
 
   const categories = useMemo(() => {
     const unique = [...new Set(products.map((p) => p.group))].filter(Boolean);
@@ -114,13 +118,13 @@ export const HomePage = () => {
       {/* Локації */}
       <section className={styles.locations}>
         <h2 className={styles.sectionTitle}>Де нас знайти</h2>
-          {!isLocationsError && (
-            <p className={styles.locationsText}>
-              {isLocationsLoading
-                ? 'Завантаження локацій...'
-                : `${locations.length} точок по всій Україні`}
-            </p>
-          )}
+        {!isLocationsError && (
+          <p className={styles.locationsText}>
+            {isLocationsLoading
+              ? 'Завантаження локацій...'
+              : `${locations.length} точок по всій Україні`}
+          </p>
+        )}
         <button className={styles.locationsBtn} onClick={() => setIsModalOpen(true)}>
           Переглянути локації
         </button>

@@ -1,6 +1,3 @@
-
-
-
 export function readFromLocalStorage(key: string): unknown {
   try {
     const saved = localStorage.getItem(key);
@@ -10,5 +7,5 @@ export function readFromLocalStorage(key: string): unknown {
   } catch (error) {
     console.error(`Error reading ${key} from localStorage:`, error);
     return null;
-  } 
- }
+  }
+}
