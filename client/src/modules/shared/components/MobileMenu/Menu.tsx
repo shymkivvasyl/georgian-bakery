@@ -23,7 +23,7 @@ export const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         <div className={styles.navLogo}>
           <Link to="/" className={styles.logo}>
             <img src="/images/Icons/logo.webp" alt="Logo" className={styles.logoImg} />
-            <span className={styles.logoText}>Грузинська випічка</span>
+            <span className={styles.logoText}>Грузинська Випічка</span>
           </Link>
         </div>
         <button className={styles.close} onClick={onClose}>

@@ -11,7 +11,7 @@ export const Footer = () => {
       <div className={styles.logo}>
         <Link to="/">
           <img src="/images/Icons/logo.webp" alt="Logo" className={styles.logoImg} />
-          <span className={styles.logoText}>Грузинська випічка</span>
+          <span className={styles.logoText}>Грузинська Випічка</span>
         </Link>
       </div>
 
@@ -53,7 +53,7 @@ export const Footer = () => {
       </div>
 
       <div className={styles.copy}>
-        <span className={styles.copyright}>© 2026 Грузинська випічка</span>
+        <span className={styles.copyright}>© 2026 Грузинська Випічка</span>
         <a
           href="https://www.linkedin.com/in/vasyl-shymkiv-62127a38a/"
           target="_blank"

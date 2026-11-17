@@ -32,7 +32,7 @@ export const Header = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <img src="/images/Icons/logo.webp" alt="Logo" className={styles.logoImg} />
-              <span className={styles.logoText}>Грузинська випічка</span>
+              <span className={styles.logoText}>Грузинська Випічка</span>
             </Link>
           </div>
           <nav className={styles.nav}>
