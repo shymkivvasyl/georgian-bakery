@@ -69,6 +69,14 @@ export const OrderModal = ({ onClose }: Props) => {
       return;
     }
 
+    const phoneDigits = phone.replace(/\D/g, '');
+
+    // Full Ukrainian number has 12 digits (38 + 10)
+    if (phoneDigits.length !== 12) {
+      setError('Введіть повний номер телефону');
+      return;
+    }
+
     if (selectedLocation) {
       const unavailableItems = cartItems.filter(
         (item) => !selectedLocation.availableProducts.includes(item.product.id),
