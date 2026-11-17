@@ -1,12 +1,15 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { CartItem, CartItemId, Product, Variant } from '@/types';
 import { isSameItem } from '@/utils/cart';
+import { readFromLocalStorage } from '@/utils/storage';
 
 const loadCart = (): CartItem[] => {
-  const saved = localStorage.getItem('cart');
-  if (!saved) return [];
+  const items = readFromLocalStorage('cart');
 
-  const items: CartItem[] = JSON.parse(saved);
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
   return items.map((item) => ({ ...item, variant: item.variant ?? null }));
 };
 

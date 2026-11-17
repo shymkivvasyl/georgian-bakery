@@ -1,8 +1,12 @@
+import { readFromLocalStorage } from '@/utils/storage.ts';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 const loadLocation = (): number | null => {
-  const saved = localStorage.getItem('selectedLocation');
-  return saved ? Number(saved) : null;
+  const items = readFromLocalStorage('selectedLocation');
+  if (typeof items === 'number') {
+    return items;
+  }
+  return null;
 };
 
 const locationSlice = createSlice({

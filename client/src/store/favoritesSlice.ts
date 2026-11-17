@@ -1,9 +1,13 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { Product } from '@/types';
+import { readFromLocalStorage } from '@/utils/storage.ts';
 
 const loadFavorites = (): Product[] => {
-  const saved = localStorage.getItem('favorites');
-  return saved ? JSON.parse(saved) : [];
+  const items = readFromLocalStorage('favorites');
+  if (!Array.isArray(items)) {
+    return [];
+  }
+  return items;
 };
 
 const initialState: Product[] = loadFavorites();
