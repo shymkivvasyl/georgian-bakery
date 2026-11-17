@@ -11,3 +11,7 @@ export interface CartItemId {
   productId: number;
   variantId: number | null;
 }
+
+export interface StoredCartItem extends CartItemId {
+  quantity: number;
+}

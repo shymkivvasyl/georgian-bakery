@@ -3,7 +3,6 @@ import styles from './ProductCard.module.scss';
 import type { Product } from '@/types';
 import { useCart } from '@/hooks/useCart';
 import { useFavorites } from '@/hooks/useFavorites';
-import { isSameItem } from '@/utils/cart';
 import { getOptimizedImage } from '@/utils/image';
 import { useSelectedLocation } from '@/hooks/useSelectedLocation';
 import { LocationsModal } from '../LocationsModal';
@@ -18,7 +17,7 @@ export const ProductCard = ({ product }: Props) => {
 
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
 
-  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { isInCart, addToCart, removeFromCart } = useCart();
   const { favoritesItems, addToFavorites, removeFromFavorites } = useFavorites();
 
   // Old saved favorites may have no "variants" field
@@ -31,7 +30,8 @@ export const ProductCard = ({ product }: Props) => {
 
   const price = selectedVariant?.price ?? product.price;
   const cartId = { productId: product.id, variantId: selectedVariant?.id ?? null };
-  const isInCart = cartItems.some((item) => isSameItem(item, cartId));
+  // Is this product (with the chosen variant) already in the cart?
+  const isAdded = isInCart(cartId);
   const isInFavorites = favoritesItems.some((item) => item.id === product.id);
 
   function handleAddToCart() {
@@ -94,7 +94,7 @@ export const ProductCard = ({ product }: Props) => {
               <img src="/images/Icons/Favourites_(Heart_Like).svg" alt="додати в улюблені" />
             </button>
           )}
-          {isInCart ? (
+          {isAdded ? (
             <button className={styles.addedToCart} onClick={() => removeFromCart(cartId)}>
               Додано ✓
             </button>
