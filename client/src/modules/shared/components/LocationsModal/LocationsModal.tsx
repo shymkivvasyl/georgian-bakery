@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const LocationsModal = ({ onClose }: Props) => {
-  const { locations, isLoading } = useLocationsContext();
+  const { locations, isLoading, isError } = useLocationsContext();
   const { selectedLocation, setSelectedLocation } = useSelectedLocation();
 
   const handleSelect = (id: number) => {
@@ -68,6 +68,8 @@ export const LocationsModal = ({ onClose }: Props) => {
 
         {isLoading ? (
           <Loader />
+        ) : isError ? (
+          <p className={styles.error}>Помилка завантаження локацій</p>
         ) : filteredLocations.length === 0 ? (
           <p className={styles.empty}>Нічого не знайдено</p>
         ) : (

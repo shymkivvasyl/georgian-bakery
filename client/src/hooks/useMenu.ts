@@ -11,12 +11,13 @@ export const useMenu = () => {
     getMenu()
       .then((data) => {
         setProducts(data);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.error('Помилка при завантаженні даних:', error);
-        setIsLoading(false);
         setIsError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 

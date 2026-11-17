@@ -105,6 +105,16 @@
       padding-block: 24px;
     }
 
+    .error {
+      @include font-body;
+
+      color: $color-text-muted;
+      text-align: center;
+      padding: 24px 16px;
+      border: 1px dashed rgba($color-text-hover, 0.5);
+      border-radius: $radius-md;
+    }
+
     .list {
       display: flex;
       flex-direction: column;
